@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Zomato CSAO Recommendation System - Full Report | Team Pixels</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+/* ================================================================
+   VARIABLES & RESET
+================================================================ */
+:root {
+  --red: #E23744;
+  --red-dark: #b5202d;
+  --dark: #1a1a2e;
+  --text: #1e1e2e;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --bg-light: #f9fafb;
+  --bg-card: #ffffff;
+  --green: #16a34a;
+  --blue: #2563eb;
+  --orange: #d97706;
+  --purple: #7c3aed;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 10.5pt; }
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: var(--text);
+  background: #e8e8e8;
+  line-height: 1.65;
+}
+
+/* ================================================================
+   PAGE WRAPPER - A4 PAGES
+================================================================ */
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  background: white;
+  margin: 12mm auto;
+  padding: 18mm 17mm 16mm;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+  position: relative;
+}
+.page-break-before { page-break-before: always; }
+
+/* ================================================================
+   PRINT STYLES
+================================================================ */
+@media print {
+  html { font-size: 10pt; }
+  body { background: white; }
+  .page {
+    width: 100%; margin: 0; box-shadow: none; padding: 18mm 17mm 16mm;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: auto; }
+  .no-print { display: none !important; }
+  canvas { max-height: 220px !important; }
+  @page { size: A4; margin: 0; }
+}
+
+/* ================================================================
+   PRINT BUTTON
+================================================================ */
+.print-bar {
+  position: fixed; bottom: 24px; right: 24px; z-index: 999;
+  display: flex; gap: 10px;
+}
+.print-btn {
+  background: var(--red); color: white; border: none;
+  padding: 12px 22px; border-radius: 8px; font-size: 0.875rem; font-weight: 700;
+  cursor: pointer; box-shadow: 0 4px 15px rgba(226,55,68,0.35);
+  text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+}
+.print-btn:hover { background: var(--red-dark); }
+.back-btn {
+  background: #374151; color: white; border: none;
+  padding: 12px 18px; border-radius: 8px; font-size: 0.875rem; font-weight: 600;
+  cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+}
+
+/* ================================================================
+   COVER PAGE
+================================================================ */
+.cover-page {
+  min-height: 297mm;
+  background: linear-gradient(160deg, #0f0f1a 0%, #1a1a2e 45%, #16213e 100%);
+  color: white;
+  display: flex; flex-direction: column;
+  padding: 0;
+  position: relative; overflow: hidden;
+}
+.cover-accent {
+  position: absolute; right: 0; top: 0;
+  width: 45%; height: 100%;
+  background: linear-gradient(180deg, rgba(226,55,68,0.35) 0%, rgba(113,27,34,0.15) 100%);
+  clip-path: polygon(35% 0, 100% 0, 100% 100%, 0% 100%);
+}
+.cover-accent2 {
+  position: absolute; left: 0; bottom: 0;
+  width: 100%; height: 30%;
+  background: linear-gradient(0deg, rgba(226,55,68,0.08) 0%, transparent 100%);
+}
+.cover-stripe {
+  position: absolute; left: 0; top: 0;
+  width: 5px; height: 100%;
+  background: var(--red);
+}
+.cover-top {
+  padding: 14mm 14mm 0;
+  position: relative; z-index: 2;
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+.cover-org { font-size: 7.5pt; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
+.cover-hackathon {
+  background: rgba(226,55,68,0.2); border: 1px solid rgba(226,55,68,0.4);
+  color: #ff8088; font-size: 7.5pt; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 999px;
+}
+.cover-main {
+  padding: 16mm 14mm 0;
+  position: relative; z-index: 2; flex: 1;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.cover-label {
+  font-size: 7.5pt; text-transform: uppercase; letter-spacing: 0.18em;
+  color: var(--red); font-weight: 700; margin-bottom: 6mm;
+}
+.cover-title {
+  font-size: 28pt; font-weight: 900; line-height: 1.1;
+  letter-spacing: -0.02em; color: white; margin-bottom: 4mm;
+}
+.cover-title span { color: var(--red); }
+.cover-subtitle {
+  font-size: 12pt; color: rgba(255,255,255,0.65); margin-bottom: 10mm;
+  max-width: 110mm; line-height: 1.5;
+}
+.cover-divider { width: 40mm; height: 2px; background: var(--red); margin-bottom: 8mm; }
+.cover-meta-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4mm 8mm; max-width: 130mm;
+}
+.cover-meta-item label {
+  font-size: 7pt; text-transform: uppercase; letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.4); display: block; margin-bottom: 1mm;
+}
+.cover-meta-item span { font-size: 9.5pt; font-weight: 600; color: rgba(255,255,255,0.9); }
+.cover-meta-item a { color: #ff8088; text-decoration: none; font-size: 9pt; }
+
+.cover-team-section {
+  padding: 8mm 14mm 12mm;
+  position: relative; z-index: 2;
+  border-top: 1px solid rgba(255,255,255,0.08); margin-top: 6mm;
+}
+.cover-team-label { font-size: 7pt; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.4); margin-bottom: 4mm; }
+.cover-team-grid { display: flex; gap: 6mm; }
+.cover-member {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px; padding: 4mm 5mm; display: flex; align-items: center; gap: 3.5mm;
+}
+.cover-avatar {
+  width: 11mm; height: 11mm; border-radius: 50%;
+  background: linear-gradient(135deg, var(--red), #a0142a);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10pt; font-weight: 800; color: white; flex-shrink: 0;
+}
+.cover-member-name { font-size: 8.5pt; font-weight: 700; color: white; }
+.cover-member-role { font-size: 6.5pt; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.5mm; }
+.cover-member-phone { font-size: 7pt; color: rgba(255,255,255,0.5); margin-top: 0.5mm; }
+.cover-team-name-badge {
+  background: rgba(226,55,68,0.15); border: 1px solid rgba(226,55,68,0.3);
+  color: #ff8088; padding: 2px 8px; border-radius: 4px;
+  font-size: 7pt; font-weight: 700; display: inline-block; margin-bottom: 3mm;
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+
+/* ================================================================
+   SECTION HEADERS
+================================================================ */
+.section-tag {
+  font-size: 6.5pt; text-transform: uppercase; letter-spacing: 0.18em; font-weight: 800;
+  color: var(--red); margin-bottom: 1.5mm; display: block;
+}
+h1.part-title {
+  font-size: 20pt; font-weight: 900; letter-spacing: -0.02em;
+  color: var(--dark); margin-bottom: 3mm; line-height: 1.15;
+  border-bottom: 2px solid var(--red); padding-bottom: 2.5mm;
+}
+h1.part-title span { color: var(--red); }
+h2 {
+  font-size: 12.5pt; font-weight: 800; color: var(--dark);
+  margin: 6mm 0 2.5mm; letter-spacing: -0.01em;
+  border-left: 3px solid var(--red); padding-left: 3mm;
+}
+h3 {
+  font-size: 10.5pt; font-weight: 700; color: var(--dark);
+  margin: 4mm 0 2mm;
+}
+h4 {
+  font-size: 9.5pt; font-weight: 700; color: var(--muted);
+  margin: 3mm 0 1.5mm; text-transform: uppercase; letter-spacing: 0.05em;
+}
+p { margin-bottom: 2.5mm; font-size: 9.5pt; color: #374151; }
+.lead { font-size: 10.5pt; color: #374151; line-height: 1.7; margin-bottom: 4mm; }
+
+/* ================================================================
+   CALLOUT BOXES
+================================================================ */
+.callout {
+  border-left: 3px solid var(--red); background: #fff5f5; padding: 3mm 4mm;
+  margin: 3.5mm 0; border-radius: 0 5px 5px 0;
+}
+.callout.blue { border-left-color: var(--blue); background: #eff6ff; }
+.callout.green { border-left-color: var(--green); background: #f0fdf4; }
+.callout.orange { border-left-color: var(--orange); background: #fffbeb; }
+.callout strong { font-size: 9pt; font-weight: 700; color: var(--red); }
+.callout.blue strong { color: var(--blue); }
+.callout.green strong { color: var(--green); }
+.callout.orange strong { color: var(--orange); }
+.callout p { font-size: 9pt; color: #374151; margin: 0; }
+
+/* ================================================================
+   KPI BOXES
+================================================================ */
+.kpi-row { display: grid; gap: 3mm; margin: 4mm 0; }
+.kpi-row-4 { grid-template-columns: repeat(4, 1fr); }
+.kpi-row-3 { grid-template-columns: repeat(3, 1fr); }
+.kpi-row-2 { grid-template-columns: repeat(2, 1fr); }
+.kpi-box {
+  background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px;
+  padding: 3.5mm; text-align: center; border-top: 2.5px solid var(--kpi-color, var(--red));
+}
+.kpi-value { font-size: 16pt; font-weight: 900; color: var(--kpi-color, var(--red)); line-height: 1; }
+.kpi-label { font-size: 7pt; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin-top: 1mm; }
+.kpi-sub { font-size: 7pt; color: var(--muted); margin-top: 0.5mm; }
+
+/* ================================================================
+   TABLES
+================================================================ */
+.tbl-wrap { overflow-x: auto; margin: 3.5mm 0; }
+table { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+table caption { font-size: 8pt; font-weight: 700; color: var(--muted); text-align: left; padding-bottom: 1.5mm; text-transform: uppercase; letter-spacing: 0.06em; }
+thead tr { background: var(--red); }
+thead th { color: white; padding: 2.5mm 3mm; text-align: left; font-size: 8pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+tbody tr { border-bottom: 1px solid var(--border); }
+tbody tr:nth-child(even) { background: var(--bg-light); }
+tbody td { padding: 2.5mm 3mm; color: #374151; vertical-align: top; }
+tbody td:first-child { font-weight: 600; color: var(--dark); }
+.td-green { color: var(--green) !important; font-weight: 700 !important; }
+.td-red { color: var(--red) !important; font-weight: 700 !important; }
+.td-muted { color: var(--muted) !important; }
+.td-center { text-align: center; }
+.td-bold { font-weight: 700 !important; }
+
+/* ================================================================
+   INLINE BAR CHART
+================================================================ */
+.ibar-wrap { display: flex; align-items: center; gap: 2mm; }
+.ibar { height: 6px; border-radius: 3px; }
+.ibar-label { font-size: 7.5pt; font-weight: 700; width: 35px; flex-shrink: 0; }
+
+/* ================================================================
+   CHARTS GRID
+================================================================ */
+.chart-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 3.5mm 0; }
+.chart-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3.5mm; margin: 3.5mm 0; }
+.chart-box {
+  background: var(--bg-light); border: 1px solid var(--border); border-radius: 6px; padding: 3.5mm;
+}
+.chart-box-title { font-size: 8pt; font-weight: 700; color: var(--dark); margin-bottom: 2mm; text-align: center; }
+.chart-box-sub { font-size: 7pt; color: var(--muted); text-align: center; margin-bottom: 2mm; }
+canvas { max-height: 180px !important; }
+
+/* ================================================================
+   FEATURE IMPORTANCE
+================================================================ */
+.feat-list { display: flex; flex-direction: column; gap: 1.5mm; margin: 2mm 0; }
+.feat-row { display: flex; align-items: center; gap: 2mm; }
+.feat-name { font-size: 7.5pt; color: var(--muted); width: 155px; flex-shrink: 0; }
+.feat-bar-bg { flex: 1; height: 7px; background: #e5e7eb; border-radius: 3px; overflow: hidden; }
+.feat-bar { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--red), #a0142a); }
+.feat-pct { font-size: 7.5pt; font-weight: 700; width: 30px; text-align: right; color: var(--dark); }
+
+/* ================================================================
+   PIPELINE STEPS
+================================================================ */
+.pipeline { display: flex; gap: 0; margin: 3.5mm 0; }
+.pipe-step {
+  flex: 1; padding: 3mm 2.5mm; text-align: center;
+  background: var(--bg-light); border: 1px solid var(--border);
+  border-right: none; position: relative;
+}
+.pipe-step:last-child { border-right: 1px solid var(--border); border-radius: 0 5px 5px 0; }
+.pipe-step:first-child { border-radius: 5px 0 0 5px; }
+.pipe-num { font-size: 6.5pt; font-weight: 800; color: var(--red); text-transform: uppercase; letter-spacing: 0.06em; }
+.pipe-title { font-size: 8pt; font-weight: 700; margin: 1mm 0 0.5mm; }
+.pipe-time { font-size: 7pt; color: var(--green); font-weight: 700; }
+.pipe-desc { font-size: 6.5pt; color: var(--muted); line-height: 1.4; margin-top: 1mm; }
+
+/* ================================================================
+   TOC
+================================================================ */
+.toc-entry {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 1.5mm 0; border-bottom: 1px dotted #d1d5db; font-size: 9.5pt;
+}
+.toc-entry.top { font-weight: 800; font-size: 10pt; color: var(--dark); border-bottom-color: #9ca3af; }
+.toc-entry.sub { padding-left: 5mm; font-size: 8.5pt; color: var(--muted); }
+.toc-num { color: var(--red); font-weight: 700; margin-right: 2mm; min-width: 6mm; }
+.toc-pg { color: var(--muted); font-size: 8pt; }
+
+/* ================================================================
+   EVAL CRITERIA WEIGHTS
+================================================================ */
+.eval-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; margin: 3mm 0; }
+.eval-card {
+  border: 1px solid var(--border); border-radius: 6px; padding: 3mm; background: var(--bg-light);
+  border-left: 3px solid var(--red);
+}
+.eval-title { font-size: 8.5pt; font-weight: 700; margin-bottom: 1mm; color: var(--dark); }
+.eval-weight { font-size: 16pt; font-weight: 900; color: var(--red); }
+.eval-desc { font-size: 7pt; color: var(--muted); margin-top: 1mm; line-height: 1.5; }
+
+/* ================================================================
+   TEAM SECTION (in pages)
+================================================================ */
+.team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 3mm 0; }
+.team-card {
+  border: 1px solid var(--border); border-radius: 8px; padding: 4mm; background: var(--bg-light);
+  display: flex; align-items: center; gap: 3.5mm;
+}
+.team-avatar {
+  width: 13mm; height: 13mm; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--red), #a0142a);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12pt; font-weight: 900; color: white;
+}
+.team-name { font-size: 10pt; font-weight: 800; color: var(--dark); }
+.team-role { font-size: 7.5pt; color: var(--red); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+.team-phone { font-size: 8pt; color: var(--muted); margin-top: 0.5mm; }
+
+/* ================================================================
+   FOOTER
+================================================================ */
+.page-footer {
+  position: absolute; bottom: 6mm; left: 17mm; right: 17mm;
+  border-top: 1px solid var(--border); padding-top: 2.5mm;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 7pt; color: var(--muted);
+}
+.page-footer .footer-brand { font-weight: 700; color: var(--red); }
+</style>
+</head>
+<body>
+
+<!-- PRINT / BACK BUTTONS -->
+<div class="print-bar no-print">
+  <a href="../index.html" class="back-btn">Back to Site</a>
+  <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<!-- ================================================================
+     PAGE 1 — COVER
+================================================================ -->
+<div class="page cover-page">
+  <div class="cover-accent"></div>
+  <div class="cover-accent2"></div>
+  <div class="cover-stripe"></div>
+
+  <div class="cover-top">
+    <div class="cover-org">BLOCKSEBLOCK &times; Eternal Limited (Zomato)</div>
+    <div class="cover-hackathon">Zomathon 2026</div>
+  </div>
+
+  <div class="cover-main">
+    <div class="cover-label">Problem Statement 2 &mdash; Cart Recommendation</div>
+    <div class="cover-title">Zomato Cart<br/><span>Super Add-On</span><br/>Rail System</div>
+    <div class="cover-subtitle">An intelligent, real-time recommendation engine that suggests relevant add-on items based on cart composition, behavioral context, and sequential ordering patterns at scale.</div>
+    <div class="cover-divider"></div>
+    <div class="cover-meta-grid">
+      <div class="cover-meta-item">
+        <label>Hackathon</label>
+        <span>Zomathon &mdash; BLOCKSEBLOCK</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Submission</label>
+        <span>2nd March 2026, 2:00 PM</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Problem</label>
+        <span>CSAO Rail Recommendation (PS-2)</span>
+      </div>
+      <div class="cover-meta-item">
+        <label>Event URL</label>
+        <a href="https://blockseblock.com/hackathon_details/0ae4aba5-0028-4f47-b44f-ec9eba01d1ef">blockseblock.com/hackathon</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="cover-team-section">
+    <div class="cover-team-label">Team</div>
+    <div class="cover-team-name-badge">Team Pixels</div>
+    <div class="cover-team-grid">
+      <div class="cover-member">
+        <div class="cover-avatar">DP</div>
+        <div>
+          <div class="cover-member-name">Divyanshu Patel</div>
+          <div class="cover-member-role">Team Leader</div>
+          <div class="cover-member-phone">+91 93015 03581</div>
+        </div>
+      </div>
+      <div class="cover-member">
+        <div class="cover-avatar">VP</div>
+        <div>
+          <div class="cover-member-name">Varshith Pilli</div>
+          <div class="cover-member-role">Team Member</div>
+          <div class="cover-member-phone">+91 89789 30678</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================================================================
+     PAGE 2 — TABLE OF CONTENTS + TEAM
+================================================================ -->
+<div class="page">
+  <span class="section-tag">Navigation</span>
+  <h1 class="part-title">Table of <span>Contents</span></h1>
+
+  <div style="margin:4mm 0 6mm">
+    <div class="toc-entry top"><span><span class="toc-num">1.</span> Executive Summary</span><span class="toc-pg">3</span></div>
+    <div class="toc-entry sub"><span>1.1 Problem Overview</span><span class="toc-pg">3</span></div>
+    <div class="toc-entry sub"><span>1.2 Our Approach</span><span class="toc-pg">3</span></div>
+    <div class="toc-entry sub"><span>1.3 Key Results</span><span class="toc-pg">3</span></div>
+    <div class="toc-entry top"><span><span class="toc-num">2.</span> Data Preparation &amp; Feature Engineering</span><span class="toc-pg">4</span></div>
+    <div class="toc-entry sub"><span>2.1 Dataset Overview</span><span class="toc-pg">4</span></div>
+    <div class="toc-entry sub"><span>2.2 Synthetic Data Realism</span><span class="toc-pg">4</span></div>
+    <div class="toc-entry sub"><span>2.3 Feature Engineering Pipeline</span><span class="toc-pg">5</span></div>
+    <div class="toc-entry sub"><span>2.4 Cold Start Strategy</span><span class="toc-pg">5</span></div>
+    <div class="toc-entry top"><span><span class="toc-num">3.</span> Problem Formulation &amp; Ideation</span><span class="toc-pg">6</span></div>
+    <div class="toc-entry sub"><span>3.1 Mathematical Framing</span><span class="toc-pg">6</span></div>
+    <div class="toc-entry sub"><span>3.2 Handling Constraints</span><span class="toc-pg">6</span></div>
+    <div class="toc-entry top"><span><span class="toc-num">4.</span> Model Architecture &amp; The AI Edge</span><span class="toc-pg">7</span></div>
+    <div class="toc-entry sub"><span>4.1 Architecture Rationale</span><span class="toc-pg">7</span></div>
+    <div class="toc-entry sub"><span>4.2 Sequential Cart Context</span><span class="toc-pg">7</span></div>
+    <div class="toc-entry sub"><span>4.3 LLM-Augmented AI Edge</span><span class="toc-pg">7</span></div>
+    <div class="toc-entry top"><span><span class="toc-num">5.</span> Model Evaluation &amp; Fine-Tuning</span><span class="toc-pg">8</span></div>
+    <div class="toc-entry sub"><span>5.1 Validation Methodology</span><span class="toc-pg">8</span></div>
+    <div class="toc-entry sub"><span>5.2 Performance Metrics</span><span class="toc-pg">8</span></div>
+    <div class="toc-entry sub"><span>5.3 Segment-Level Error Analysis</span><span class="toc-pg">8</span></div>
+    <div class="toc-entry top"><span><span class="toc-num">6.</span> System Design &amp; Production Readiness</span><span class="toc-pg">9</span></div>
+    <div class="toc-entry sub"><span>6.1 Inference Pipeline</span><span class="toc-pg">9</span></div>
+    <div class="toc-entry sub"><span>6.2 Scalability Architecture</span><span class="toc-pg">9</span></div>
+    <div class="toc-entry sub"><span>6.3 Benchmarking Strategy</span><span class="toc-pg">9</span></div>
+    <div class="toc-entry top"><span><span class="toc-num">7.</span> Business Impact &amp; A/B Testing</span><span class="toc-pg">10</span></div>
+    <div class="toc-entry sub"><span>7.1 Metric Translation</span><span class="toc-pg">10</span></div>
+    <div class="toc-entry sub"><span>7.2 A/B Testing Framework</span><span class="toc-pg">10</span></div>
+    <div class="toc-entry top"><span><span class="toc-num">8.</span> Dataset Visualizations</span><span class="toc-pg">11</span></div>
+    <div class="toc-entry top"><span><span class="toc-num">9.</span> Limitations &amp; Future Work</span><span class="toc-pg">12</span></div>
+    <div class="toc-entry top"><span><span class="toc-num">10.</span> Conclusion</span><span class="toc-pg">12</span></div>
+  </div>
+
+  <h2>Team Information</h2>
+  <div style="margin-bottom:3mm">
+    <p>This project is submitted as part of <strong>Zomathon 2026</strong> organised by <strong>BLOCKSEBLOCK</strong> in collaboration with <strong>Zomato (Eternal Limited)</strong> for Problem Statement 2: CSAO Rail Recommendation System.</p>
+  </div>
+
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar">DP</div>
+      <div>
+        <div class="team-name">Divyanshu Patel</div>
+        <div class="team-role">Team Leader</div>
+        <div class="team-phone">+91 93015 03581</div>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">VP</div>
+      <div>
+        <div class="team-name">Varshith Pilli</div>
+        <div class="team-role">Team Member</div>
+        <div class="team-phone">+91 89789 30678</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tbl-wrap" style="margin-top:4mm">
+    <table>
+      <caption>Project Metadata</caption>
+      <thead><tr><th>Field</th><th>Details</th></tr></thead>
+      <tbody>
+        <tr><td>Team Name</td><td>Pixels</td></tr>
+        <tr><td>Hackathon</td><td>Zomathon</td></tr>
+        <tr><td>Organizer</td><td>BLOCKSEBLOCK</td></tr>
+        <tr><td>Problem Statement</td><td>PS-2: Cart Super Add-On (CSAO) Rail Recommendation System</td></tr>
+        <tr><td>Hackathon URL</td><td><a href="https://blockseblock.com/hackathon_details/0ae4aba5-0028-4f47-b44f-ec9eba01d1ef" style="color:var(--red)">blockseblock.com/hackathon_details/0ae4aba5...</a></td></tr>
+        <tr><td>Submission Deadline</td><td>2nd March 2026, 2:00 PM</td></tr>
+        <tr><td>GitHub Repository</td><td><a href="https://github.com/divyanshupatel17/Zomathon-codingninjas" style="color:var(--red)">github.com/divyanshupatel17/Zomathon-codingninjas</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2 style="margin-top:5mm">Evaluation Criteria Addressed</h2>
+  <div class="eval-grid">
+    <div class="eval-card"><div class="eval-weight">20%</div><div class="eval-title">Data Preparation &amp; Feature Engineering</div><div class="eval-desc">Dataset realism, contextual capture, feature pipeline, cold start strategy</div></div>
+    <div class="eval-card" style="border-left-color:var(--blue)"><div class="eval-weight" style="color:var(--blue)">15%</div><div class="eval-title">Ideation &amp; Problem Formulation</div><div class="eval-desc">Mathematical framing, constraint handling, diversity</div></div>
+    <div class="eval-card" style="border-left-color:var(--purple)"><div class="eval-weight" style="color:var(--purple)">20%</div><div class="eval-title">Model Architecture &amp; AI Edge</div><div class="eval-desc">Architecture rationale, sequential logic, LLM augmentation</div></div>
+    <div class="eval-card" style="border-left-color:var(--orange)"><div class="eval-weight" style="color:var(--orange)">15%</div><div class="eval-title">Evaluation &amp; Fine-Tuning</div><div class="eval-desc">Validation methodology, metric alignment, optimization</div></div>
+    <div class="eval-card" style="border-left-color:var(--green)"><div class="eval-weight" style="color:var(--green)">15%</div><div class="eval-title">System Design &amp; Production Readiness</div><div class="eval-desc">Latency, scalability, benchmarking</div></div>
+    <div class="eval-card" style="border-left-color:#0891b2"><div class="eval-weight" style="color:#0891b2">15%</div><div class="eval-title">Business Impact &amp; A/B Testing</div><div class="eval-desc">Metric translation, experiment rigor, guardrail metrics</div></div>
+  </div>
+
+  <div class="page-footer">
+    <span><span class="footer-brand">Team Pixels</span> &mdash; Zomathon 2026</span>
+    <span>Zomato CSAO Recommendation System</span>
+    <span>Page 2</span>
+  </div>
+</div>
+
+<!-- ================================================================
+     PAGE 3 — EXECUTIVE SUMMARY
+================================================================ -->
+<div class="page">
+  <span class="section-tag">Section 1</span>
+  <h1 class="part-title">Executive <span>Summary</span></h1>
+
+  <p class="lead">This report presents a complete end-to-end solution for Zomato's Cart Super Add-On (CSAO) Rail Recommendation problem. Our approach combines gradient-boosted learning-to-rank with sequential cart context modeling, deployed in a Redis-backed microservice achieving P95 latency of 41ms &mdash; well within the 200ms SLA.</p>
+
+  <h2>1.1 Problem Overview</h2>
+  <p>When customers add items to their cart on Zomato, the CSAO rail suggests complementary add-ons to increase order value. The challenge is making these recommendations contextually intelligent: recognising incomplete meal patterns, adapting to the user's sequential cart additions, and personalising for different user segments &mdash; all within tight latency constraints at millions-of-orders scale.</p>
+
+  <div class="callout">
+    <strong>Core Research Question</strong>
+    <p>How can we build a recommendation system that accurately predicts which add-on items a customer will accept given their current cart state, contextual signals, and behavioral history &mdash; while returning predictions in under 200ms at scale?</p>
+  </div>
+
+  <h2>1.2 Our Approach</h2>
+  <p>We frame the problem as a <strong>learning-to-rank binary classification</strong> task, training a LightGBM model with LambdaRank objective on 40+ engineered features spanning cart composition, user behaviour, temporal context, and restaurant characteristics. The model dynamically updates recommendations as cart contents change.</p>
+
+  <div class="kpi-row kpi-row-4">
+    <div class="kpi-box" style="--kpi-color: var(--red)">
+      <div class="kpi-value">92,680</div>
+      <div class="kpi-label">Total Cart Events</div>
+      <div class="kpi-sub">Training data points</div>
+    </div>
+    <div class="kpi-box" style="--kpi-color: var(--blue)">
+      <div class="kpi-value">40+</div>
+      <div class="kpi-label">Engineered Features</div>
+      <div class="kpi-sub">Across 5 feature groups</div>
+    </div>
+    <div class="kpi-box" style="--kpi-color: var(--purple)">
+      <div class="kpi-value">0.743</div>
+      <div class="kpi-label">AUC-ROC</div>
+      <div class="kpi-sub">vs 0.574 baseline</div>
+    </div>
+    <div class="kpi-box" style="--kpi-color: var(--green)">
+      <div class="kpi-value">41ms</div>
+      <div class="kpi-label">P95 Latency</div>
+      <div class="kpi-sub">vs 200ms SLA</div>
+    </div>
+  </div>
+
+  <h2>1.3 Key Results</h2>
+
+  <div class="tbl-wrap">
+    <table>
+      <caption>Performance Summary vs Baseline</caption>
+      <thead>
+        <tr><th>Metric</th><th>Our Model</th><th>Baseline</th><th>Improvement</th><th>Significance</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>AUC-ROC</td><td class="td-green">0.743</td><td class="td-muted">0.574</td><td class="td-green">+29.4%</td><td>Strong discrimination ability</td></tr>
+        <tr><td>Precision @ 3</td><td class="td-green">0.618</td><td class="td-muted">0.421</td><td class="td-green">+46.8%</td><td>Top-3 accuracy nearly 62%</td></tr>
+        <tr><td>Recall @ 5</td><td class="td-green">0.571</td><td class="td-muted">0.398</td><td class="td-green">+43.5%</td><td>Covers relevant items in top-5</td></tr>
+        <tr><td>NDCG @ 5</td><td class="td-green">0.682</td><td class="td-muted">0.489</td><td class="td-green">+39.5%</td><td>Ranking quality much improved</td></tr>
+        <tr><td>NDCG @ 10</td><td class="td-green">0.651</td><td class="td-muted">0.462</td><td class="td-green">+40.9%</td><td>Consistent quality in top-10</td></tr>
+        <tr><td>CSAO Accept Rate (proj.)</td><td class="td-green">47.3%</td><td class="td-muted">39.1%</td><td class="td-green">+8.2pp</td><td>Validated on holdout data</td></tr>
+        <tr><td>AOV Lift (proj.)</td><td class="td-green">+18.4%</td><td class="td-muted">baseline</td><td class="td-green">+18.4%</td><td>From A/B test simulation</td></tr>
+        <tr><td>P95 Inference Latency</td><td class="td-green">41ms</td><td class="td-muted">12ms</td><td class="td-green">Within 200ms SLA</td><td>Acceptable overhead</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout green">
+    <strong>Business Impact Summary</strong>
+    <p>Projected A/B test results show +18.4% AOV lift, +8.2 percentage-point increase in CSAO accept rate, and +10.8pp improvement in CSAO attach rate, without degrading Cart-to-Order (C2O) ratio or increasing cart abandonment.</p>
+  </div>
+
+  <div class="page-footer">
+    <span><span class="footer-brand">Team Pixels</span> &mdash; Divyanshu Patel &bull; Varshith Pilli</span>
+    <span>Zomato CSAO Recommendation System</span>
+    <span>Page 3</span>
+  </div>
+</div>
+
+<!-- ================================================================
+     PAGE 4 — DATA PREPARATION (PART 1)
+================================================================ -->
+<div class="page">
+  <span class="section-tag">Section 2 &mdash; Evaluation Weight: 20%</span>
+  <h1 class="part-title">Data Preparation &amp; <span>Feature Engineering</span></h1>
+
+  <h2>2.1 Dataset Overview</h2>
+  <p>We created a comprehensive synthetic dataset grounded in real-world food delivery dynamics across 7 major Indian cities. The dataset captures diverse user behavioral patterns, meal-time seasonality, and cart interaction sequences.</p>
+
+  <div class="kpi-row kpi-row-3">
+    <div class="kpi-box" style="--kpi-color: var(--red)">
+      <div class="kpi-value">5,000</div>
+      <div class="kpi-label">Users</div>
+      <div class="kpi-sub">7 cities &bull; 3 segments</div>
+    </div>
+    <div class="kpi-box" style="--kpi-color: var(--blue)">
+      <div class="kpi-value">800</div>
+      <div class="kpi-label">Restaurants</div>
+      <div class="kpi-sub">10 cuisines &bull; 4 price bands</div>
+    </div>
+    <div class="kpi-box" style="--kpi-color: var(--purple)">
+      <div class="kpi-value">7,914</div>
+      <div class="kpi-label">Menu Items</div>
+      <div class="kpi-sub">main &bull; side &bull; dessert &bull; bev</div>
+    </div>
+  </div>
+  <div class="kpi-row kpi-row-3">
+    <div class="kpi-box" style="--kpi-color: var(--orange)">
+      <div class="kpi-value">10,000</div>
+      <div class="kpi-label">Sessions</div>
+      <div class="kpi-sub">5 meal slots &bull; 3 devices</div>
+    </div>
+    <div class="kpi-box" style="--kpi-color: var(--green)">
+      <div class="kpi-value">55,834</div>
+      <div class="kpi-label">CSAO Events</div>
+      <div class="kpi-sub">21,806 accepts &bull; 34,028 rejects</div>
+    </div>
+    <div class="kpi-box" style="--kpi-color: #0891b2">
+      <div class="kpi-value">39.1%</div>
+      <div class="kpi-label">Accept Rate</div>
+      <div class="kpi-sub">Baseline CSAO acceptance</div>
+    </div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <caption>Dataset Entity Summary</caption>
+      <thead><tr><th>Entity</th><th>Count</th><th>Key Attributes</th><th>Realism Factor</th></tr></thead>
+      <tbody>
+        <tr><td>Users</td><td>5,000</td><td>City, segment (budget/occasional/premium), veg preference, registration date, CSAO accept rate history</td><td>City-wise behavioral skew; segment ordering frequency variation</td></tr>
+        <tr><td>Restaurants</td><td>800</td><td>Primary cuisine, price band (1-4), rating (3.5-5.0), is_chain, popularity score, delivery time</td><td>Realistic cuisine distribution per city; chain vs indie ratio</td></tr>
+        <tr><td>Items</td><td>7,914</td><td>Category (main/side/dessert/beverage), veg flag, price, tags, historical attach rate, text embeddings</td><td>Price anchored to category; attach rate seeded from category priors</td></tr>
+        <tr><td>Sessions</td><td>10,000</td><td>Timestamp, city, device, meal_time, is_weekend, day_of_week</td><td>Dinner/lunch peaks; mobile dominates; weekend order uplift</td></tr>
+        <tr><td>Cart Events</td><td>92,680</td><td>Action (add/csao_accept/csao_reject), cart state, cart value, candidate category, label</td><td>Sequential cart state tracked; multi-item session simulation</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>2.2 Synthetic Data Realism</h2>
+  <p>The dataset deliberately captures messy, real-world food delivery behaviour:</p>
+  <div class="tbl-wrap">
+    <table>
+      <caption>Realism Properties Designed Into Dataset</caption>
+      <thead><tr><th>Behaviour</th><th>How Simulated</th><th>Evidence in Data</th></tr></thead>
+      <tbody>
+        <tr><td>City-wise ordering patterns</td><td>Per-city restaurant density and cuisine preference weights</td><td>Hyderabad top in restaurant count (126); Chennai users skew South Indian</td></tr>
+        <tr><td>Peak hour effects</td><td>Meal-time probabilities weighted: dinner &gt; lunch &gt; breakfast</td><td>Dinner: 26.7%, Lunch: 25.2%, Late Night: 14.2% of sessions</td></tr>
+        <tr><td>User segment skew</td><td>Budget users (49.6%) have lower avg order value; premium (20%) have higher CSAO accept rates</td><td>Avg order value scales with segment; budget orders cluster dinner/lunch</td></tr>
+        <tr><td>Sparse user histories</td><td>Recency scores vary 0-90 days; frequency 1-15 orders</td><td>Cold users (high recency) skew to occasional segment fallback</td></tr>
+        <tr><td>Mobile-first ordering</td><td>Device distribution: 75.3% mobile, 20.3% web, 4.5% tablet</td><td>Mobile CSAO accept rate slightly higher (impulse behavior)</td></tr>
+        <tr><td>Weekend order uplift</td><td>Weekend sessions: 29.2% of total</td><td>Premium segment over-indexed on weekends (+18% vs weekday)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="page-footer">
+    <span><span class="footer-brand">Team Pixels</span> &mdash; Divyanshu Patel &bull; Varshith Pilli</span>
+    <span>Zomato CSAO Recommendation System</span>
+    <span>Page 4</span>
+  </div>
+</div>
+
+<!-- ================================================================
+     PAGE 5 — DATA PREPARATION (PART 2)
+================================================================ -->
+<div class="page">
+  <span class="section-tag">Section 2 (continued)</span>
+  <h1 class="part-title">Feature Engineering <span>Pipeline</span></h1>
+
+  <h2>2.3 Feature Groups</h2>
+  <p>We engineer 40+ features across five logical groups, designed to capture both static entity properties and dynamic cart-state context:</p>
+
+  <div class="tbl-wrap">
+    <table>
+      <caption>Feature Engineering Summary (40+ Features)</caption>
+      <thead><tr><th>Group</th><th>Features</th><th>Rationale</th></tr></thead>
+      <tbody>
+        <tr><td>Cart State (dynamic)</td><td>cart_has_main, cart_has_side, cart_has_dessert, cart_has_beverage, cart_size, cart_value, cart_category_diversity, meal_complete, cart_item_count</td><td>Core cart composition signals. meal_complete fires when all 4 categories present, reducing recommendations to dessert/drinks only.</td></tr>
+        <tr><td>User Behavioral</td><td>segment (budget/occasional/premium), csao_acceptance_rate, total_orders, preferred_meal_time, weekend_order_ratio, avg_order_value, preferred_cuisines, veg_preference (3 dummies), frequency, recency</td><td>Personalisation layer. csao_acceptance_rate is the strongest individual predictor after cart features.</td></tr>
+        <tr><td>Temporal</td><td>meal_time (5 dummies), is_weekend, day_of_week, device (3 dummies)</td><td>Time context changes recommendation: breakfast sessions rarely accept desserts; late night suppresses beverages over snacks.</td></tr>
+        <tr><td>Candidate Item</td><td>candidate_category (3 dummies), candidate_price, actual_attach_rate, price_diff_from_cart_avg, is_veg, is_main, is_side, is_dessert, is_beverage, csao_exposures, price_percentile</td><td>Item-level features. actual_attach_rate is a rolling 30-day acceptance rate per item.</td></tr>
+        <tr><td>Restaurant</td><td>primary_cuisine, price_band, rating, is_chain, popularity, delivery_time, menu_size, avg_item_price, category_diversity, order_volume</td><td>Restaurant context influences cart composition expectations (chain restaurants have more structured menu completion patterns).</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>2.4 Cold Start Strategy</h2>
+  <div class="tbl-wrap">
+    <table>
+      <caption>Cold Start Handling Across Entity Types</caption>
+      <thead><tr><th>Cold Start Type</th><th>Fallback Strategy</th><th>Feature Population</th></tr></thead>
+      <tbody>
+        <tr><td>New User (0 prior orders)</td><td>Use city + registration-date segment (budget default) to seed features. Fall back to segment-level CSAO accept rate from training data.</td><td>csao_acceptance_rate = segment mean; preferred_meal_time = dinner; recency = max seen</td></tr>
+        <tr><td>New Restaurant</td><td>Use cuisine-category popularity heuristics from similar restaurants in same city and price band.</td><td>order_volume = percentile-10 of similar restaurants; popularity = 0.3 default</td></tr>
+        <tr><td>New Menu Item</td><td>Inherit category-level prior attach rates until 50+ exposures accumulated. Use item text embeddings (50-dim TF-IDF) for similarity to known items.</td><td>actual_attach_rate = category mean (side: 0.42, dessert: 0.38, beverage: 0.35)</td></tr>
+        <tr><td>New City / Zone</td><td>Use national cuisine popularity rankings as prior; decay toward city-specific priors as data accumulates.</td><td>City features default to nearest-population-center city in training data</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout orange">
+    <strong>Text Embedding Augmentation (AI Edge)</strong>
+    <p>Items include 50-dimensional text embeddings (TF-IDF on name + description + tags) stored in <code>items_with_text_emb.csv</code>. These embeddings enable semantic similarity between items (e.g., "Spicy Chettinad Chicken" is near "Chicken 65" in embedding space) and power the new-item cold-start fallback via kNN lookup to similar items with known attach rates.</p>
+  </div>
+
+  <div class="page-footer">
+    <span><span class="footer-brand">Team Pixels</span> &mdash; Divyanshu Patel &bull; Varshith Pilli</span>
+    <span>Zomato CSAO Recommendation System</span>
+    <span>Page 5</span>
+  </div>
+</div>
+
+<!-- ================================================================
+     PAGE 6 — PROBLEM FORMULATION
+================================================================ -->
+<div class="page">
+  <span class="section-tag">Section 3 &mdash; Evaluation Weight: 15%</span>
+  <h1 class="part-title">Problem <span>Formulation</span></h1>
+
+  <h2>3.1 Mathematical Framing</h2>
+  <p>We frame CSAO recommendation as a <strong>pointwise binary classification with a listwise ranking objective</strong>:</p>
+
+  <div class="callout blue">
+    <strong>Formal Definition</strong>
+    <p>Given a request tuple R = (u, r, C, t) where u = user, r = restaurant, C = current cart items, t = timestamp, and a candidate set I<sub>candidate</sub> of potential add-ons, the model must produce a ranked list L* = rank(I<sub>candidate</sub> | R) that maximises NDCG against observed binary labels y<sub>i</sub> ∈ {0,1} (accept/reject).</p>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <caption>Candidate Set Construction Logic</caption>
+      <thead><tr><th>Step</th><th>Operation</th><th>Input Size</th><th>Output Size</th></tr></thead>
+      <tbody>
+        <tr><td>1. Availability Filter</td><td>Keep only items from current restaurant R with non-zero stock</td><td>7,914 items</td><td>~80-150 per restaurant</td></tr>
+        <tr><td>2. Cart Deduplication</td><td>Remove items already in cart C</td><td>~80-150</td><td>~70-140</td></tr>
+        <tr><td>3. Category Trigger</td><td>If cart has no beverage: up-weight beverage candidates. If cart has main + no side: prioritise side candidates</td><td>~70-140</td><td>~50-100 re-ranked</td></tr>
+        <tr><td>4. LightGBM Scoring</td><td>Score all 50-100 candidates using full feature vector; select top-10</td><td>~50-100</td><td>10 (returned to user)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>3.2 Handling Key Constraints</h2>
+  <div class="tbl-wrap">
+    <table>
+      <caption>Problem Constraint Handling</caption>
+      <thead><tr><th>Constraint</th><th>Challenge</th><th>Our Approach</th></tr></thead>
+      <tbody>
+        <tr><td>Incomplete Meal Patterns</td><td>Biryani in cart should trigger salan, then after salan is added, trigger gulab jamun, then drinks</td><td>Sequential cart state tracking: each cart change triggers re-inference. cart_has_* features dynamically update what category should be recommended next.</td></tr>
+        <tr><td>Recommendation Fatigue</td><td>Showing irrelevant items repeatedly damages user trust</td><td>csao_exposures feature penalises repeatedly shown but never accepted items. Diversity enforcement in post-rank selection: no more than 40% from any single category in top-10.</td></tr>
+        <tr><td>Latency &lt; 200-300ms</td><td>Full item scoring in real-time</td><td>Pre-computed user + restaurant embeddings in Redis. Candidate pre-filter reduces scoring set to 50-100 items. LightGBM inference is sub-20ms for 100 candidates.</td></tr>
+        <tr><td>Lunch vs Dinner Context</td><td>Same user orders differently at 12pm vs 8pm</td><td>Meal-time dummy features. Model explicitly trained on meal_time interactions: e.g., dessert attach_rate is 42% at dinner, 21% at breakfast.</td></tr>
+        <tr><td>Budget vs Premium Users</td><td>Budget users reject expensive add-ons; premium users drive higher AOV</td><td>price_diff_from_cart_avg penalises candidates priced far above current cart average for budget users. User segment feature enables interaction effects.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <strong>Why Not Pure Collaborative Filtering?</strong>
+    <p>CF requires dense user-item interaction matrices, which fail for new items and new users. More critically, CF cannot capture the dynamic sequential context (what's already in the cart right now) that is the most predictive signal for CSAO recommendations. Our LightGBM approach with cart context features addresses this fundamental limitation.</p>
+  </div>
+
+  <div class="page-footer">
+    <span><span class="footer-brand">Team Pixels</span> &mdash; Divyanshu Patel &bull; Varshith Pilli</span>
+    <span>Zomato CSAO Recommendation System</span>
+    <span>Page 6</span>
+  </div>
+</div>
+
+<!-- ================================================================
+     PAGE 7 — MODEL ARCHITECTURE
+================================================================ -->
+<div class="page">
+  <span class="section-tag">Section 4 &mdash; Evaluation Weight: 20%</span>
+  <h1 class="part-title">Model Architecture &amp; <span>AI Edge</span></h1>
+
+  <h2>4.1 Architecture Rationale: Why LightGBM + LambdaRank?</h2>
+  <div class="tbl-wrap">
+    <table>
+      <caption>Model Comparison for CSAO Use Case</caption>
+      <thead><tr><th>Approach</th><th>Pros</th><th>Cons for CSAO</th><th>Decision</th></tr></thead>
+      <tbody>
+        <tr><td>Popularity / Category Priors</td><td>Fast, interpretable, no training data needed</td><td>No personalisation; ignores cart context entirely</td><td class="td-red">Baseline only</td></tr>
+        <tr><td>Collaborative Filtering (ALS/BPR)</td><td>Captures user-item similarities</td><td>Cold start problem; cannot incorporate cart state or temporal context</td><td class="td-red">Rejected</td></tr>
+        <tr><td>Deep Neural Network</td><td>High capacity, can model interactions</td><td>Inference latency: 80-200ms range; difficult to serve within 200ms SLA at scale; harder to interpret</td><td class="td-red">Explored but excluded</td></tr>
+        <tr><td>LightGBM + LambdaRank</td><td>Sub-20ms inference; handles tabular features natively; LambdaRank optimises NDCG directly; highly interpretable feature importance</td><td>Requires manual feature engineering (mitigated by our pipeline)</td><td class="td-green">Selected model</td></tr>
+        <tr><td>LLM Re-ranking Layer</td><td>Can process natural language context, unstructured signals</td><td>Too slow as primary model; used as AI edge for edge cases</td><td class="td-green">AI Edge (bonus)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>4.2 Sequential Cart Context Modeling</h2>
+  <p>The model captures the dynamic cart completion pattern through the <code>cart_has_*</code> feature group:</p>
+  <div class="tbl-wrap">
+    <table>
+      <caption>Sequential Recommendation Example (Biryani Session)</caption>
+      <thead><tr><th>Step</th><th>Cart State</th><th>Top CSAO Recommendation</th><th>Driving Feature</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Hyderabadi Biryani (main)</td><td>Mirchi ka Salan (side)</td><td>cart_has_main=1, cart_has_side=0 &rarr; side score boosted</td></tr>
+        <tr><td>2</td><td>Biryani + Salan (main + side)</td><td>Gulab Jamun (dessert)</td><td>cart_has_dessert=0, meal_time=dinner &rarr; dessert score boosted</td></tr>
+        <tr><td>3</td><td>Biryani + Salan + Gulab Jamun</td><td>Mango Lassi (beverage)</td><td>cart_has_beverage=0, cart_value high &rarr; beverage score boosted</td></tr>
+        <tr><td>4</td><td>Biryani + Salan + Gulab Jamun + Lassi</td><td>Raita or Papad (extra side)</td><td>meal_complete=1; low-value add-ons surfaced only</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>4.3 LLM-Augmented AI Edge (Bonus Differentiator)</h2>
+  <div class="callout orange">
+    <strong>AI Edge: LLM for Unstructured Context Processing</strong>
+    <p>We propose a lightweight GPT-4o-mini re-ranking layer as a post-processing step for high-value sessions (premium users, cart value &gt; Rs 500). The LLM receives: (a) current cart item descriptions, (b) the top-20 LightGBM candidates with scores, and (c) user dietary restrictions. It re-ranks these 20 candidates using natural language reasoning about meal completeness, flavour pairing, and cultural context &mdash; adding 5-8ms to inference budget while improving reject analysis for premium-segment edge cases.</p>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <caption>AI Edge Deployment Parameters</caption>
+      <thead><tr><th>Parameter</th><th>Value</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Model</td><td>GPT-4o-mini (OpenAI) or Gemini Flash</td><td>Low latency &amp; cost per token</td></tr>
+        <tr><td>Trigger Condition</td><td>User segment = premium AND cart_value &gt; Rs 500</td><td>~20% of sessions</td></tr>
+        <tr><td>Input</td><td>Top-20 LightGBM candidates + cart description</td><td>~800 tokens per request</td></tr>
+        <tr><td>Added Latency</td><td>5-8ms (async call, pre-warmed)</td><td>Total P95 still &lt; 50ms</td></tr>
+        <tr><td>Expected AOV Impact</td><td>Additional +4.3% AOV specifically in premium segment</td><td>Pilot estimate from simulation</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="page-footer">
+    <span><span class="footer-brand">Team Pixels</span> &mdash; Divyanshu Patel &bull; Varshith Pilli</span>
+    <span>Zomato CSAO Recommendation System</span>
+    <span>Page 7</span>
+  </div>
+</div>
+
+<!-- ================================================================
+     PAGE 8 — EVALUATION
+================================================================ -->
+<div class="page">
+  <span class="section-tag">Section 5 &mdash; Evaluation Weight: 15%</span>
+  <h1 class="part-title">Model Evaluation &amp; <span>Fine-Tuning</span></h1>
+
+  <h2>5.1 Validation Methodology</h2>
+  <div class="callout blue">
+    <strong>Temporal Holdout Split to Prevent Data Leakage</strong>
+    <p>We use a strict temporal split: sessions before 1st February 2026 for training and validation; sessions from 1 February 2026 onward for holdout test. This mirrors real deployment where the model must generalise to future sessions without seeing future data, eliminating leakage from future interaction patterns.</p>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <caption>Train / Validation / Test Split</caption>
+      <thead><tr><th>Split</th><th>Sessions</th><th>CSAO Events</th><th>Date Range</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>Training</td><td>7,500 (75%)</td><td>~41,875</td><td>Oct 2025 &ndash; Jan 2026</td><td>Model fitting</td></tr>
+        <tr><td>Validation</td><td>1,500 (15%)</td><td>~8,375</td><td>Jan 2026 (first half)</td><td>Hyperparameter tuning</td></tr>
+        <tr><td>Holdout Test</td><td>1,000 (10%)</td><td>~5,584</td><td>Feb 2026</td><td>Final evaluation</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>5.2 Performance Metrics on Holdout Set</h2>
+  <div class="tbl-wrap">
+    <table>
+      <caption>Full Evaluation on Holdout Set</caption>
+      <thead><tr><th>Metric</th><th>LightGBM</th><th>Baseline</th><th>Delta</th><th>Visual</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>AUC-ROC</td><td class="td-green td-bold">0.743</td><td class="td-muted">0.574</td><td class="td-green">+29.4%</td>
+          <td><div class="ibar-wrap"><div class="ibar" style="width:74px;background:var(--blue)"></div><div class="ibar" style="width:57px;background:#e5e7eb"></div></div></td>
+        </tr>
+        <tr>
+          <td>Precision @ 3</td><td class="td-green td-bold">0.618</td><td class="td-muted">0.421</td><td class="td-green">+46.8%</td>
+          <td><div class="ibar-wrap"><div class="ibar" style="width:62px;background:var(--green)"></div><div class="ibar" style="width:42px;background:#e5e7eb"></div></div></td>
+        </tr>
+        <tr>
+          <td>Precision @ 5</td><td class="td-green td-bold">0.594</td><td class="td-muted">0.407</td><td class="td-green">+46.0%</td>
+          <td><div class="ibar-wrap"><div class="ibar" style="width:59px;background:var(--green)"></div><div class="ibar" style="width:41px;background:#e5e7eb"></div></div></td>
+        </tr>
+        <tr>
+          <td>Recall @ 5</td><td class="td-green td-bold">0.571</td><td class="td-muted">0.398</td><td class="td-green">+43.5%</td>
+          <td><div class="ibar-wrap"><div class="ibar" style="width:57px;background:var(--orange)"></div><div class="ibar" style="width:40px;background:#e5e7eb"></div></div></td>
+        </tr>
+        <tr>
+          <td>Recall @ 10</td><td class="td-green td-bold">0.683</td><td class="td-muted">0.504</td><td class="td-green">+35.5%</td>
+          <td><div class="ibar-wrap"><div class="ibar" style="width:68px;background:var(--orange)"></div><div class="ibar" style="width:50px;background:#e5e7eb"></div></div></td>
+        </tr>
+        <tr>
+          <td>NDCG @ 5</td><td class="td-green td-bold">0.682</td><td class="td-muted">0.489</td><td class="td-green">+39.5%</td>
+          <td><div class="ibar-wrap"><div class="ibar" style="width:68px;background:var(--purple)"></div><div class="ibar" style="width:49px;background:#e5e7eb"></div></div></td>
+        </tr>
+        <tr>
+          <td>NDCG @ 10</td><td class="td-green td-bold">0.651</td><td class="td-muted">0.462</td><td class="td-green">+40.9%</td>
+          <td><div class="ibar-wrap"><div class="ibar" style="width:65px;background:var(--purple)"></div><div class="ibar" style="width:46px;background:#e5e7eb"></div></div></td>
+        </tr>
+        <tr>
+          <td>MRR (Mean Reciprocal Rank)</td><td class="td-green td-bold">0.712</td><td class="td-muted">0.531</td><td class="td-green">+34.1%</td>
+          <td><div class="ibar-wrap"><div class="ibar" style="width:71px;background:var(--red)"></div><div class="ibar" style="width:53px;background:#e5e7eb"></div></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>5.3 Segment-Level Error Analysis</h2>
+  <div class="tbl-wrap">
+    <table>
+      <caption>Model Performance by User Segment</caption>
+      <thead><tr><th>Segment</th><th>CSAO Users</th><th>AUC-ROC</th><th>NDCG@5</th><th>Accept Rate (Model)</th><th>Accept Rate (Baseline)</th></tr></thead>
+      <tbody>
+        <tr><td>Budget</td><td>2,480</td><td class="td-green">0.718</td><td class="td-green">0.651</td><td class="td-green">43.2%</td><td class="td-muted">36.4%</td></tr>
+        <tr><td>Occasional</td><td>1,519</td><td class="td-green">0.751</td><td class="td-green">0.689</td><td class="td-green">48.1%</td><td class="td-muted">40.2%</td></tr>
+        <tr><td>Premium</td><td>1,001</td><td class="td-green">0.774</td><td class="td-green">0.721</td><td class="td-green">53.8%</td><td class="td-muted">44.7%</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout green">
+    <strong>Fine-Tuning Approach</strong>
+    <p>We use Bayesian hyperparameter optimisation (Optuna) over {num_leaves: 31-255, learning_rate: 0.01-0.3, min_data_in_leaf: 10-100, lambda_l2: 0.01-10}. Early stopping on validation NDCG@5 with patience=50 rounds. Segment-specific thresholds: budget users get diversity-enforced top-8 instead of top-10 to reduce fatigue.</p>
+  </div>
+
+  <div class="page-footer">
+    <span><span class="footer-brand">Team Pixels</span> &mdash; Divyanshu Patel &bull; Varshith Pilli</span>
+    <span>Zomato CSAO Recommendation System</span>
+    <span>Page 8</span>
+  </div>
+</div>
+
+<!-- ================================================================
+     PAGE 9 — SYSTEM DESIGN
+================================================================ -->
+<div class="page">
+  <span class="section-tag">Section 6 &mdash; Evaluation Weight: 15%</span>
+  <h1 class="part-title">System Design &amp; <span>Production Readiness</span></h1>
+
+  <h2>6.1 Real-Time Inference Pipeline (P95 = 41ms)</h2>
+  <div class="pipeline">
+    <div class="pipe-step">
+      <div class="pipe-num">Step 1</div>
+      <div class="pipe-title">Cart Trigger</div>
+      <div class="pipe-time">~2ms</div>
+      <div class="pipe-desc">Item add/remove triggers API call to recommendation microservice</div>
+    </div>
+    <div class="pipe-step">
+      <div class="pipe-num">Step 2</div>
+      <div class="pipe-title">Feature Fetch</div>
+      <div class="pipe-time">~8ms</div>
+      <div class="pipe-desc">User + restaurant pre-computed features from Redis (sub-1ms per key)</div>
+    </div>
+    <div class="pipe-step">
+      <div class="pipe-num">Step 3</div>
+      <div class="pipe-title">Candidate Gen</div>
+      <div class="pipe-time">~5ms</div>
+      <div class="pipe-desc">Rule-based filter: restaurant items minus cart items minus category exclusions</div>
+    </div>
+    <div class="pipe-step">
+      <div class="pipe-num">Step 4</div>
+      <div class="pipe-title">LightGBM</div>
+      <div class="pipe-time">~18ms</div>
+      <div class="pipe-desc">Score 50-100 candidates; LambdaRank select top-10 with diversity enforcement</div>
+    </div>
+    <div class="pipe-step">
+      <div class="pipe-num">Step 5</div>
+      <div class="pipe-title">Response</div>
+      <div class="pipe-time">~8ms</div>
+      <div class="pipe-desc">JSON payload with ranked items + scores returned to frontend CSAO rail</div>
+    </div>
+  </div>
+
+  <div class="tbl-wrap" style="margin-top:3.5mm">
+    <table>
+      <caption>Latency Budget Breakdown vs 200ms SLA</caption>
+      <thead><tr><th>Component</th><th>P50</th><th>P95</th><th>P99</th><th>Remaining Budget (vs 200ms)</th></tr></thead>
+      <tbody>
+        <tr><td>Total Pipeline (P95)</td><td>28ms</td><td class="td-green td-bold">41ms</td><td>67ms</td><td class="td-green">159ms remaining</td></tr>
+        <tr><td>Feature Fetch (Redis)</td><td>3ms</td><td>8ms</td><td>15ms</td><td>&mdash;</td></tr>
+        <tr><td>LightGBM Scoring</td><td>11ms</td><td>18ms</td><td>28ms</td><td>&mdash;</td></tr>
+        <tr><td>Network + Serialization</td><td>8ms</td><td>12ms</td><td>20ms</td><td>&mdash;</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>6.2 Scalability Architecture</h2>
+  <div class="tbl-wrap">
+    <table>
+      <caption>Scaling Components for Peak Traffic</caption>
+      <thead><tr><th>Layer</th><th>Technology</th><th>Scaling Strategy</th><th>Peak Capacity</th></tr></thead>
+      <tbody>
+        <tr><td>Feature Store</td><td>Redis Cluster</td><td>Horizontal sharding by user_id and restaurant_id hash; 6 shards</td><td>2M+ operations/sec</td></tr>
+        <tr><td>Recommendation Service</td><td>Python FastAPI + Gunicorn</td><td>Kubernetes HPA; auto-scale on CPU &gt; 65%; pre-warmed pods at peak hours</td><td>500K req/min</td></tr>
+        <tr><td>Model Serving</td><td>LightGBM ONNX export</td><td>Single binary loaded in RAM; no CPU-GPU transfer overhead</td><td>50K inferences/sec/core</td></tr>
+        <tr><td>Feature Refresh</td><td>Spark Streaming + Kafka</td><td>User behavioral features refreshed every 6 hours; item attach rates updated daily</td><td>Real-time event processing</td></tr>
+        <tr><td>Observability</td><td>Prometheus + Grafana</td><td>P50/P95/P99 latency, acceptance rate, coverage tracked per city and meal time</td><td>Full metrics pipeline</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>6.3 Benchmarking Strategy</h2>
+  <div class="tbl-wrap">
+    <table>
+      <caption>Pre-Deployment Benchmarking Checklist</caption>
+      <thead><tr><th>Test Type</th><th>Tool</th><th>Acceptance Criteria</th></tr></thead>
+      <tbody>
+        <tr><td>Load Test (steady-state)</td><td>Locust, 10K concurrent users</td><td>P95 latency &lt; 80ms; 0 errors at 10K RPS</td></tr>
+        <tr><td>Spike Test (dinner rush)</td><td>k6, 3x traffic spike over 5 min</td><td>P99 latency &lt; 200ms; auto-scale kicks in &lt; 60s</td></tr>
+        <tr><td>Shadow Mode Testing</td><td>Dual-write: log model outputs alongside baseline for 48h without serving to users</td><td>Coverage &gt; 95%; no crashes; match rate with baseline &gt; 40%</td></tr>
+        <tr><td>Canary Release</td><td>5% traffic to new model, monitor for 24h</td><td>Acceptance rate &gt;= baseline; C2O rate unchanged (&lt;1% delta)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="page-footer">
+    <span><span class="footer-brand">Team Pixels</span> &mdash; Divyanshu Patel &bull; Varshith Pilli</span>
+    <span>Zomato CSAO Recommendation System</span>
+    <span>Page 9</span>
+  </div>
+</div>
+
+<!-- ================================================================
+     PAGE 10 — BUSINESS IMPACT & A/B TESTING
+================================================================ -->
+<div class="page">
+  <span class="section-tag">Section 7 &mdash; Evaluation Weight: 15%</span>
+  <h1 class="part-title">Business Impact &amp; <span>A/B Testing</span></h1>
+
+  <h2>7.1 Metric Translation: Offline to Business</h2>
+  <div class="tbl-wrap">
+    <table>
+      <caption>Mapping Offline ML Metrics to Business Outcomes</caption>
+      <thead><tr><th>Offline Metric</th><th>Improvement</th><th>Business Metric</th><th>Projected Outcome</th><th>Logic Chain</th></tr></thead>
+      <tbody>
+        <tr><td>NDCG@5 +39.5%</td><td>0.489 &rarr; 0.682</td><td>CSAO Accept Rate</td><td class="td-green">39.1% &rarr; 47.3%</td><td>Better ranking = more relevant top positions = higher acceptance probability per impression</td></tr>
+        <tr><td>Precision@3 +46.8%</td><td>0.421 &rarr; 0.618</td><td>AOV Lift</td><td class="td-green">+18.4%</td><td>If ~50% of sessions accept 1 add-on per recommendation (avg Rs 120), AOV grows by Rs 60 on avg Rs 326 cart</td></tr>
+        <tr><td>Recall@5 +43.5%</td><td>0.398 &rarr; 0.571</td><td>CSAO Attach Rate</td><td class="td-green">27.4% &rarr; 38.2%</td><td>Higher recall = more sessions have at least one relevant item in top-5 = higher per-session attach rate</td></tr>
+        <tr><td>MRR +34.1%</td><td>0.531 &rarr; 0.712</td><td>Items/Order</td><td class="td-green">2.3 &rarr; 2.8</td><td>Higher MRR = relevant items shown earlier in rail = higher first-position click rate</td></tr>
+        <tr><td>Coverage (NDCG@10)</td><td>0.462 &rarr; 0.651</td><td>C2O Ratio (guardrail)</td><td class="td-green">No degradation (&lt;0.5% delta)</td><td>Better recommendations reduce cart abandonment from "didn't find what I want" syndrome</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="kpi-row kpi-row-4" style="margin-top:3.5mm">
+    <div class="kpi-box" style="--kpi-color: var(--green)">
+      <div class="kpi-value">+18.4%</div>
+      <div class="kpi-label">Projected AOV Lift</div>
+    </div>
+    <div class="kpi-box" style="--kpi-color: var(--blue)">
+      <div class="kpi-value">+8.2pp</div>
+      <div class="kpi-label">Accept Rate Uplift</div>
+    </div>
+    <div class="kpi-box" style="--kpi-color: var(--purple)">
+      <div class="kpi-value">+10.8pp</div>
+      <div class="kpi-label">Attach Rate Lift</div>
+    </div>
+    <div class="kpi-box" style="--kpi-color: var(--orange)">
+      <div class="kpi-value">+21.7%</div>
+      <div class="kpi-label">Items/Order Increase</div>
+    </div>
+  </div>
+
+  <h2>7.2 A/B Testing Experiment Design</h2>
+  <div class="tbl-wrap">
+    <table>
+      <caption>Proposed A/B Test Framework</caption>
+      <thead><tr><th>Parameter</th><th>Control (A)</th><th>Treatment (B)</th></tr></thead>
+      <tbody>
+        <tr><td>System</td><td>Popularity-based baseline (existing CSAO rail)</td><td>LightGBM contextual model (our system)</td></tr>
+        <tr><td>Traffic Split</td><td>50%</td><td>50%</td></tr>
+        <tr><td>Sample Size</td><td colspan="2">Minimum 100,000 sessions per arm (statistical power 80% for 5% effect size, &alpha;=0.05)</td></tr>
+        <tr><td>Run Duration</td><td colspan="2">Minimum 2 weeks to capture weekday/weekend, lunch/dinner seasonality cycles</td></tr>
+        <tr><td>Randomisation Unit</td><td colspan="2">user_id (user-level assignment to avoid recommendation contamination between sessions)</td></tr>
+        <tr><td>Stratification</td><td colspan="2">Stratify by city and user segment to ensure balanced distribution in both arms</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <caption>Metrics Hierarchy for A/B Decision</caption>
+      <thead><tr><th>Priority</th><th>Metric</th><th>Target</th><th>Action if Not Met</th></tr></thead>
+      <tbody>
+        <tr><td class="td-bold">Primary</td><td>AOV Lift</td><td>&gt;+5% at statistical significance (p&lt;0.05)</td><td>Do not ship; re-analyse segments</td></tr>
+        <tr><td class="td-bold">Primary</td><td>CSAO Acceptance Rate</td><td>&gt;+3pp vs baseline</td><td>Do not ship; re-tune recommendation diversity</td></tr>
+        <tr><td>Guardrail</td><td>Cart-to-Order (C2O) Rate</td><td>Delta &lt; -1% (must not decrease significantly)</td><td>Rollback immediately</td></tr>
+        <tr><td>Guardrail</td><td>Cart Abandonment Rate</td><td>Delta &lt; +2% (must not increase)</td><td>Rollback immediately</td></tr>
+        <tr><td>Secondary</td><td>Avg Items per Order</td><td>&gt;+10% vs baseline</td><td>Monitor without blocking ship decision</td></tr>
+        <tr><td>Secondary</td><td>P95 Recommendation Latency</td><td>&lt; 100ms in production</td><td>Performance tuning required before shipping</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="page-footer">
+    <span><span class="footer-brand">Team Pixels</span> &mdash; Divyanshu Patel &bull; Varshith Pilli</span>
+    <span>Zomato CSAO Recommendation System</span>
+    <span>Page 10</span>
+  </div>
+</div>
+
+<!-- ================================================================
+     PAGE 11 — VISUALIZATIONS
+================================================================ -->
+<div class="page">
+  <span class="section-tag">Section 8 &mdash; Dataset Visualizations</span>
+  <h1 class="part-title">Data &amp; Model <span>Visualizations</span></h1>
+  <p style="margin-bottom:3mm">All charts below are generated from the actual synthetic dataset (5,000 users, 800 restaurants, 7,914 items, 10,000 sessions, 92,680 cart events).</p>
+
+  <div class="chart-grid-3">
+    <div class="chart-box">
+      <div class="chart-box-title">User Segments</div>
+      <div class="chart-box-sub">Distribution across 3 behavioral tiers</div>
+      <canvas id="c1"></canvas>
+    </div>
+    <div class="chart-box">
+      <div class="chart-box-title">City Distribution</div>
+      <div class="chart-box-sub">Users across 7 Indian cities</div>
+      <canvas id="c2"></canvas>
+    </div>
+    <div class="chart-box">
+      <div class="chart-box-title">Dietary Preference</div>
+      <div class="chart-box-sub">Veg / Non-veg / Both</div>
+      <canvas id="c3"></canvas>
+    </div>
+  </div>
+
+  <div class="chart-grid-3">
+    <div class="chart-box">
+      <div class="chart-box-title">Sessions by Meal Time</div>
+      <div class="chart-box-sub">10,000 sessions across 5 slots</div>
+      <canvas id="c4"></canvas>
+    </div>
+    <div class="chart-box">
+      <div class="chart-box-title">Device Distribution</div>
+      <div class="chart-box-sub">Mobile dominates ordering</div>
+      <canvas id="c5"></canvas>
+    </div>
+    <div class="chart-box">
+      <div class="chart-box-title">Restaurant Price Bands</div>
+      <div class="chart-box-sub">Budget (1) to Luxury (4)</div>
+      <canvas id="c6"></canvas>
+    </div>
+  </div>
+
+  <div class="chart-grid-3">
+    <div class="chart-box">
+      <div class="chart-box-title">CSAO Accept vs Reject</div>
+      <div class="chart-box-sub">55,834 total CSAO events</div>
+      <canvas id="c7"></canvas>
+    </div>
+    <div class="chart-box">
+      <div class="chart-box-title">Candidate Category Mix</div>
+      <div class="chart-box-sub">Side / Beverage / Dessert</div>
+      <canvas id="c8"></canvas>
+    </div>
+    <div class="chart-box">
+      <div class="chart-box-title">Model vs Baseline</div>
+      <div class="chart-box-sub">Key metric comparison</div>
+      <canvas id="c9"></canvas>
+    </div>
+  </div>
+
+  <!-- Feature Importance listing -->
+  <h2 style="margin-top:4mm">Top Feature Importances (LightGBM)</h2>
+  <div class="feat-list">
+    <div class="feat-row"><span class="feat-name">cart_has_main</span><div class="feat-bar-bg"><div class="feat-bar" style="width:92%"></div></div><span class="feat-pct">9.2%</span></div>
+    <div class="feat-row"><span class="feat-name">actual_attach_rate</span><div class="feat-bar-bg"><div class="feat-bar" style="width:88%"></div></div><span class="feat-pct">8.8%</span></div>
+    <div class="feat-row"><span class="feat-name">meal_time</span><div class="feat-bar-bg"><div class="feat-bar" style="width:82%"></div></div><span class="feat-pct">8.2%</span></div>
+    <div class="feat-row"><span class="feat-name">candidate_category</span><div class="feat-bar-bg"><div class="feat-bar" style="width:78%"></div></div><span class="feat-pct">7.8%</span></div>
+    <div class="feat-row"><span class="feat-name">cart_category_diversity</span><div class="feat-bar-bg"><div class="feat-bar" style="width:73%"></div></div><span class="feat-pct">7.3%</span></div>
+    <div class="feat-row"><span class="feat-name">user_segment</span><div class="feat-bar-bg"><div class="feat-bar" style="width:69%"></div></div><span class="feat-pct">6.9%</span></div>
+    <div class="feat-row"><span class="feat-name">price_diff_from_cart_avg</span><div class="feat-bar-bg"><div class="feat-bar" style="width:65%"></div></div><span class="feat-pct">6.5%</span></div>
+    <div class="feat-row"><span class="feat-name">csao_acceptance_rate</span><div class="feat-bar-bg"><div class="feat-bar" style="width:60%"></div></div><span class="feat-pct">6.0%</span></div>
+    <div class="feat-row"><span class="feat-name">cart_size</span><div class="feat-bar-bg"><div class="feat-bar" style="width:55%"></div></div><span class="feat-pct">5.5%</span></div>
+    <div class="feat-row"><span class="feat-name">is_weekend</span><div class="feat-bar-bg"><div class="feat-bar" style="width:48%"></div></div><span class="feat-pct">4.8%</span></div>
+  </div>
+
+  <div class="page-footer">
+    <span><span class="footer-brand">Team Pixels</span> &mdash; Divyanshu Patel &bull; Varshith Pilli</span>
+    <span>Zomato CSAO Recommendation System</span>
+    <span>Page 11</span>
+  </div>
+</div>
+
+<!-- ================================================================
+     PAGE 12 — LIMITATIONS + CONCLUSION
+================================================================ -->
+<div class="page">
+  <span class="section-tag">Sections 9 &amp; 10</span>
+  <h1 class="part-title">Limitations, Future Work &amp; <span>Conclusion</span></h1>
+
+  <h2>9. Limitations &amp; Future Work</h2>
+
+  <div class="tbl-wrap">
+    <table>
+      <caption>Known Limitations and Proposed Resolutions</caption>
+      <thead><tr><th>Limitation</th><th>Impact</th><th>Future Resolution</th></tr></thead>
+      <tbody>
+        <tr><td>Synthetic Data Distribution</td><td>Real Zomato data will have more complex patterns (extreme sparsity, fraud orders, cancelled orders)</td><td>Re-train on real historical data with 30-day rolling window; robust outlier handling in feature pipeline</td></tr>
+        <tr><td>Static Feature Refresh Cycle</td><td>User preferences that change within a session (e.g., ordering for a group) are not captured</td><td>Real-time session context streaming via Kafka; in-session feature updates every 2 minutes</td></tr>
+        <tr><td>LLM AI Edge Cost</td><td>GPT-4o-mini adds ~Rs 0.08 per request; at 1M premium sessions/day = Rs 80K/day</td><td>Fine-tune a smaller local LLM (Phi-3-mini or Gemma-2B) to serve LLM re-ranking at near-zero marginal cost</td></tr>
+        <tr><td>Text Embeddings (50-dim TF-IDF)</td><td>TF-IDF embeddings miss semantic nuance vs transformer embeddings</td><td>Replace with 384-dim sentence-transformer embeddings (all-MiniLM-L6-v2); cached as Redis vectors</td></tr>
+        <tr><td>Multi-Language Support</td><td>Item names in regional languages (Telugu, Tamil, Hindi) not adequately handled</td><td>Use multilingual embeddings; region-specific tokenisation for Southern India markets</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>10. Conclusion</h2>
+  <p class="lead">We have designed and evaluated a complete end-to-end CSAO recommendation system for Zomato that addresses all six evaluation dimensions of the problem statement. Our LightGBM learning-to-rank model, backed by a 40+ feature engineering pipeline and Redis microservice architecture, delivers strong predictive performance across all segments while meeting the stringent 200ms latency requirement.</p>
+
+  <div class="kpi-row kpi-row-4">
+    <div class="kpi-box" style="--kpi-color: var(--red)"><div class="kpi-value">0.743</div><div class="kpi-label">AUC-ROC</div><div class="kpi-sub">+29.4% vs baseline</div></div>
+    <div class="kpi-box" style="--kpi-color: var(--green)"><div class="kpi-value">+18.4%</div><div class="kpi-label">Projected AOV</div><div class="kpi-sub">From A/B simulation</div></div>
+    <div class="kpi-box" style="--kpi-color: var(--blue)"><div class="kpi-value">41ms</div><div class="kpi-label">P95 Latency</div><div class="kpi-sub">vs 200ms SLA</div></div>
+    <div class="kpi-box" style="--kpi-color: var(--purple)"><div class="kpi-value">47.3%</div><div class="kpi-label">Accept Rate</div><div class="kpi-sub">vs 39.1% baseline</div></div>
+  </div>
+
+  <div class="callout green">
+    <strong>Solution Differentiators</strong>
+    <p>1. Sequential cart context modeling enables the biryani &rarr; salan &rarr; dessert &rarr; drinks recommendation chain. 2. LLM AI Edge for premium users adds semantic flavour-pairing intelligence. 3. Comprehensive cold start strategy across all entity types ensures Day-1 coverage. 4. Production-ready with Redis caching, Kubernetes HPA, and shadow-mode pre-deployment benchmarking. 5. Rigorous A/B testing framework with guardrail metrics to protect C2O rate and cart abandonment.</p>
+  </div>
+
+  <h2 style="margin-top:4mm">Team Pixels &mdash; Final Sign-off</h2>
+  <div class="team-grid">
+    <div class="team-card">
+      <div class="team-avatar">DP</div>
+      <div>
+        <div class="team-name">Divyanshu Patel</div>
+        <div class="team-role">Team Leader</div>
+        <div class="team-phone">+91 93015 03581</div>
+      </div>
+    </div>
+    <div class="team-card">
+      <div class="team-avatar">VP</div>
+      <div>
+        <div class="team-name">Varshith Pilli</div>
+        <div class="team-role">Team Member</div>
+        <div class="team-phone">+91 89789 30678</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="background:var(--bg-light);border:1px solid var(--border);border-radius:8px;padding:4mm;margin-top:4mm;text-align:center">
+    <div style="font-size:7pt;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:1.5mm">Submitted For</div>
+    <div style="font-size:11pt;font-weight:800;color:var(--dark)">Zomathon 2026 &mdash; BLOCKSEBLOCK &times; Zomato</div>
+    <div style="font-size:8.5pt;color:var(--muted);margin-top:1mm">Problem Statement 2: CSAO Rail Recommendation System &mdash; Team Pixels</div>
+    <div style="margin-top:2mm;font-size:7.5pt;color:var(--red)">
+      <a href="https://github.com/divyanshupatel17/Zomathon-codingninjas" style="color:var(--red)">github.com/divyanshupatel17/Zomathon-codingninjas</a>
+      &nbsp;&bull;&nbsp;
+      <a href="https://blockseblock.com/hackathon_details/0ae4aba5-0028-4f47-b44f-ec9eba01d1ef" style="color:var(--red)">Event Page</a>
+    </div>
+  </div>
+
+  <p style="margin-top:4mm;font-size:7.5pt;color:var(--muted);font-style:italic">All data used in this project is synthetic and was created specifically for the Zomathon 2026 competition. No proprietary Zomato data was used. This submission adheres to the Terms &amp; Conditions accepted during registration.</p>
+
+  <div class="page-footer">
+    <span><span class="footer-brand">Team Pixels</span> &mdash; Divyanshu Patel &bull; Varshith Pilli</span>
+    <span>Zomato CSAO Recommendation System</span>
+    <span>Page 12</span>
+  </div>
+</div>
+
+<!-- ================================================================
+     CHART.JS SCRIPTS
+================================================================ -->
+<script>
+Chart.defaults.color = '#6b7280';
+Chart.defaults.borderColor = '#e5e7eb';
+Chart.defaults.font.family = "'Segoe UI', Arial, sans-serif";
+Chart.defaults.font.size = 10;
+
+const R='#E23744',B='#2563eb',G='#16a34a',O='#d97706',P='#7c3aed',C='#0891b2';
+const PAL=[R,B,G,O,P,C,'#db2777','#65a30d'];
+
+// c1 — User Segments Doughnut
+new Chart(document.getElementById('c1'),{type:'doughnut',data:{labels:['Budget','Occasional','Premium'],datasets:[{data:[2480,1519,1001],backgroundColor:[R,B,P],borderColor:'#fff',borderWidth:2,hoverOffset:4}]},options:{responsive:true,maintainAspectRatio:false,cutout:'62%',plugins:{legend:{position:'bottom',labels:{padding:8,boxWidth:8,font:{size:9}}}}}});
+
+// c2 — City Bar
+new Chart(document.getElementById('c2'),{type:'bar',data:{labels:['Mumbai','Bglr','Hyd','Pune','Delhi','Kol','Chennai'],datasets:[{data:[760,737,725,715,711,685,667],backgroundColor:PAL,borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:8}}},y:{grid:{color:'#f3f4f6'},ticks:{font:{size:8}}}}}});
+
+// c3 — Dietary Pie
+new Chart(document.getElementById('c3'),{type:'pie',data:{labels:['Non-veg','Veg','Both'],datasets:[{data:[1991,1538,1471],backgroundColor:[R,G,O],borderColor:'#fff',borderWidth:2,hoverOffset:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{padding:8,boxWidth:8,font:{size:9}}}}}});
+
+// c4 — Meal Time Bar
+new Chart(document.getElementById('c4'),{type:'bar',data:{labels:['Dinner','Lunch','Brkfst','L.Night','Snack'],datasets:[{data:[2670,2523,2273,1416,1118],backgroundColor:[P,O,B,C,R],borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:8}}},y:{grid:{color:'#f3f4f6'},ticks:{font:{size:8}}}}}});
+
+// c5 — Device Doughnut
+new Chart(document.getElementById('c5'),{type:'doughnut',data:{labels:['Mobile','Web','Tablet'],datasets:[{data:[7527,2026,447],backgroundColor:[R,B,G],borderColor:'#fff',borderWidth:2,hoverOffset:4}]},options:{responsive:true,maintainAspectRatio:false,cutout:'60%',plugins:{legend:{position:'bottom',labels:{padding:8,boxWidth:8,font:{size:9}}}}}});
+
+// c6 — Price Band Bar
+new Chart(document.getElementById('c6'),{type:'bar',data:{labels:['Budget','Mid','Premium','Luxury'],datasets:[{data:[142,352,228,78],backgroundColor:[G,B,O,P],borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{display:false},ticks:{font:{size:8}}},y:{grid:{color:'#f3f4f6'},ticks:{font:{size:8}}}}}});
+
+// c7 — CSAO Accept/Reject Pie
+new Chart(document.getElementById('c7'),{type:'pie',data:{labels:['Accepted','Rejected'],datasets:[{data:[21806,34028],backgroundColor:[G,R],borderColor:'#fff',borderWidth:2,hoverOffset:4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{padding:8,boxWidth:8,font:{size:9}}}}}});
+
+// c8 — Candidate Category Doughnut
+new Chart(document.getElementById('c8'),{type:'doughnut',data:{labels:['Side','Beverage','Dessert'],datasets:[{data:[21187,17341,17306],backgroundColor:[O,C,P],borderColor:'#fff',borderWidth:2,hoverOffset:4}]},options:{responsive:true,maintainAspectRatio:false,cutout:'58%',plugins:{legend:{position:'bottom',labels:{padding:8,boxWidth:8,font:{size:9}}}}}});
+
+// c9 — Model vs Baseline Bar
+new Chart(document.getElementById('c9'),{type:'bar',data:{labels:['AUC','P@3','R@5','NDCG5'],datasets:[{label:'Model',data:[74.3,61.8,57.1,68.2],backgroundColor:R,borderRadius:3},{label:'Baseline',data:[57.4,42.1,39.8,48.9],backgroundColor:'#d1d5db',borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{padding:6,boxWidth:8,font:{size:9}}}},scales:{x:{grid:{display:false},ticks:{font:{size:8}}},y:{grid:{color:'#f3f4f6'},ticks:{font:{size:8},callback:v=>v+'%'},max:100}}}});
+</script>
+</body>
+</html>

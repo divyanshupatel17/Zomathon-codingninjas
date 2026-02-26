@@ -14,7 +14,9 @@
 | **Hackathon** | Zomathon |
 | **Organizer** | BLOCKSEBLOCK |
 | **Hackathon URL** | [Event Page](https://blockseblock.com/hackathon_details/0ae4aba5-0028-4f47-b44f-ec9eba01d1ef) |
-| **Team Lead** | Divyanshu Patel |
+| **Team Name** | Pixels |
+| **Team Lead** | Divyanshu Patel (9301503581) |
+| **Team Member** | Varshith Pilli (8978930678) |
 | **Problem Statement** | Cart Super Add-On (CSAO) Rail Recommendation System |
 | **Submission Deadline** | 2nd March 2026, 2:00 PM |
 
@@ -30,7 +32,8 @@ The project is deployed via GitHub Pages:
 |---|---|
 | Project Landing Page | [`/`](https://divyanshupatel17.github.io/Zomathon-codingninjas/) |
 | Analytics Dashboard | [`/zomato_csao/dashboard.html`](https://divyanshupatel17.github.io/Zomathon-codingninjas/zomato_csao/dashboard.html) |
-| Full HTML Report | [`/zomato_csao/csao_report.html`](https://divyanshupatel17.github.io/Zomathon-codingninjas/zomato_csao/csao_report.html) |
+| Full PDF-Ready Report | [`/zomato_csao/report_full.html`](https://divyanshupatel17.github.io/Zomathon-codingninjas/zomato_csao/report_full.html) |
+| Original HTML Report | [`/zomato_csao/csao_report.html`](https://divyanshupatel17.github.io/Zomathon-codingninjas/zomato_csao/csao_report.html) |
 | PDF Submission | [`/docs/Zomato_CSAO_Recommendation_System.pdf`](https://divyanshupatel17.github.io/Zomathon-codingninjas/docs/Zomato_CSAO_Recommendation_System.pdf) |
 
 ---
