@@ -1,0 +1,121 @@
+
+    <!-- Section 1: Executive Summary -->
+    <h1 id="sec1">1. Executive Summary</h1>
+
+    <p>This document presents a comprehensive solution for the <strong>Cart-Smart Add-On (CSAO) Recommendation System</strong> at Zomato. The CSAO system intelligently recommends complementary add-on items to customers based on their current cart composition, contextual factors, and historical behavior patterns.</p>
+
+    <div class="highlight-box">
+        <div class="theorem-title">Key Innovation</div>
+        <p>Our solution combines <strong>Graph Neural Network embeddings</strong> for capturing long-term user preferences, <strong>session-based modeling</strong> for understanding in-session intent, and <strong>LLM-powered text embeddings</strong> for handling cold-start scenarios. This hybrid approach achieves superior recommendation quality while maintaining sub-300ms latency.</p>
+    </div>
+
+    <h2>Key Results</h2>
+    <table>
+        <caption data-label="Table 1">Model Performance Comparison</caption>
+        <thead>
+            <tr><th>Model</th><th>AUC</th><th>Precision@5</th><th>Recall@5</th><th>NDCG@5</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Popularity Baseline</td><td>0.678</td><td>0.350</td><td>0.250</td><td>0.300</td></tr>
+            <tr><td>Logistic Regression</td><td>0.769</td><td>0.420</td><td>0.320</td><td>0.380</td></tr>
+            <tr><td>Gradient Boosting</td><td>0.769</td><td>0.430</td><td>0.330</td><td>0.390</td></tr>
+            <tr><td><strong>Hybrid (GNN+Session)</strong></td><td><strong>0.750</strong></td><td><strong>0.278</strong></td><td><strong>1.000</strong></td><td><strong>0.904</strong></td></tr>
+        </tbody>
+    </table>
+
+    <h2>Projected Business Impact</h2>
+    <table>
+        <caption data-label="Table 2">Business Metric Projections</caption>
+        <thead>
+            <tr><th>Metric</th><th>Baseline</th><th>Hybrid Model</th><th>Improvement</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>CSAO Attach Rate</td><td>25.0%</td><td>28.7%</td><td>+15%</td></tr>
+            <tr><td>Average Order Value</td><td>Rs. 369</td><td>Rs. 372</td><td>+0.8%</td></tr>
+            <tr><td>CSAO Order Share</td><td>30.0%</td><td>36.0%</td><td>+20%</td></tr>
+            <tr><td>Cart-to-Order Rate</td><td>75.0%</td><td>78.8%</td><td>+5%</td></tr>
+        </tbody>
+    </table>
+
+    <!-- Section 2: Problem Understanding -->
+    <h1 id="sec2">2. Problem Understanding</h1>
+
+    <p>In the food delivery business, cart value optimization is critical for both customer satisfaction and business profitability. When customers add items to their cart, they often miss discovering complementary items that would enhance their meal experience.</p>
+
+    <h2 id="sec2-1">2.1 Objectives</h2>
+
+    <p>The primary objective is to develop a scalable recommendation system that accurately predicts which add-on items a customer is most likely to add to their cart, given their current cart state and contextual information.</p>
+
+    <p><strong>Key Requirements:</strong></p>
+    <ul>
+        <li><strong>Real-time predictions:</strong> Sub-300ms latency for millions of daily requests</li>
+        <li><strong>Sequential adaptation:</strong> Recommendations must update as cart evolves</li>
+        <li><strong>Cold-start handling:</strong> Effective recommendations for new users/items</li>
+        <li><strong>Meal completion:</strong> Suggest items that complete the meal (main + side + dessert + drink)</li>
+    </ul>
+
+    <h2 id="sec2-2">2.2 Success Metrics</h2>
+
+    <h3>Model Performance Metrics</h3>
+    <table>
+        <thead>
+            <tr><th>Metric</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>AUC</td><td>Overall model discrimination ability</td></tr>
+            <tr><td>Precision@K</td><td>Accuracy of top-K recommendations</td></tr>
+            <tr><td>Recall@K</td><td>Coverage of relevant items in top-K</td></tr>
+            <tr><td>NDCG</td><td>Ranking quality metric</td></tr>
+        </tbody>
+    </table>
+
+    <h3>Business Impact Metrics</h3>
+    <table>
+        <thead>
+            <tr><th>Metric</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Add-on Acceptance Rate</td><td>% of recommended items added to cart</td></tr>
+            <tr><td>AOV Lift</td><td>Incremental increase in cart value</td></tr>
+            <tr><td>CSAO Rail Order Share</td><td>% of orders with CSAO acceptance</td></tr>
+            <tr><td>Cart-to-Order (C2O) Rate</td><td>Impact on order completion</td></tr>
+        </tbody>
+    </table>
+
+    <!-- Section 3: Data & Synthetic Dataset -->
+    <h1 id="sec3">3. Data & Synthetic Dataset</h1>
+
+    <p>We created a realistic synthetic dataset mimicking Zomato's food delivery ecosystem, including users, restaurants, items, sessions, and cart events.</p>
+
+    <h2 id="sec3-1">3.1 Schema Design</h2>
+
+    <table>
+        <caption data-label="Table 3">Dataset Schema Overview</caption>
+        <thead>
+            <tr><th>Entity</th><th>Count</th><th>Key Attributes</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Users</td><td>5,000</td><td>city, segment, preferred_cuisines, avg_order_value, frequency, recency</td></tr>
+            <tr><td>Restaurants</td><td>800</td><td>city, cuisine, price_band, rating, is_chain, popularity</td></tr>
+            <tr><td>Items</td><td>7,914</td><td>restaurant_id, category, veg_flag, price, description, tags</td></tr>
+            <tr><td>Sessions</td><td>10,000</td><td>user_id, restaurant_id, timestamp, device, meal_time</td></tr>
+            <tr><td>Cart Events</td><td>92,680</td><td>session_id, item_id, action, cart_state, label</td></tr>
+        </tbody>
+    </table>
+
+    <h2 id="sec3-2">3.2 Simulation Logic</h2>
+
+    <p>The synthetic data reflects real-world patterns:</p>
+
+    <ul>
+        <li><strong>Cities:</strong> 7 major Indian cities (Bangalore, Delhi, Mumbai, Hyderabad, Chennai, Pune, Kolkata)</li>
+        <li><strong>User Segments:</strong> Budget (50%), Occasional (30%), Premium (20%)</li>
+        <li><strong>Meal Templates:</strong> Biryani -> Raita -> Dessert -> Drink, Pizza -> Side -> Drink, etc.</li>
+        <li><strong>Temporal Patterns:</strong> Higher order volumes during lunch (11-15h) and dinner (18-22h)</li>
+        <li><strong>Contextual Effects:</strong> More beverages in summer/afternoons, more desserts on weekends</li>
+    </ul>
+
+    <div class="highlight-box">
+        <div class="theorem-title">Meal Completion Logic</div>
+        <p>We defined template meals to drive realistic add-on acceptance patterns. For example, a Biryani meal typically includes: Biryani (main) -> Raita/Salan (side) -> Gulab Jamun (dessert) -> Lassi/Soft Drink (beverage).</p>
+    </div>

@@ -1,0 +1,801 @@
+restaurant_id,name,city,primary_cuisine,cuisines,price_band,rating,is_chain,popularity,delivery_time,menu_size,avg_item_price,category_diversity,order_volume,is_chain_int,price_band_1,price_band_2,price_band_3,price_band_4
+R0001,New Italian Bites,Chennai,South Indian,South Indian,4,4.2,False,0.595,32,8,112.875,4,13,0,0,0,0,1
+R0002,Fresh South Indian Eats,Pune,Fast Food,Fast Food,2,4.1,False,0.658,28,10,113.3,4,17,0,0,1,0,0
+R0003,Golden South Indian Hub,Bangalore,Italian,Italian|North Indian,2,4.1,False,0.843,36,10,113.3,4,19,0,0,1,0,0
+R0004,New Desserts Bites,Hyderabad,Fast Food,Fast Food|Desserts,1,4.6,False,0.895,56,10,97.7,4,4,0,1,0,0,0
+R0005,Spicy South Indian Kitchen,Pune,Chinese,Chinese|Desserts|Biryani,2,4.3,False,0.849,54,11,140.0,4,13,0,0,1,0,0
+R0006,Delicious Continental Eats,Chennai,Fast Food,Fast Food|Continental|Desserts,2,4.5,False,0.737,39,10,113.3,4,12,0,0,1,0,0
+R0007,The Biryani Corner,Bangalore,Continental,Continental|Biryani|Desserts,2,3.9,False,0.812,38,11,201.0,4,15,0,0,1,0,0
+R0008,Tasty Street Food Express,Mumbai,Chinese,Chinese,2,3.4,False,0.634,49,11,140.0,4,17,0,0,1,0,0
+R0009,Royal Biryani Junction,Hyderabad,Biryani,Biryani,2,4.9,False,0.76,27,11,150.0,4,8,0,0,1,0,0
+R0010,Spicy Fast Food Corner,Bangalore,Italian,Italian,4,3.4,False,0.541,51,8,141.5,4,16,0,0,0,0,1
+R0011,Royal Fast Food Kitchen,Kolkata,Street Food,Street Food|South Indian,3,3.5,True,0.621,51,9,74.0,4,8,1,0,0,1,0
+R0012,Delicious Continental Kitchen,Hyderabad,Fast Food,Fast Food,2,4.0,False,0.547,51,10,113.3,4,10,0,0,1,0,0
+R0013,Golden Street Food Corner,Delhi,South Indian,South Indian|Italian,1,4.3,True,0.688,36,11,71.9090909090909,4,24,1,1,0,0,0
+R0014,Royal Fast Food Kitchen,Chennai,Street Food,Street Food|Beverages,2,2.9,False,0.515,44,10,65.4,4,7,0,0,1,0,0
+R0015,The Fast Food Corner,Bangalore,North Indian,North Indian|Continental|Biryani,2,4.5,False,0.653,31,12,156.25,4,17,0,0,1,0,0
+R0016,New Italian Hub,Pune,North Indian,North Indian|Fast Food,2,4.3,False,0.702,34,12,156.25,4,12,0,0,1,0,0
+R0017,Delicious Continental House,Delhi,North Indian,North Indian|Biryani,1,3.8,False,0.803,56,12,134.83333333333334,4,8,0,1,0,0,0
+R0018,The Continental Place,Chennai,Street Food,Street Food,1,3.7,False,0.601,29,10,56.3,4,9,0,1,0,0,0
+R0019,Spicy South Indian Eats,Bangalore,Fast Food,Fast Food|Desserts|Italian,2,4.3,False,0.83,33,10,113.3,4,13,0,0,1,0,0
+R0020,Delicious South Indian Express,Kolkata,Fast Food,Fast Food|Continental,2,2.8,False,0.669,33,10,113.3,4,18,0,0,1,0,0
+R0021,The Chinese Corner,Chennai,Street Food,Street Food|Continental|Italian,1,3.7,False,0.699,60,10,56.3,4,12,0,1,0,0,0
+R0022,The Italian Place,Pune,Street Food,Street Food|South Indian|Chinese,1,2.7,False,0.702,53,10,56.3,4,16,0,1,0,0,0
+R0023,Golden Desserts Eats,Mumbai,Continental,Continental,2,4.2,False,0.658,47,11,201.0,4,11,0,0,1,0,0
+R0024,Tasty Continental Eats,Hyderabad,Fast Food,Fast Food|North Indian|Biryani,1,3.7,False,0.596,51,10,97.7,4,8,0,1,0,0,0
+R0025,Fresh Continental Kitchen,Chennai,Fast Food,Fast Food|Chinese,2,3.7,False,0.65,49,10,113.3,4,8,0,0,1,0,0
+R0026,The Desserts Hub,Bangalore,Desserts,Desserts|Italian,2,4.6,False,0.704,27,9,133.22222222222223,4,16,0,0,1,0,0
+R0027,Fresh Biryani House,Bangalore,Beverages,Beverages|South Indian,4,4.5,False,0.603,44,8,83.125,4,11,0,0,0,0,1
+R0028,Delicious North Indian House,Chennai,Biryani,Biryani,3,4.4,False,0.56,50,10,159.8,4,18,0,0,0,1,0
+R0029,Authentic Chinese Eats,Chennai,Desserts,Desserts|Fast Food,2,3.8,False,0.679,36,9,133.22222222222223,4,5,0,0,1,0,0
+R0030,The Street Food Express,Mumbai,Chinese,Chinese,3,4.4,False,0.554,44,10,142.3,4,18,0,0,0,1,0
+R0031,The North Indian Express,Chennai,South Indian,South Indian|Italian,2,3.7,False,0.624,50,11,83.45454545454545,4,13,0,0,1,0,0
+R0032,New Biryani Bites,Chennai,Biryani,Biryani|Street Food,2,4.8,False,0.887,49,11,150.0,4,8,0,0,1,0,0
+R0033,Hot Continental Junction,Delhi,North Indian,North Indian,2,4.7,False,0.619,38,12,156.25,4,12,0,0,1,0,0
+R0034,Royal Continental Hub,Delhi,Continental,Continental|Biryani,1,3.4,False,0.597,59,11,173.45454545454547,4,16,0,1,0,0,0
+R0035,Royal Street Food Junction,Kolkata,Italian,Italian,2,4.4,False,0.619,52,10,113.3,4,9,0,0,1,0,0
+R0036,Royal Continental Eats,Hyderabad,South Indian,South Indian|Italian,1,4.4,False,0.699,33,11,71.9090909090909,4,7,0,1,0,0,0
+R0037,Royal North Indian Express,Kolkata,South Indian,South Indian|Street Food,2,2.8,False,0.721,47,11,83.45454545454545,4,8,0,0,1,0,0
+R0038,Golden Continental House,Pune,Desserts,Desserts|Italian,2,4.8,False,0.61,39,9,133.22222222222223,4,15,0,0,1,0,0
+R0039,Tasty North Indian Point,Delhi,South Indian,South Indian,2,4.5,False,0.676,47,11,83.45454545454545,4,19,0,0,1,0,0
+R0040,Royal Chinese Kitchen,Bangalore,Desserts,Desserts,3,4.1,True,0.651,40,9,151.22222222222223,4,12,1,0,0,1,0
+R0041,Tasty Continental Point,Delhi,Beverages,Beverages|Street Food|South Indian,3,2.7,True,0.56,36,9,86.44444444444444,4,15,1,0,0,1,0
+R0042,Authentic Biryani Junction,Pune,South Indian,South Indian|Italian,1,4.0,False,0.835,42,11,71.9090909090909,4,17,0,1,0,0,0
+R0043,Hot South Indian Bites,Pune,Biryani,Biryani|Fast Food,1,4.7,False,0.975,34,11,129.36363636363637,4,7,0,1,0,0,0
+R0044,The Fast Food Hub,Delhi,Italian,Italian,3,4.5,True,0.626,54,9,124.88888888888889,4,8,1,0,0,1,0
+R0045,Delicious South Indian Express,Hyderabad,Biryani,Biryani|Fast Food,2,2.7,False,0.515,25,11,150.0,4,12,0,0,1,0,0
+R0046,New Continental Express,Kolkata,Biryani,Biryani,3,3.9,False,0.493,30,10,159.8,4,12,0,0,0,1,0
+R0047,Hot Beverages Junction,Pune,Desserts,Desserts|Beverages|Biryani,1,2.7,False,0.657,51,9,114.88888888888889,4,24,0,1,0,0,0
+R0048,Royal North Indian Eats,Bangalore,Chinese,Chinese|South Indian|Desserts,2,4.6,True,0.792,28,11,140.0,4,14,1,0,1,0,0
+R0049,Royal Italian Corner,Delhi,South Indian,South Indian|Street Food,3,4.9,False,0.675,49,10,89.1,4,14,0,0,0,1,0
+R0050,Hot Desserts Point,Pune,Biryani,Biryani,1,4.2,False,0.782,59,11,129.36363636363637,4,10,0,1,0,0,0
+R0051,Authentic Chinese Corner,Mumbai,Chinese,Chinese|Continental,3,3.5,False,0.54,39,10,152.3,4,12,0,0,0,1,0
+R0052,New South Indian Express,Hyderabad,Chinese,Chinese|Biryani|Fast Food,1,4.6,True,0.892,54,11,120.72727272727273,4,4,1,1,0,0,0
+R0053,Tasty Italian Eats,Kolkata,Street Food,Street Food|Chinese|Italian,3,4.0,True,0.513,52,9,65.66666666666667,4,7,1,0,0,1,0
+R0054,Authentic Street Food Junction,Mumbai,Desserts,Desserts|Italian|Chinese,4,4.4,False,0.588,41,8,164.25,4,20,0,0,0,0,1
+R0055,Hot Street Food Point,Bangalore,Beverages,Beverages|Biryani,2,4.2,False,0.663,38,9,76.33333333333333,4,17,0,0,1,0,0
+R0056,Royal North Indian Corner,Chennai,South Indian,South Indian|North Indian,3,4.8,False,0.583,52,10,94.1,4,13,0,0,0,1,0
+R0057,Spicy Chinese Junction,Hyderabad,Beverages,Beverages,3,3.9,False,0.704,56,9,86.44444444444444,4,12,0,0,0,1,0
+R0058,Spicy Biryani Hub,Delhi,Italian,Italian,2,3.9,False,0.739,45,10,113.3,4,16,0,0,1,0,0
+R0059,Fresh Continental Place,Kolkata,Desserts,Desserts|Continental,2,4.5,False,0.713,35,9,133.22222222222223,4,14,0,0,1,0,0
+R0060,Authentic Fast Food Hub,Mumbai,South Indian,South Indian,2,4.4,False,0.671,51,11,83.45454545454545,4,23,0,0,1,0,0
+R0061,Royal Continental Junction,Chennai,Biryani,Biryani|Continental,4,4.5,False,0.478,28,8,164.25,4,6,0,0,0,0,1
+R0062,Fresh Chinese Place,Kolkata,Desserts,Desserts|Street Food|Chinese,2,3.3,False,0.585,26,9,133.22222222222223,4,8,0,0,1,0,0
+R0063,Hot Continental Point,Chennai,Fast Food,Fast Food|Biryani|Chinese,1,4.2,False,0.726,48,10,97.7,4,14,0,1,0,0,0
+R0064,Royal Chinese Point,Bangalore,Fast Food,Fast Food|Street Food,2,4.3,False,0.849,25,10,113.3,4,12,0,0,1,0,0
+R0065,Tasty Beverages Eats,Mumbai,Beverages,Beverages,2,4.2,False,0.648,28,9,76.33333333333333,4,15,0,0,1,0,0
+R0066,The Italian Point,Hyderabad,Continental,Continental|Chinese|South Indian,2,4.6,False,0.845,34,11,201.0,4,7,0,0,1,0,0
+R0067,Golden Italian Place,Kolkata,Chinese,Chinese|North Indian|Biryani,2,2.9,False,0.575,50,11,140.0,4,14,0,0,1,0,0
+R0068,Hot North Indian Junction,Kolkata,Italian,Italian|Fast Food,3,3.1,False,0.633,58,9,129.0,4,7,0,0,0,1,0
+R0069,Golden North Indian Corner,Hyderabad,South Indian,South Indian,3,4.6,False,0.526,28,10,89.1,4,13,0,0,0,1,0
+R0070,Delicious Fast Food Bites,Pune,Fast Food,Fast Food,2,4.6,False,0.882,59,10,113.3,4,11,0,0,1,0,0
+R0071,Golden Italian Junction,Delhi,Beverages,Beverages|Desserts|North Indian,4,4.6,False,0.725,59,8,86.625,4,14,0,0,0,0,1
+R0072,Fresh Beverages Corner,Chennai,Italian,Italian|North Indian,3,3.9,False,0.538,43,9,129.0,4,21,0,0,0,1,0
+R0073,Authentic Chinese Kitchen,Hyderabad,Street Food,Street Food|Desserts,2,4.2,False,0.577,37,10,65.4,4,13,0,0,1,0,0
+R0074,Spicy Continental Hub,Delhi,South Indian,South Indian|Fast Food|Desserts,1,4.8,False,0.951,25,11,71.9090909090909,4,16,0,1,0,0,0
+R0075,New Biryani Express,Bangalore,Desserts,Desserts,2,3.8,False,0.688,28,9,133.22222222222223,4,19,0,0,1,0,0
+R0076,The Italian Bites,Chennai,Street Food,Street Food|North Indian|Fast Food,2,4.7,True,0.686,42,10,65.4,4,10,1,0,1,0,0
+R0077,New Biryani Junction,Delhi,Desserts,Desserts|Biryani|South Indian,3,3.7,False,0.503,31,9,151.22222222222223,4,12,0,0,0,1,0
+R0078,Delicious Italian Place,Mumbai,Fast Food,Fast Food|Desserts,2,3.4,True,0.51,25,10,113.3,4,15,1,0,1,0,0
+R0079,Fresh Street Food Hub,Bangalore,Desserts,Desserts|Street Food,1,4.4,False,0.787,41,9,114.88888888888889,4,13,0,1,0,0,0
+R0080,New Continental Kitchen,Bangalore,Chinese,Chinese|South Indian,2,4.6,False,0.801,38,11,140.0,4,8,0,0,1,0,0
+R0081,New Desserts Corner,Hyderabad,South Indian,South Indian|Continental,4,3.8,False,0.619,52,8,76.125,4,12,0,0,0,0,1
+R0082,New Continental Eats,Bangalore,Beverages,Beverages|Street Food,2,3.0,False,0.621,37,9,76.33333333333333,4,6,0,0,1,0,0
+R0083,Fresh South Indian Place,Delhi,North Indian,North Indian|Desserts|South Indian,2,4.6,False,0.655,37,12,156.25,4,16,0,0,1,0,0
+R0084,Tasty Street Food Corner,Mumbai,Continental,Continental|Desserts,2,4.9,False,0.781,40,11,201.0,4,15,0,0,1,0,0
+R0085,Golden Italian Eats,Mumbai,Continental,Continental|Chinese|Fast Food,1,1.4,False,0.455,54,11,173.45454545454547,4,13,0,1,0,0,0
+R0086,Hot Biryani Bites,Kolkata,North Indian,North Indian,3,4.7,False,0.606,52,10,158.0,4,17,0,0,0,1,0
+R0087,Delicious Beverages Eats,Hyderabad,Italian,Italian,3,4.1,False,0.48,57,9,117.88888888888889,4,11,0,0,0,1,0
+R0088,Golden Chinese Place,Mumbai,Chinese,Chinese|Beverages,2,3.9,False,0.731,41,11,140.0,4,12,0,0,1,0,0
+R0089,New Biryani Kitchen,Mumbai,Chinese,Chinese|Italian,3,4.6,False,0.608,31,10,153.6,4,12,0,0,0,1,0
+R0090,The Street Food Place,Delhi,Italian,Italian,2,4.6,False,0.735,25,10,113.3,4,18,0,0,1,0,0
+R0091,Hot Italian Bites,Pune,Chinese,Chinese|Street Food,2,3.9,False,0.822,32,11,140.0,4,14,0,0,1,0,0
+R0092,Delicious Fast Food House,Bangalore,Biryani,Biryani,3,4.4,False,0.653,49,10,152.3,4,16,0,0,0,1,0
+R0093,The Continental Kitchen,Delhi,North Indian,North Indian|Chinese,1,3.6,True,0.63,42,12,134.83333333333334,4,12,1,1,0,0,0
+R0094,Golden Fast Food Express,Delhi,Beverages,Beverages,3,4.5,False,0.615,55,9,86.44444444444444,4,17,0,0,0,1,0
+R0095,Hot Beverages Corner,Kolkata,Continental,Continental|Desserts|South Indian,3,3.0,False,0.532,49,10,211.1,4,12,0,0,0,1,0
+R0096,Authentic Desserts Hub,Mumbai,Desserts,Desserts|Street Food,2,4.8,True,0.792,49,9,133.22222222222223,4,10,1,0,1,0,0
+R0097,Golden Italian Express,Chennai,Fast Food,Fast Food,1,3.8,False,0.65,43,10,97.7,4,14,0,1,0,0,0
+R0098,Fresh Biryani Point,Delhi,Beverages,Beverages|Italian|Chinese,1,3.8,True,0.627,41,9,65.55555555555556,4,15,1,1,0,0,0
+R0099,Authentic North Indian Place,Delhi,North Indian,North Indian|Biryani,2,2.7,False,0.456,32,12,156.25,4,12,0,0,1,0,0
+R0100,Hot Continental Corner,Mumbai,South Indian,South Indian|North Indian,3,3.3,True,0.435,34,10,89.1,4,12,1,0,0,1,0
+R0101,The North Indian Bites,Hyderabad,North Indian,North Indian,2,4.1,False,0.768,41,12,156.25,4,13,0,0,1,0,0
+R0102,Hot Biryani Eats,Kolkata,Beverages,Beverages|Italian|Continental,2,4.7,False,0.815,47,9,76.33333333333333,4,7,0,0,1,0,0
+R0103,New Continental House,Hyderabad,South Indian,South Indian|Beverages,2,3.0,True,0.541,40,11,83.45454545454545,4,16,1,0,1,0,0
+R0104,Delicious Desserts Junction,Pune,Fast Food,Fast Food|Italian|Chinese,1,4.8,False,0.967,56,10,97.7,4,15,0,1,0,0,0
+R0105,Royal Desserts Junction,Pune,Biryani,Biryani,3,4.3,True,0.612,46,10,162.3,4,11,1,0,0,1,0
+R0106,Authentic Chinese Place,Mumbai,Chinese,Chinese|North Indian,1,4.1,True,0.892,34,11,120.72727272727273,4,10,1,1,0,0,0
+R0107,Delicious Desserts Kitchen,Bangalore,South Indian,South Indian|Beverages,3,4.9,False,0.719,60,10,94.1,4,15,0,0,0,1,0
+R0108,Tasty Fast Food Point,Kolkata,Chinese,Chinese|South Indian,2,4.4,False,0.796,37,11,140.0,4,5,0,0,1,0,0
+R0109,Tasty Desserts Point,Delhi,Desserts,Desserts|Italian|North Indian,1,4.0,True,0.837,28,9,114.88888888888889,4,10,1,1,0,0,0
+R0110,Authentic Continental Point,Chennai,South Indian,South Indian|Street Food|Chinese,3,4.2,False,0.579,59,10,89.1,4,9,0,0,0,1,0
+R0111,Royal Street Food Point,Bangalore,Biryani,Biryani|Fast Food|South Indian,2,2.2,False,0.581,36,11,150.0,4,9,0,0,1,0,0
+R0112,The Continental Point,Chennai,North Indian,North Indian|Fast Food,3,2.7,False,0.393,51,10,179.3,4,12,0,0,0,1,0
+R0113,Royal Street Food Kitchen,Hyderabad,Street Food,Street Food,1,4.5,True,0.851,58,10,56.3,4,7,1,1,0,0,0
+R0114,Tasty Continental Express,Bangalore,Beverages,Beverages|Fast Food|Street Food,3,4.7,False,0.799,39,9,86.44444444444444,4,12,0,0,0,1,0
+R0115,New North Indian Hub,Bangalore,Street Food,Street Food,3,4.0,False,0.473,52,9,65.66666666666667,4,11,0,0,0,1,0
+R0116,Golden Continental Place,Hyderabad,Continental,Continental|Fast Food|Chinese,1,4.3,False,0.681,44,11,173.45454545454547,4,13,0,1,0,0,0
+R0117,Fresh Continental Point,Delhi,Beverages,Beverages|Biryani,3,3.8,False,0.485,56,9,86.44444444444444,4,11,0,0,0,1,0
+R0118,Hot South Indian Bites,Hyderabad,Beverages,Beverages|Desserts,3,4.1,True,0.637,38,9,86.44444444444444,4,14,1,0,0,1,0
+R0119,Golden Desserts Bites,Hyderabad,Street Food,Street Food|Biryani|North Indian,1,3.6,False,0.852,35,10,56.3,4,12,0,1,0,0,0
+R0120,Fresh Chinese Eats,Hyderabad,Chinese,Chinese,2,4.6,False,0.747,57,11,140.0,4,14,0,0,1,0,0
+R0121,Authentic Italian Place,Bangalore,Desserts,Desserts,4,3.5,False,0.452,36,8,164.25,4,8,0,0,0,0,1
+R0122,Authentic Street Food Eats,Chennai,North Indian,North Indian|Biryani,2,3.5,False,0.6,59,12,156.25,4,12,0,0,1,0,0
+R0123,Royal Biryani Hub,Bangalore,Continental,Continental|Beverages,2,2.7,False,0.733,56,11,201.0,4,12,0,0,1,0,0
+R0124,Spicy North Indian Bites,Hyderabad,Italian,Italian|Desserts|North Indian,2,4.4,False,0.853,43,10,113.3,4,6,0,0,1,0,0
+R0125,Hot South Indian Junction,Bangalore,Biryani,Biryani|Continental,2,2.6,False,0.719,33,11,150.0,4,10,0,0,1,0,0
+R0126,Tasty Desserts Hub,Chennai,South Indian,South Indian|Continental|Street Food,1,3.2,True,0.849,58,11,71.9090909090909,4,14,1,1,0,0,0
+R0127,The North Indian Hub,Hyderabad,North Indian,North Indian,3,4.5,False,0.591,36,10,170.5,4,12,0,0,0,1,0
+R0128,Hot Street Food Place,Chennai,Biryani,Biryani|Street Food|North Indian,3,3.3,False,0.646,37,10,152.3,4,9,0,0,0,1,0
+R0129,New South Indian House,Bangalore,Biryani,Biryani|North Indian|South Indian,3,4.3,False,0.682,56,10,162.3,4,13,0,0,0,1,0
+R0130,Royal Continental Kitchen,Mumbai,Desserts,Desserts|Biryani|Chinese,4,3.8,False,0.634,51,8,159.125,4,15,0,0,0,0,1
+R0131,Golden South Indian Bites,Chennai,North Indian,North Indian|Italian,3,2.2,True,0.612,37,10,169.9,4,9,1,0,0,1,0
+R0132,Royal Fast Food House,Bangalore,Desserts,Desserts|Beverages|Chinese,2,3.7,False,0.656,40,9,133.22222222222223,4,14,0,0,1,0,0
+R0133,Spicy North Indian Hub,Hyderabad,Beverages,Beverages|South Indian|Fast Food,2,3.5,False,0.793,48,9,76.33333333333333,4,17,0,0,1,0,0
+R0134,Hot Fast Food Kitchen,Hyderabad,Desserts,Desserts|Street Food|Italian,2,4.8,False,0.891,39,9,133.22222222222223,4,12,0,0,1,0,0
+R0135,Tasty South Indian Express,Mumbai,Desserts,Desserts|Beverages|Continental,2,4.1,False,0.613,42,9,133.22222222222223,4,17,0,0,1,0,0
+R0136,Golden Fast Food Bites,Chennai,Italian,Italian|Desserts|Beverages,3,3.7,False,0.696,38,9,129.0,4,6,0,0,0,1,0
+R0137,Fresh Fast Food Bites,Hyderabad,Biryani,Biryani,1,4.8,False,0.927,55,11,129.36363636363637,4,12,0,1,0,0,0
+R0138,Delicious Beverages Kitchen,Mumbai,Street Food,Street Food|Fast Food|Italian,1,4.6,False,0.791,60,10,56.3,4,16,0,1,0,0,0
+R0139,Spicy Fast Food Point,Delhi,Desserts,Desserts|Biryani|North Indian,2,4.0,False,0.782,45,9,133.22222222222223,4,12,0,0,1,0,0
+R0140,The Biryani Kitchen,Kolkata,Continental,Continental,2,2.6,False,0.483,25,11,201.0,4,13,0,0,1,0,0
+R0141,Hot Italian Express,Bangalore,Chinese,Chinese|Fast Food|North Indian,3,4.8,False,0.808,56,10,142.3,4,13,0,0,0,1,0
+R0142,Authentic Biryani Express,Delhi,Biryani,Biryani|North Indian|Italian,2,3.7,True,0.648,46,11,150.0,4,10,1,0,1,0,0
+R0143,Tasty South Indian Hub,Chennai,North Indian,North Indian|Italian|South Indian,2,4.8,False,0.806,60,12,156.25,4,12,0,0,1,0,0
+R0144,Spicy Italian Hub,Bangalore,Italian,Italian,1,3.8,False,0.683,39,10,97.7,4,15,0,1,0,0,0
+R0145,Golden Beverages Eats,Kolkata,Biryani,Biryani,1,3.9,False,0.884,32,11,129.36363636363637,4,8,0,1,0,0,0
+R0146,Golden Biryani Eats,Delhi,North Indian,North Indian|Italian,2,4.0,False,0.683,41,12,156.25,4,14,0,0,1,0,0
+R0147,Delicious Desserts Junction,Delhi,Chinese,Chinese|Desserts|South Indian,3,4.1,False,0.627,58,10,153.6,4,11,0,0,0,1,0
+R0148,Delicious Biryani Hub,Delhi,Fast Food,Fast Food|South Indian,2,4.7,False,0.894,30,10,113.3,4,11,0,0,1,0,0
+R0149,Golden Biryani Corner,Chennai,South Indian,South Indian|Biryani,2,4.6,False,0.82,39,11,83.45454545454545,4,9,0,0,1,0,0
+R0150,Hot North Indian Junction,Pune,Chinese,Chinese|Italian,2,3.5,True,0.642,40,11,140.0,4,18,1,0,1,0,0
+R0151,Spicy Desserts Corner,Hyderabad,Chinese,Chinese,3,3.0,False,0.502,52,10,152.3,4,5,0,0,0,1,0
+R0152,Royal Desserts Express,Pune,South Indian,South Indian,3,4.7,True,0.603,32,10,89.1,4,13,1,0,0,1,0
+R0153,Hot Desserts House,Chennai,North Indian,North Indian|South Indian|Beverages,2,4.9,True,0.867,40,12,156.25,4,7,1,0,1,0,0
+R0154,Golden Continental Eats,Bangalore,Biryani,Biryani,2,3.9,False,0.555,46,11,150.0,4,18,0,0,1,0,0
+R0155,Tasty Continental Eats,Bangalore,Street Food,Street Food,4,2.0,True,0.438,51,8,88.375,4,16,1,0,0,0,1
+R0156,Golden South Indian House,Hyderabad,Italian,Italian|Fast Food,3,4.0,False,0.637,27,9,124.88888888888889,4,8,0,0,0,1,0
+R0157,Delicious Biryani Corner,Mumbai,Fast Food,Fast Food|Chinese|North Indian,1,4.6,False,0.741,44,10,97.7,4,18,0,1,0,0,0
+R0158,The Chinese Bites,Mumbai,Chinese,Chinese|Fast Food|South Indian,2,3.7,True,0.63,48,11,140.0,4,11,1,0,1,0,0
+R0159,Fresh Beverages House,Hyderabad,Continental,Continental|South Indian|Street Food,3,2.6,False,0.365,43,10,216.1,4,8,0,0,0,1,0
+R0160,Spicy Italian Corner,Pune,Street Food,Street Food|Italian|Fast Food,2,3.9,False,0.649,30,10,65.4,4,20,0,0,1,0,0
+R0161,Royal Continental Place,Bangalore,Beverages,Beverages,3,3.6,True,0.443,34,9,86.44444444444444,4,13,1,0,0,1,0
+R0162,Authentic South Indian Place,Pune,Continental,Continental,2,3.7,False,0.623,29,11,201.0,4,15,0,0,1,0,0
+R0163,Golden Chinese Bites,Hyderabad,South Indian,South Indian|Italian,3,4.5,True,0.526,57,10,69.1,4,13,1,0,0,1,0
+R0164,Golden Continental House,Hyderabad,Chinese,Chinese,2,4.0,False,0.715,29,11,140.0,4,9,0,0,1,0,0
+R0165,Tasty Beverages Point,Kolkata,Beverages,Beverages|Street Food,1,4.3,True,0.685,57,9,65.55555555555556,4,11,1,1,0,0,0
+R0166,Hot Beverages Kitchen,Pune,Beverages,Beverages|Fast Food|Biryani,3,2.7,False,0.618,30,9,86.44444444444444,4,10,0,0,0,1,0
+R0167,Golden North Indian Express,Mumbai,Fast Food,Fast Food|North Indian,1,3.8,False,0.606,49,10,97.7,4,17,0,1,0,0,0
+R0168,Delicious Italian Bites,Pune,Beverages,Beverages|North Indian|Italian,3,3.3,False,0.518,28,9,86.44444444444444,4,9,0,0,0,1,0
+R0169,Authentic Biryani Bites,Delhi,Desserts,Desserts|Beverages,1,4.1,False,0.642,25,9,114.88888888888889,4,12,0,1,0,0,0
+R0170,Golden Fast Food Junction,Chennai,Beverages,Beverages|Biryani|Fast Food,3,3.7,False,0.663,40,9,86.44444444444444,4,9,0,0,0,1,0
+R0171,Fresh Street Food Bites,Kolkata,South Indian,South Indian,1,2.1,False,0.633,33,11,71.9090909090909,4,10,0,1,0,0,0
+R0172,Royal South Indian Kitchen,Hyderabad,Biryani,Biryani,2,4.2,False,0.579,59,11,150.0,4,12,0,0,1,0,0
+R0173,Royal Chinese Kitchen,Mumbai,South Indian,South Indian,2,4.4,False,0.685,40,11,83.45454545454545,4,22,0,0,1,0,0
+R0174,The Street Food Point,Delhi,South Indian,South Indian|Beverages|Chinese,3,3.4,False,0.489,25,10,89.1,4,13,0,0,0,1,0
+R0175,Delicious Continental Corner,Delhi,Beverages,Beverages,3,4.4,False,0.642,57,9,86.44444444444444,4,17,0,0,0,1,0
+R0176,Spicy Beverages Junction,Chennai,Beverages,Beverages,1,3.0,True,0.579,41,9,65.55555555555556,4,14,1,1,0,0,0
+R0177,New North Indian Place,Pune,North Indian,North Indian|Chinese,2,2.9,False,0.567,26,12,156.25,4,5,0,0,1,0,0
+R0178,Delicious Continental Hub,Kolkata,South Indian,South Indian,2,3.9,True,0.648,32,11,83.45454545454545,4,14,1,0,1,0,0
+R0179,Authentic South Indian Eats,Kolkata,Fast Food,Fast Food|Biryani|Desserts,2,3.2,False,0.663,34,10,113.3,4,10,0,0,1,0,0
+R0180,Fresh Biryani Hub,Chennai,Desserts,Desserts,3,3.5,False,0.58,40,9,151.22222222222223,4,12,0,0,0,1,0
+R0181,Hot South Indian Bites,Hyderabad,Street Food,Street Food|Chinese,3,4.7,False,0.632,31,9,65.66666666666667,4,21,0,0,0,1,0
+R0182,Fresh Desserts Place,Delhi,Street Food,Street Food,4,4.9,False,0.615,54,8,88.375,4,10,0,0,0,0,1
+R0183,Golden Street Food Bites,Bangalore,Beverages,Beverages|Fast Food|North Indian,1,4.0,True,0.826,43,9,65.55555555555556,4,8,1,1,0,0,0
+R0184,Fresh South Indian Express,Pune,Fast Food,Fast Food|Beverages,1,4.9,False,0.91,25,10,97.7,4,13,0,1,0,0,0
+R0185,New South Indian Place,Mumbai,Desserts,Desserts,3,4.2,False,0.687,48,9,151.22222222222223,4,8,0,0,0,1,0
+R0186,Spicy Street Food Point,Delhi,South Indian,South Indian|Beverages|Continental,2,4.0,False,0.624,26,11,83.45454545454545,4,14,0,0,1,0,0
+R0187,Spicy Desserts Hub,Kolkata,Desserts,Desserts|Beverages|Street Food,4,4.1,False,0.568,39,8,164.25,4,9,0,0,0,0,1
+R0188,The Fast Food Bites,Bangalore,Italian,Italian|Fast Food,2,4.5,False,0.838,47,10,113.3,4,10,0,0,1,0,0
+R0189,Royal Chinese Eats,Chennai,South Indian,South Indian|Italian|Street Food,4,4.1,False,0.582,42,8,79.625,4,13,0,0,0,0,1
+R0190,The Fast Food Kitchen,Bangalore,Desserts,Desserts|Chinese|South Indian,1,4.3,False,0.682,35,9,114.88888888888889,4,10,0,1,0,0,0
+R0191,Hot South Indian Bites,Mumbai,Italian,Italian,1,3.1,True,0.757,50,10,97.7,4,11,1,1,0,0,0
+R0192,The Beverages Hub,Pune,Beverages,Beverages|Continental|Fast Food,3,4.5,False,0.595,53,9,86.44444444444444,4,12,0,0,0,1,0
+R0193,Authentic North Indian Hub,Chennai,Chinese,Chinese,1,4.0,True,0.704,51,11,120.72727272727273,4,13,1,1,0,0,0
+R0194,Tasty Desserts Hub,Kolkata,Street Food,Street Food|South Indian|Continental,4,4.1,False,0.406,29,8,77.875,4,12,0,0,0,0,1
+R0195,Golden Biryani Junction,Hyderabad,Italian,Italian,4,4.4,False,0.455,54,8,125.875,4,16,0,0,0,0,1
+R0196,Tasty Beverages House,Mumbai,Desserts,Desserts,2,4.4,False,0.7,56,9,133.22222222222223,4,11,0,0,1,0,0
+R0197,Delicious South Indian Corner,Chennai,Continental,Continental,2,4.1,False,0.73,28,11,201.0,4,13,0,0,1,0,0
+R0198,Delicious Chinese Kitchen,Hyderabad,South Indian,South Indian,3,4.7,True,0.549,56,10,69.1,4,5,1,0,0,1,0
+R0199,Golden Chinese Corner,Mumbai,Desserts,Desserts,3,3.6,False,0.564,32,9,151.22222222222223,4,13,0,0,0,1,0
+R0200,Golden South Indian Place,Kolkata,Continental,Continental|Biryani|Fast Food,2,3.6,False,0.527,28,11,201.0,4,11,0,0,1,0,0
+R0201,Hot Chinese Eats,Delhi,Biryani,Biryani|Fast Food|Desserts,2,4.5,False,0.652,51,11,150.0,4,8,0,0,1,0,0
+R0202,Golden Continental Eats,Kolkata,Street Food,Street Food,1,4.2,False,0.936,38,10,56.3,4,8,0,1,0,0,0
+R0203,Royal Chinese Hub,Chennai,Biryani,Biryani,2,3.4,False,0.747,36,11,150.0,4,15,0,0,1,0,0
+R0204,Delicious South Indian Express,Mumbai,Beverages,Beverages|Chinese,4,3.6,True,0.574,36,8,86.625,4,10,1,0,0,0,1
+R0205,Golden Desserts Kitchen,Pune,South Indian,South Indian|Continental|Beverages,2,2.3,False,0.516,31,11,83.45454545454545,4,18,0,0,1,0,0
+R0206,Golden Street Food Express,Kolkata,Biryani,Biryani,1,4.1,False,0.861,40,11,129.36363636363637,4,18,0,1,0,0,0
+R0207,Hot Continental Junction,Bangalore,Street Food,Street Food|Biryani|North Indian,3,4.4,False,0.7,48,9,74.0,4,10,0,0,0,1,0
+R0208,Authentic Street Food Place,Kolkata,Chinese,Chinese|Biryani|North Indian,2,4.0,False,0.727,36,11,140.0,4,11,0,0,1,0,0
+R0209,New Beverages Place,Pune,Italian,Italian|South Indian,2,4.2,False,0.581,38,10,113.3,4,10,0,0,1,0,0
+R0210,Authentic Beverages Point,Delhi,Desserts,Desserts|North Indian,2,4.6,True,0.737,39,9,133.22222222222223,4,12,1,0,1,0,0
+R0211,Spicy North Indian House,Pune,Fast Food,Fast Food,3,3.8,False,0.674,42,9,126.22222222222223,4,8,0,0,0,1,0
+R0212,Authentic Street Food Point,Bangalore,North Indian,North Indian|Fast Food,1,4.6,False,0.762,25,12,134.83333333333334,4,9,0,1,0,0,0
+R0213,Delicious South Indian Express,Bangalore,Fast Food,Fast Food|Chinese,2,4.6,False,0.855,42,10,113.3,4,12,0,0,1,0,0
+R0214,The Chinese Express,Delhi,Italian,Italian|North Indian,3,4.6,False,0.641,30,9,126.22222222222223,4,16,0,0,0,1,0
+R0215,Delicious Desserts Corner,Bangalore,Biryani,Biryani|Fast Food,1,3.5,False,0.666,44,11,129.36363636363637,4,12,0,1,0,0,0
+R0216,Tasty Italian Eats,Hyderabad,Street Food,Street Food|South Indian|Italian,2,4.2,False,0.81,33,10,65.4,4,12,0,0,1,0,0
+R0217,Tasty South Indian Eats,Mumbai,North Indian,North Indian|Italian|Beverages,3,3.9,False,0.709,29,10,150.5,4,10,0,0,0,1,0
+R0218,Golden Biryani Junction,Bangalore,Biryani,Biryani|Fast Food|Chinese,3,3.8,False,0.507,36,10,152.3,4,13,0,0,0,1,0
+R0219,Hot Desserts Junction,Delhi,Desserts,Desserts|Beverages|Chinese,3,3.5,False,0.5,59,9,151.22222222222223,4,14,0,0,0,1,0
+R0220,New Continental Express,Hyderabad,South Indian,South Indian,3,3.1,False,0.624,26,10,69.1,4,10,0,0,0,1,0
+R0221,Authentic Italian Express,Kolkata,Chinese,Chinese|Italian,2,4.5,False,0.787,57,11,140.0,4,15,0,0,1,0,0
+R0222,Golden Fast Food Junction,Pune,Italian,Italian,3,2.9,False,0.544,39,9,117.88888888888889,4,13,0,0,0,1,0
+R0223,Spicy Italian Place,Delhi,Biryani,Biryani,4,4.5,False,0.549,41,8,152.125,4,14,0,0,0,0,1
+R0224,The Street Food Junction,Pune,Biryani,Biryani|Chinese,2,3.6,False,0.566,33,11,150.0,4,16,0,0,1,0,0
+R0225,Tasty Biryani Kitchen,Chennai,Beverages,Beverages|Italian,2,4.3,False,0.742,47,9,76.33333333333333,4,7,0,0,1,0,0
+R0226,Delicious Street Food Eats,Delhi,Biryani,Biryani|Fast Food|Street Food,3,3.7,False,0.521,52,10,162.3,4,15,0,0,0,1,0
+R0227,Authentic Desserts Express,Kolkata,Biryani,Biryani,2,4.4,True,0.836,50,11,150.0,4,13,1,0,1,0,0
+R0228,The Fast Food Place,Mumbai,South Indian,South Indian|Continental|Fast Food,1,3.1,False,0.787,46,11,71.9090909090909,4,7,0,1,0,0,0
+R0229,Royal Street Food Bites,Mumbai,Beverages,Beverages,4,4.4,False,0.649,50,8,90.125,4,8,0,0,0,0,1
+R0230,Fresh Street Food Junction,Pune,Desserts,Desserts|Continental,3,3.8,False,0.459,31,9,151.22222222222223,4,14,0,0,0,1,0
+R0231,The Desserts Eats,Hyderabad,North Indian,North Indian,3,4.9,False,0.814,30,10,158.0,4,10,0,0,0,1,0
+R0232,Golden Street Food Express,Bangalore,Beverages,Beverages,2,3.7,False,0.629,52,9,76.33333333333333,4,13,0,0,1,0,0
+R0233,Tasty North Indian Hub,Pune,South Indian,South Indian|Continental|Beverages,4,3.5,False,0.47,43,8,77.875,4,6,0,0,0,0,1
+R0234,Authentic Chinese Point,Mumbai,Fast Food,Fast Food|Italian|Desserts,3,2.8,False,0.504,58,9,129.0,4,23,0,0,0,1,0
+R0235,The Fast Food Hub,Mumbai,North Indian,North Indian|Desserts|Beverages,2,4.2,False,0.798,39,12,156.25,4,14,0,0,1,0,0
+R0236,Tasty Fast Food Kitchen,Hyderabad,Chinese,Chinese|Biryani|Italian,3,4.2,False,0.627,59,10,149.8,4,16,0,0,0,1,0
+R0237,Royal Biryani Place,Chennai,South Indian,South Indian|North Indian,3,3.2,False,0.7,40,10,94.1,4,14,0,0,0,1,0
+R0238,Tasty Beverages Junction,Chennai,Chinese,Chinese|Biryani,2,4.2,False,0.75,40,11,140.0,4,13,0,0,1,0,0
+R0239,Spicy Continental Point,Chennai,Desserts,Desserts|North Indian|Beverages,1,3.1,False,0.614,30,9,114.88888888888889,4,16,0,1,0,0,0
+R0240,New Chinese Place,Bangalore,Street Food,Street Food|Desserts|Biryani,1,4.3,False,0.839,25,10,56.3,4,9,0,1,0,0,0
+R0241,Spicy Street Food Hub,Kolkata,Chinese,Chinese|Street Food|Continental,2,3.2,False,0.623,38,11,140.0,4,11,0,0,1,0,0
+R0242,Tasty Desserts House,Hyderabad,North Indian,North Indian,3,4.4,False,0.593,43,10,169.9,4,16,0,0,0,1,0
+R0243,Authentic Fast Food Junction,Delhi,Street Food,Street Food|Desserts|Italian,2,2.5,False,0.627,34,10,65.4,4,23,0,0,1,0,0
+R0244,Golden Biryani Place,Delhi,Desserts,Desserts,2,4.3,False,0.84,53,9,133.22222222222223,4,12,0,0,1,0,0
+R0245,New Beverages Express,Delhi,Fast Food,Fast Food|Street Food,2,4.6,False,0.796,33,10,113.3,4,14,0,0,1,0,0
+R0246,Golden Desserts Place,Hyderabad,Street Food,Street Food|North Indian,2,3.6,False,0.679,56,10,65.4,4,13,0,0,1,0,0
+R0247,Hot Fast Food Place,Kolkata,Biryani,Biryani|Fast Food|Continental,3,2.8,False,0.626,46,10,159.8,4,6,0,0,0,1,0
+R0248,Authentic Biryani Point,Delhi,Beverages,Beverages|Street Food|Fast Food,3,4.0,False,0.759,40,9,86.44444444444444,4,14,0,0,0,1,0
+R0249,Fresh Beverages Junction,Hyderabad,Street Food,Street Food|Fast Food,1,3.8,False,0.611,55,10,56.3,4,13,0,1,0,0,0
+R0250,Hot Biryani Corner,Hyderabad,Fast Food,Fast Food|Street Food|Desserts,1,2.8,True,0.619,55,10,97.7,4,8,1,1,0,0,0
+R0251,Golden Italian Kitchen,Kolkata,Continental,Continental|North Indian|Street Food,3,2.7,True,0.621,27,10,207.4,4,12,1,0,0,1,0
+R0252,Fresh Biryani Junction,Kolkata,Biryani,Biryani|Continental|Chinese,2,4.1,False,0.632,40,11,150.0,4,13,0,0,1,0,0
+R0253,Tasty Desserts Hub,Chennai,Italian,Italian|Chinese,4,4.7,False,0.49,51,8,136.25,4,14,0,0,0,0,1
+R0254,The North Indian Kitchen,Hyderabad,Fast Food,Fast Food|North Indian,3,2.5,False,0.374,28,9,126.22222222222223,4,10,0,0,0,1,0
+R0255,Golden Fast Food Eats,Pune,Biryani,Biryani|South Indian,1,3.2,False,0.735,50,11,129.36363636363637,4,17,0,1,0,0,0
+R0256,Tasty South Indian Corner,Kolkata,Street Food,Street Food,3,4.2,False,0.551,53,9,64.33333333333333,4,14,0,0,0,1,0
+R0257,Spicy Desserts Junction,Kolkata,South Indian,South Indian|Biryani,2,3.3,False,0.517,51,11,83.45454545454545,4,16,0,0,1,0,0
+R0258,Hot North Indian Express,Chennai,Beverages,Beverages|Desserts|Continental,3,4.7,False,0.776,60,9,86.44444444444444,4,7,0,0,0,1,0
+R0259,Authentic North Indian Hub,Delhi,Chinese,Chinese|Beverages,2,4.2,False,0.673,58,11,140.0,4,11,0,0,1,0,0
+R0260,Authentic South Indian Express,Pune,Chinese,Chinese|Fast Food|Continental,1,4.8,False,0.895,56,11,120.72727272727273,4,14,0,1,0,0,0
+R0261,Spicy North Indian Hub,Hyderabad,Fast Food,Fast Food|Italian,3,3.9,False,0.736,29,9,124.88888888888889,4,16,0,0,0,1,0
+R0262,The Biryani Corner,Mumbai,Italian,Italian,2,3.6,False,0.605,44,10,113.3,4,11,0,0,1,0,0
+R0263,Golden Italian Bites,Hyderabad,Continental,Continental,2,4.1,False,0.703,35,11,201.0,4,16,0,0,1,0,0
+R0264,Hot Fast Food Express,Mumbai,Chinese,Chinese,1,3.7,False,0.681,26,11,120.72727272727273,4,11,0,1,0,0,0
+R0265,Royal Italian Bites,Pune,Beverages,Beverages|Italian|Biryani,4,3.4,False,0.571,51,8,86.625,4,7,0,0,0,0,1
+R0266,Spicy Beverages Place,Hyderabad,Fast Food,Fast Food,2,3.1,False,0.749,29,10,113.3,4,13,0,0,1,0,0
+R0267,Golden North Indian House,Chennai,Biryani,Biryani|Desserts|Italian,2,2.8,False,0.575,45,11,150.0,4,11,0,0,1,0,0
+R0268,New Biryani Point,Chennai,Continental,Continental|Street Food|Biryani,3,4.0,False,0.617,45,10,221.1,4,11,0,0,0,1,0
+R0269,Authentic Continental Kitchen,Mumbai,Continental,Continental|Fast Food|South Indian,4,4.0,False,0.561,49,8,216.75,4,12,0,0,0,0,1
+R0270,Tasty Street Food Corner,Mumbai,Desserts,Desserts|Biryani,3,4.0,False,0.631,31,9,151.22222222222223,4,10,0,0,0,1,0
+R0271,Golden Fast Food Bites,Chennai,Continental,Continental,2,4.8,False,0.621,28,11,201.0,4,17,0,0,1,0,0
+R0272,Delicious South Indian Express,Delhi,Desserts,Desserts,2,3.9,False,0.832,36,9,133.22222222222223,4,15,0,0,1,0,0
+R0273,Royal South Indian Eats,Mumbai,Biryani,Biryani|Street Food|Italian,4,2.8,False,0.551,31,8,164.25,4,19,0,0,0,0,1
+R0274,New Street Food Hub,Delhi,Chinese,Chinese|Fast Food,2,2.7,False,0.53,50,11,140.0,4,8,0,0,1,0,0
+R0275,Golden Italian Corner,Bangalore,Biryani,Biryani|Desserts|Continental,1,3.7,True,0.615,39,11,129.36363636363637,4,14,1,1,0,0,0
+R0276,Golden North Indian Express,Bangalore,Fast Food,Fast Food,2,3.9,False,0.739,31,10,113.3,4,14,0,0,1,0,0
+R0277,Authentic Desserts Hub,Bangalore,Continental,Continental|Fast Food|Biryani,2,4.5,False,0.837,52,11,201.0,4,14,0,0,1,0,0
+R0278,Spicy Biryani Express,Delhi,South Indian,South Indian|Italian|Chinese,1,3.9,False,0.869,42,11,71.9090909090909,4,10,0,1,0,0,0
+R0279,Royal North Indian Junction,Mumbai,Fast Food,Fast Food|South Indian|Continental,1,4.4,False,0.927,49,10,97.7,4,15,0,1,0,0,0
+R0280,Fresh Continental Corner,Pune,North Indian,North Indian,3,3.2,False,0.661,58,10,158.0,4,13,0,0,0,1,0
+R0281,Royal Chinese Express,Pune,Chinese,Chinese|South Indian|Beverages,2,3.3,False,0.64,33,11,140.0,4,13,0,0,1,0,0
+R0282,New Beverages Hub,Delhi,Desserts,Desserts,3,4.9,False,0.727,49,9,151.22222222222223,4,14,0,0,0,1,0
+R0283,The Street Food Point,Delhi,Fast Food,Fast Food|South Indian,3,4.8,True,0.705,33,9,126.22222222222223,4,14,1,0,0,1,0
+R0284,Tasty Beverages House,Pune,Chinese,Chinese|Street Food|North Indian,3,4.4,False,0.511,54,10,152.3,4,17,0,0,0,1,0
+R0285,Spicy Street Food Hub,Kolkata,Continental,Continental|Chinese,2,4.4,False,0.716,32,11,201.0,4,18,0,0,1,0,0
+R0286,Authentic Biryani Corner,Delhi,Fast Food,Fast Food|Chinese,4,4.4,False,0.526,57,8,131.125,4,11,0,0,0,0,1
+R0287,The Chinese Bites,Kolkata,Desserts,Desserts,3,4.5,True,0.676,36,9,151.22222222222223,4,12,1,0,0,1,0
+R0288,Royal Fast Food Kitchen,Kolkata,Desserts,Desserts|Fast Food,3,4.4,False,0.788,50,9,151.22222222222223,4,16,0,0,0,1,0
+R0289,Authentic Biryani Kitchen,Pune,Continental,Continental,2,4.8,True,0.76,57,11,201.0,4,14,1,0,1,0,0
+R0290,Fresh Desserts Express,Mumbai,Italian,Italian,1,4.1,False,0.816,47,10,97.7,4,15,0,1,0,0,0
+R0291,Royal Italian Bites,Hyderabad,Street Food,Street Food|Continental,2,4.8,False,0.827,49,10,65.4,4,11,0,0,1,0,0
+R0292,Fresh Continental Eats,Mumbai,Italian,Italian,2,4.8,False,0.625,33,10,113.3,4,15,0,0,1,0,0
+R0293,Authentic North Indian Corner,Delhi,South Indian,South Indian|Fast Food|Beverages,1,3.6,False,0.837,42,11,71.9090909090909,4,14,0,1,0,0,0
+R0294,Hot South Indian Eats,Pune,Continental,Continental,2,4.5,True,0.684,41,11,201.0,4,11,1,0,1,0,0
+R0295,Delicious Continental Hub,Kolkata,Italian,Italian|Chinese|Biryani,2,3.1,False,0.699,41,10,113.3,4,8,0,0,1,0,0
+R0296,Authentic North Indian Hub,Hyderabad,Italian,Italian|Street Food,1,3.5,False,0.688,30,10,97.7,4,10,0,1,0,0,0
+R0297,Fresh Beverages Point,Pune,North Indian,North Indian|Desserts|Fast Food,1,4.2,False,0.784,60,12,134.83333333333334,4,10,0,1,0,0,0
+R0298,Delicious Street Food Junction,Mumbai,Street Food,Street Food|Desserts|Biryani,2,4.0,False,0.723,35,10,65.4,4,15,0,0,1,0,0
+R0299,Delicious Chinese House,Mumbai,Street Food,Street Food,3,4.1,False,0.706,32,9,78.22222222222223,4,9,0,0,0,1,0
+R0300,Golden Chinese Point,Chennai,Biryani,Biryani,1,4.1,False,0.782,52,11,129.36363636363637,4,16,0,1,0,0,0
+R0301,Spicy Desserts Place,Chennai,Desserts,Desserts|Street Food|North Indian,3,4.5,False,0.607,60,9,151.22222222222223,4,7,0,0,0,1,0
+R0302,Hot Fast Food Express,Delhi,Continental,Continental|Beverages,2,4.9,True,0.724,37,11,201.0,4,13,1,0,1,0,0
+R0303,Hot Biryani Hub,Bangalore,Biryani,Biryani|Chinese|Street Food,2,4.6,False,0.883,30,11,150.0,4,10,0,0,1,0,0
+R0304,New Fast Food Bites,Pune,Desserts,Desserts|Chinese|Beverages,2,3.8,False,0.781,32,9,133.22222222222223,4,11,0,0,1,0,0
+R0305,Authentic Continental Place,Kolkata,Desserts,Desserts|Biryani,2,4.5,False,0.692,45,9,133.22222222222223,4,11,0,0,1,0,0
+R0306,Tasty Desserts Express,Bangalore,South Indian,South Indian|Beverages|Street Food,2,3.2,False,0.762,25,11,83.45454545454545,4,8,0,0,1,0,0
+R0307,The Continental Point,Kolkata,Biryani,Biryani|Continental|Chinese,1,4.7,True,0.911,27,11,129.36363636363637,4,17,1,1,0,0,0
+R0308,Tasty Continental Place,Bangalore,Chinese,Chinese,4,4.8,True,0.616,59,8,150.25,4,11,1,0,0,0,1
+R0309,Golden Fast Food Eats,Kolkata,Chinese,Chinese|Beverages,2,3.3,True,0.678,41,11,140.0,4,12,1,0,1,0,0
+R0310,The South Indian Bites,Hyderabad,North Indian,North Indian|South Indian,3,4.3,False,0.584,25,10,171.8,4,13,0,0,0,1,0
+R0311,Tasty Italian Place,Bangalore,Italian,Italian|Continental,2,4.1,False,0.699,47,10,113.3,4,7,0,0,1,0,0
+R0312,Spicy Fast Food Junction,Mumbai,North Indian,North Indian|Fast Food,2,4.1,False,0.565,52,12,156.25,4,15,0,0,1,0,0
+R0313,Spicy Desserts House,Hyderabad,Beverages,Beverages,1,3.8,False,0.666,44,9,65.55555555555556,4,15,0,1,0,0,0
+R0314,Authentic South Indian Corner,Chennai,Continental,Continental|Chinese|Biryani,2,4.5,False,0.863,34,11,201.0,4,10,0,0,1,0,0
+R0315,Delicious Biryani Kitchen,Kolkata,Chinese,Chinese,3,4.4,False,0.793,38,10,152.3,4,14,0,0,0,1,0
+R0316,Golden North Indian Place,Chennai,Beverages,Beverages|Biryani,2,3.9,True,0.585,36,9,76.33333333333333,4,22,1,0,1,0,0
+R0317,Spicy Italian Eats,Hyderabad,Biryani,Biryani|Street Food,3,2.5,False,0.575,25,10,159.8,4,10,0,0,0,1,0
+R0318,Delicious Continental Kitchen,Hyderabad,Beverages,Beverages|South Indian,3,4.1,False,0.687,31,9,86.44444444444444,4,8,0,0,0,1,0
+R0319,Delicious South Indian Place,Chennai,Beverages,Beverages|Biryani,1,3.6,False,0.794,44,9,65.55555555555556,4,10,0,1,0,0,0
+R0320,Spicy Continental House,Bangalore,Biryani,Biryani,3,4.2,False,0.569,59,10,162.3,4,12,0,0,0,1,0
+R0321,Delicious Italian Bites,Delhi,Biryani,Biryani|Street Food|Fast Food,2,4.8,False,0.723,45,11,150.0,4,8,0,0,1,0,0
+R0322,The Beverages Kitchen,Chennai,Biryani,Biryani|Fast Food,3,4.3,False,0.732,38,10,143.6,4,13,0,0,0,1,0
+R0323,Spicy Italian Junction,Pune,Street Food,Street Food|Beverages,1,3.7,False,0.836,36,10,56.3,4,12,0,1,0,0,0
+R0324,The Continental Express,Delhi,Continental,Continental,2,4.9,False,0.825,44,11,201.0,4,13,0,0,1,0,0
+R0325,New Biryani Point,Kolkata,Biryani,Biryani|Street Food|Continental,1,4.5,True,0.674,32,11,129.36363636363637,4,18,1,1,0,0,0
+R0326,Spicy Beverages Place,Mumbai,Italian,Italian|Biryani,2,4.3,True,0.837,41,10,113.3,4,12,1,0,1,0,0
+R0327,Delicious Beverages House,Pune,Chinese,Chinese|Desserts,2,4.0,False,0.665,31,11,140.0,4,9,0,0,1,0,0
+R0328,Tasty Fast Food Place,Delhi,Fast Food,Fast Food,2,3.5,False,0.7,54,10,113.3,4,10,0,0,1,0,0
+R0329,Authentic Biryani House,Delhi,Italian,Italian,2,3.5,False,0.61,26,10,113.3,4,12,0,0,1,0,0
+R0330,Authentic Biryani Place,Kolkata,Continental,Continental|Beverages,2,3.7,False,0.717,50,11,201.0,4,11,0,0,1,0,0
+R0331,Royal Street Food Express,Bangalore,South Indian,South Indian,2,4.5,False,0.807,44,11,83.45454545454545,4,11,0,0,1,0,0
+R0332,The Fast Food Kitchen,Hyderabad,Beverages,Beverages,2,3.7,False,0.82,53,9,76.33333333333333,4,12,0,0,1,0,0
+R0333,New Fast Food Place,Pune,Continental,Continental|Italian,4,3.5,True,0.46,45,8,225.625,4,13,1,0,0,0,1
+R0334,Tasty North Indian Bites,Chennai,Italian,Italian|Biryani,2,3.7,False,0.532,54,10,113.3,4,10,0,0,1,0,0
+R0335,Golden Continental Junction,Bangalore,South Indian,South Indian,1,3.9,False,0.815,27,11,71.9090909090909,4,11,0,1,0,0,0
+R0336,New Beverages Kitchen,Kolkata,Desserts,Desserts|Fast Food,2,4.0,False,0.675,36,9,133.22222222222223,4,9,0,0,1,0,0
+R0337,Tasty Biryani Corner,Chennai,Desserts,Desserts|Chinese|South Indian,3,4.3,False,0.737,40,9,151.22222222222223,4,9,0,0,0,1,0
+R0338,Delicious Continental Junction,Pune,Beverages,Beverages|Italian,2,3.5,False,0.634,40,9,76.33333333333333,4,18,0,0,1,0,0
+R0339,Tasty Street Food Eats,Mumbai,Desserts,Desserts,2,3.8,False,0.569,59,9,133.22222222222223,4,17,0,0,1,0,0
+R0340,Spicy South Indian Point,Delhi,Italian,Italian|South Indian,3,3.9,False,0.484,37,9,126.22222222222223,4,16,0,0,0,1,0
+R0341,Authentic Beverages Express,Bangalore,Chinese,Chinese|Biryani,4,3.3,False,0.461,39,8,148.5,4,15,0,0,0,0,1
+R0342,Hot Continental Junction,Mumbai,Beverages,Beverages,4,3.9,False,0.676,37,8,83.125,4,16,0,0,0,0,1
+R0343,The North Indian Place,Pune,Italian,Italian|Beverages,3,4.4,False,0.548,26,9,124.88888888888889,4,14,0,0,0,1,0
+R0344,Royal Biryani House,Chennai,Desserts,Desserts,3,3.4,False,0.599,41,9,151.22222222222223,4,10,0,0,0,1,0
+R0345,New Chinese Bites,Pune,Street Food,Street Food|Desserts,4,3.4,True,0.59,33,8,72.625,4,8,1,0,0,0,1
+R0346,Royal South Indian Express,Delhi,Chinese,Chinese|Italian,3,4.6,True,0.55,56,10,152.3,4,9,1,0,0,1,0
+R0347,Delicious Continental House,Kolkata,Biryani,Biryani|Fast Food|Beverages,4,4.1,False,0.538,41,8,164.25,4,13,0,0,0,0,1
+R0348,Spicy Desserts Hub,Pune,Italian,Italian,2,3.2,False,0.565,29,10,113.3,4,19,0,0,1,0,0
+R0349,Delicious South Indian Bites,Bangalore,Biryani,Biryani,2,4.0,False,0.601,26,11,150.0,4,16,0,0,1,0,0
+R0350,Tasty Chinese Kitchen,Pune,Italian,Italian|Continental|South Indian,3,4.2,False,0.737,52,9,117.88888888888889,4,21,0,0,0,1,0
+R0351,Spicy South Indian Bites,Chennai,Fast Food,Fast Food|South Indian,2,4.5,False,0.635,29,10,113.3,4,10,0,0,1,0,0
+R0352,Delicious Italian Point,Mumbai,Italian,Italian|Biryani,4,3.7,False,0.404,53,8,125.875,4,10,0,0,0,0,1
+R0353,Delicious Italian Junction,Delhi,North Indian,North Indian,1,4.5,False,0.893,43,12,134.83333333333334,4,9,0,1,0,0,0
+R0354,Hot North Indian Eats,Hyderabad,North Indian,North Indian|Street Food,2,4.5,False,0.656,54,12,156.25,4,5,0,0,1,0,0
+R0355,Royal Continental Hub,Hyderabad,North Indian,North Indian|Beverages,3,4.5,False,0.53,51,10,182.4,4,15,0,0,0,1,0
+R0356,New Beverages House,Delhi,North Indian,North Indian|Continental,2,2.5,False,0.593,44,12,156.25,4,11,0,0,1,0,0
+R0357,Delicious Desserts Eats,Bangalore,Italian,Italian,2,4.5,False,0.634,44,10,113.3,4,12,0,0,1,0,0
+R0358,Tasty Desserts Express,Pune,Continental,Continental|Beverages,2,3.4,False,0.522,27,11,201.0,4,11,0,0,1,0,0
+R0359,Golden Continental Kitchen,Mumbai,Desserts,Desserts|North Indian,4,3.2,False,0.556,25,8,164.25,4,12,0,0,0,0,1
+R0360,Spicy Chinese Hub,Delhi,South Indian,South Indian|Street Food|North Indian,1,4.4,True,0.911,60,11,71.9090909090909,4,11,1,1,0,0,0
+R0361,New Italian Junction,Chennai,Street Food,Street Food,2,3.7,False,0.524,42,10,65.4,4,9,0,0,1,0,0
+R0362,New Biryani Point,Delhi,South Indian,South Indian|Fast Food|Beverages,3,2.7,False,0.468,35,10,94.1,4,11,0,0,0,1,0
+R0363,The Chinese House,Hyderabad,South Indian,South Indian|North Indian,2,4.4,False,0.687,42,11,83.45454545454545,4,10,0,0,1,0,0
+R0364,The Chinese Eats,Chennai,Italian,Italian,3,4.7,False,0.595,57,9,129.0,4,8,0,0,0,1,0
+R0365,Spicy Italian Eats,Kolkata,South Indian,South Indian,2,3.8,False,0.795,45,11,83.45454545454545,4,9,0,0,1,0,0
+R0366,New Beverages Express,Kolkata,Biryani,Biryani|Beverages,2,4.3,False,0.781,32,11,150.0,4,11,0,0,1,0,0
+R0367,Royal South Indian Express,Bangalore,North Indian,North Indian,1,3.0,False,0.597,46,12,134.83333333333334,4,10,0,1,0,0,0
+R0368,Delicious Continental Place,Mumbai,Continental,Continental|North Indian|Italian,2,4.2,False,0.742,31,11,201.0,4,6,0,0,1,0,0
+R0369,Hot South Indian Place,Hyderabad,North Indian,North Indian,1,3.2,False,0.692,28,12,134.83333333333334,4,10,0,1,0,0,0
+R0370,Spicy South Indian House,Chennai,Fast Food,Fast Food|Beverages|North Indian,2,4.1,False,0.629,39,10,113.3,4,6,0,0,1,0,0
+R0371,Delicious Continental Hub,Kolkata,Italian,Italian,2,4.3,False,0.604,60,10,113.3,4,15,0,0,1,0,0
+R0372,Fresh Beverages Place,Hyderabad,Desserts,Desserts,1,4.4,False,0.745,54,9,114.88888888888889,4,10,0,1,0,0,0
+R0373,Golden South Indian Place,Pune,Italian,Italian,2,4.3,False,0.743,51,10,113.3,4,15,0,0,1,0,0
+R0374,Hot Biryani Place,Pune,Fast Food,Fast Food|South Indian,3,3.2,False,0.49,59,9,124.88888888888889,4,10,0,0,0,1,0
+R0375,The Continental Express,Kolkata,Beverages,Beverages|Italian|South Indian,2,3.6,False,0.629,46,9,76.33333333333333,4,14,0,0,1,0,0
+R0376,Spicy Chinese Place,Kolkata,North Indian,North Indian|Desserts,3,3.3,False,0.504,55,10,165.5,4,8,0,0,0,1,0
+R0377,New South Indian Corner,Hyderabad,North Indian,North Indian|Street Food,2,3.3,False,0.598,47,12,156.25,4,10,0,0,1,0,0
+R0378,Tasty Beverages House,Hyderabad,Street Food,Street Food|Beverages|Chinese,1,4.2,False,0.699,57,10,56.3,4,8,0,1,0,0,0
+R0379,Spicy North Indian Point,Mumbai,Continental,Continental,3,4.5,False,0.716,58,10,207.4,4,9,0,0,0,1,0
+R0380,Tasty Desserts Kitchen,Kolkata,Desserts,Desserts|Chinese,4,4.4,False,0.642,51,8,162.5,4,8,0,0,0,0,1
+R0381,Golden Street Food House,Bangalore,Desserts,Desserts|Street Food|North Indian,3,2.4,False,0.607,54,9,151.22222222222223,4,18,0,0,0,1,0
+R0382,Authentic Biryani Place,Hyderabad,North Indian,North Indian|Fast Food|Beverages,1,3.5,False,0.721,36,12,134.83333333333334,4,14,0,1,0,0,0
+R0383,Hot South Indian Corner,Pune,North Indian,North Indian|Fast Food,4,4.8,True,0.625,51,8,157.5,4,9,1,0,0,0,1
+R0384,Royal North Indian Junction,Delhi,Street Food,Street Food|Chinese|Fast Food,2,4.1,False,0.758,40,10,65.4,4,17,0,0,1,0,0
+R0385,Royal Italian Eats,Bangalore,Continental,Continental,2,4.2,False,0.797,26,11,201.0,4,9,0,0,1,0,0
+R0386,Fresh Continental Express,Kolkata,Italian,Italian|North Indian|Beverages,3,3.6,False,0.495,53,9,129.0,4,17,0,0,0,1,0
+R0387,Fresh Biryani House,Chennai,Continental,Continental|South Indian,1,4.2,False,0.781,28,11,173.45454545454547,4,9,0,1,0,0,0
+R0388,Fresh Fast Food Express,Bangalore,Street Food,Street Food|Biryani|Fast Food,2,4.6,False,0.695,31,10,65.4,4,10,0,0,1,0,0
+R0389,Authentic Street Food Kitchen,Bangalore,Fast Food,Fast Food,2,4.8,False,0.88,58,10,113.3,4,17,0,0,1,0,0
+R0390,The Biryani Point,Kolkata,Beverages,Beverages|Fast Food,4,4.7,False,0.691,55,8,83.125,4,10,0,0,0,0,1
+R0391,Fresh Street Food Bites,Chennai,Beverages,Beverages|Desserts|North Indian,3,4.4,True,0.719,33,9,86.44444444444444,4,8,1,0,0,1,0
+R0392,New Italian Corner,Delhi,Beverages,Beverages,4,4.6,True,0.734,45,8,86.625,4,12,1,0,0,0,1
+R0393,Fresh Desserts Point,Chennai,Continental,Continental|Chinese|Beverages,2,4.2,False,0.609,58,11,201.0,4,13,0,0,1,0,0
+R0394,Golden South Indian Express,Hyderabad,Chinese,Chinese|Desserts,3,3.0,False,0.635,55,10,142.3,4,15,0,0,0,1,0
+R0395,Authentic Desserts Express,Pune,Fast Food,Fast Food,2,4.2,False,0.789,59,10,113.3,4,11,0,0,1,0,0
+R0396,Delicious North Indian Place,Chennai,North Indian,North Indian,2,2.2,False,0.455,56,12,156.25,4,8,0,0,1,0,0
+R0397,Tasty South Indian House,Mumbai,North Indian,North Indian,3,2.9,False,0.579,25,10,174.9,4,20,0,0,0,1,0
+R0398,Hot Biryani Express,Bangalore,Biryani,Biryani|South Indian,2,3.7,False,0.707,29,11,150.0,4,13,0,0,1,0,0
+R0399,Spicy Desserts Junction,Bangalore,Chinese,Chinese|Desserts,3,4.6,True,0.547,35,10,153.6,4,15,1,0,0,1,0
+R0400,Authentic Beverages Express,Hyderabad,Fast Food,Fast Food,3,3.9,False,0.678,28,9,126.22222222222223,4,10,0,0,0,1,0
+R0401,Delicious Biryani Express,Hyderabad,Street Food,Street Food,2,3.7,False,0.633,56,10,65.4,4,8,0,0,1,0,0
+R0402,Golden Street Food Point,Delhi,Desserts,Desserts|North Indian|Beverages,1,4.1,True,0.706,53,9,114.88888888888889,4,13,1,1,0,0,0
+R0403,Royal Italian House,Chennai,Desserts,Desserts|South Indian,2,4.6,False,0.696,31,9,133.22222222222223,4,11,0,0,1,0,0
+R0404,Hot North Indian Corner,Chennai,Biryani,Biryani,3,3.3,False,0.563,55,10,162.3,4,10,0,0,0,1,0
+R0405,Royal North Indian Eats,Pune,Chinese,Chinese|South Indian,2,4.2,True,0.816,34,11,140.0,4,11,1,0,1,0,0
+R0406,Tasty Chinese Point,Chennai,Italian,Italian|Chinese|Street Food,3,4.2,False,0.659,37,9,126.22222222222223,4,11,0,0,0,1,0
+R0407,Hot Continental Hub,Kolkata,Street Food,Street Food,2,4.0,True,0.706,48,10,65.4,4,8,1,0,1,0,0
+R0408,New South Indian Junction,Mumbai,Italian,Italian|Street Food|South Indian,2,3.2,False,0.487,54,10,113.3,4,10,0,0,1,0,0
+R0409,Hot Fast Food Corner,Mumbai,Fast Food,Fast Food,2,4.1,False,0.801,51,10,113.3,4,17,0,0,1,0,0
+R0410,Fresh Chinese Hub,Delhi,Continental,Continental,2,2.7,False,0.649,36,11,201.0,4,11,0,0,1,0,0
+R0411,Authentic Beverages Place,Mumbai,Italian,Italian|Beverages|Street Food,2,4.1,False,0.63,37,10,113.3,4,14,0,0,1,0,0
+R0412,Spicy Italian Hub,Pune,Fast Food,Fast Food|Street Food|Continental,1,4.4,False,0.765,55,10,97.7,4,12,0,1,0,0,0
+R0413,Tasty Desserts Express,Bangalore,Italian,Italian|North Indian|Chinese,3,3.7,False,0.675,39,9,126.22222222222223,4,14,0,0,0,1,0
+R0414,Delicious North Indian Express,Mumbai,Chinese,Chinese|Street Food,2,4.3,False,0.584,26,11,140.0,4,13,0,0,1,0,0
+R0415,The Continental Express,Pune,North Indian,North Indian|Chinese|Beverages,3,4.3,False,0.637,33,10,163.0,4,16,0,0,0,1,0
+R0416,Royal Desserts Junction,Mumbai,Chinese,Chinese,2,3.7,False,0.798,39,11,140.0,4,11,0,0,1,0,0
+R0417,Authentic Italian Kitchen,Hyderabad,Continental,Continental,3,4.2,False,0.735,28,10,207.4,4,11,0,0,0,1,0
+R0418,Tasty Chinese Place,Bangalore,Italian,Italian,4,4.0,True,0.533,36,8,125.875,4,17,1,0,0,0,1
+R0419,Spicy South Indian Express,Hyderabad,Beverages,Beverages|Desserts,2,3.3,False,0.753,29,9,76.33333333333333,4,17,0,0,1,0,0
+R0420,Spicy Chinese Eats,Chennai,Italian,Italian,4,3.5,False,0.651,42,8,139.75,4,12,0,0,0,0,1
+R0421,Spicy Chinese House,Hyderabad,Continental,Continental|Italian|Biryani,3,3.3,False,0.687,55,10,221.1,4,14,0,0,0,1,0
+R0422,Hot South Indian Hub,Kolkata,Italian,Italian|North Indian|Chinese,1,3.0,False,0.589,44,10,97.7,4,10,0,1,0,0,0
+R0423,Golden Desserts Hub,Hyderabad,North Indian,North Indian,3,4.5,True,0.679,27,10,170.5,4,9,1,0,0,1,0
+R0424,The Desserts Express,Pune,Beverages,Beverages|South Indian,3,2.0,False,0.4,53,9,86.44444444444444,4,16,0,0,0,1,0
+R0425,Hot Italian Hub,Chennai,Biryani,Biryani|North Indian,3,3.5,False,0.622,32,10,143.6,4,16,0,0,0,1,0
+R0426,Authentic Beverages Eats,Hyderabad,Chinese,Chinese|North Indian|Beverages,2,3.1,False,0.732,39,11,140.0,4,8,0,0,1,0,0
+R0427,Golden Fast Food Point,Chennai,Continental,Continental|North Indian,2,4.9,False,0.839,36,11,201.0,4,17,0,0,1,0,0
+R0428,Tasty Chinese Bites,Kolkata,Beverages,Beverages|Italian|Biryani,2,4.6,False,0.832,57,9,76.33333333333333,4,8,0,0,1,0,0
+R0429,Golden Italian Kitchen,Bangalore,Beverages,Beverages,2,4.0,False,0.814,38,9,76.33333333333333,4,10,0,0,1,0,0
+R0430,Royal Italian Junction,Bangalore,Fast Food,Fast Food,3,2.9,False,0.609,41,9,124.88888888888889,4,12,0,0,0,1,0
+R0431,Authentic Street Food Hub,Bangalore,Italian,Italian|Street Food|Chinese,1,4.1,False,0.641,29,10,97.7,4,18,0,1,0,0,0
+R0432,The Chinese Point,Hyderabad,Chinese,Chinese|South Indian,3,4.3,False,0.521,47,10,149.8,4,14,0,0,0,1,0
+R0433,Delicious Beverages Kitchen,Mumbai,Continental,Continental|North Indian,2,3.9,False,0.731,44,11,201.0,4,17,0,0,1,0,0
+R0434,Fresh Fast Food Corner,Mumbai,South Indian,South Indian|Italian|Desserts,3,3.7,False,0.485,39,10,95.4,4,19,0,0,0,1,0
+R0435,The Beverages Bites,Chennai,South Indian,South Indian|Chinese|Fast Food,3,2.4,False,0.608,26,10,69.1,4,17,0,0,0,1,0
+R0436,Golden Fast Food Eats,Mumbai,Fast Food,Fast Food,3,3.9,False,0.495,56,9,117.88888888888889,4,15,0,0,0,1,0
+R0437,Tasty Biryani Place,Kolkata,South Indian,South Indian|Beverages,3,3.6,False,0.592,33,10,95.4,4,12,0,0,0,1,0
+R0438,Fresh Italian Kitchen,Mumbai,Desserts,Desserts,3,3.8,True,0.71,59,9,151.22222222222223,4,17,1,0,0,1,0
+R0439,Tasty Desserts Point,Pune,Biryani,Biryani,1,4.5,False,0.797,29,11,129.36363636363637,4,7,0,1,0,0,0
+R0440,The Fast Food House,Mumbai,North Indian,North Indian|Continental,3,3.5,False,0.538,51,10,159.3,4,18,0,0,0,1,0
+R0441,Hot Beverages Corner,Chennai,Fast Food,Fast Food,3,4.1,False,0.605,57,9,117.88888888888889,4,20,0,0,0,1,0
+R0442,Authentic North Indian Corner,Bangalore,North Indian,North Indian,4,3.2,False,0.456,31,8,161.0,4,17,0,0,0,0,1
+R0443,The Italian Eats,Kolkata,Chinese,Chinese|Continental,2,4.5,False,0.746,38,11,140.0,4,16,0,0,1,0,0
+R0444,Spicy Desserts Corner,Bangalore,Desserts,Desserts,2,3.9,True,0.827,55,9,133.22222222222223,4,16,1,0,1,0,0
+R0445,Delicious Biryani Corner,Pune,Street Food,Street Food|Biryani|Desserts,4,4.7,True,0.556,27,8,76.125,4,10,1,0,0,0,1
+R0446,Authentic Desserts Hub,Pune,Desserts,Desserts|Continental|Chinese,2,2.5,False,0.435,55,9,133.22222222222223,4,13,0,0,1,0,0
+R0447,Hot Chinese Kitchen,Delhi,Street Food,Street Food,3,3.9,False,0.549,34,9,64.33333333333333,4,20,0,0,0,1,0
+R0448,Golden Beverages Point,Pune,Biryani,Biryani|Fast Food,1,3.2,False,0.774,26,11,129.36363636363637,4,13,0,1,0,0,0
+R0449,Golden North Indian Junction,Chennai,Continental,Continental|Street Food,3,2.4,False,0.639,48,10,207.4,4,10,0,0,0,1,0
+R0450,Spicy Biryani Express,Bangalore,Continental,Continental|Italian|Desserts,2,4.5,True,0.701,41,11,201.0,4,13,1,0,1,0,0
+R0451,The Desserts Junction,Chennai,Street Food,Street Food|Desserts|Beverages,2,3.6,False,0.614,56,10,65.4,4,15,0,0,1,0,0
+R0452,New Desserts Express,Bangalore,Biryani,Biryani|North Indian,2,4.4,False,0.687,50,11,150.0,4,8,0,0,1,0,0
+R0453,Spicy Italian Corner,Delhi,Street Food,Street Food,4,3.6,False,0.426,34,8,72.625,4,9,0,0,0,0,1
+R0454,The Chinese Hub,Bangalore,Street Food,Street Food|Desserts,2,4.9,False,0.689,55,10,65.4,4,13,0,0,1,0,0
+R0455,Hot Beverages Point,Pune,North Indian,North Indian|Fast Food|Chinese,2,3.5,False,0.649,35,12,156.25,4,15,0,0,1,0,0
+R0456,Fresh South Indian Hub,Kolkata,Fast Food,Fast Food|Street Food|Chinese,1,4.6,True,0.747,28,10,97.7,4,11,1,1,0,0,0
+R0457,Tasty Fast Food Hub,Delhi,Biryani,Biryani,3,4.7,False,0.615,27,10,152.3,4,18,0,0,0,1,0
+R0458,The Continental Eats,Chennai,Street Food,Street Food,2,4.2,False,0.75,40,10,65.4,4,12,0,0,1,0,0
+R0459,Delicious Beverages House,Chennai,Fast Food,Fast Food|South Indian,2,2.4,True,0.657,43,10,113.3,4,12,1,0,1,0,0
+R0460,Delicious Italian Kitchen,Delhi,North Indian,North Indian,2,4.7,False,0.695,44,12,156.25,4,11,0,0,1,0,0
+R0461,Golden North Indian Place,Chennai,Fast Food,Fast Food,2,4.3,False,0.858,51,10,113.3,4,10,0,0,1,0,0
+R0462,Spicy Desserts Junction,Mumbai,Chinese,Chinese|Street Food|Fast Food,2,3.8,False,0.769,35,11,140.0,4,17,0,0,1,0,0
+R0463,Tasty Chinese Place,Delhi,Biryani,Biryani|Beverages|North Indian,1,4.9,True,0.703,39,11,129.36363636363637,4,15,1,1,0,0,0
+R0464,The Biryani Junction,Mumbai,Beverages,Beverages|South Indian,1,3.7,True,0.707,27,9,65.55555555555556,4,10,1,1,0,0,0
+R0465,Spicy South Indian Bites,Kolkata,Chinese,Chinese|North Indian|Desserts,1,4.2,False,0.649,59,11,120.72727272727273,4,12,0,1,0,0,0
+R0466,New Chinese Point,Kolkata,Continental,Continental,2,4.3,False,0.8,56,11,201.0,4,15,0,0,1,0,0
+R0467,Authentic North Indian Eats,Pune,Street Food,Street Food|Italian,2,4.2,False,0.703,45,10,65.4,4,8,0,0,1,0,0
+R0468,Delicious Fast Food Express,Kolkata,Fast Food,Fast Food,1,4.9,False,0.985,60,10,97.7,4,13,0,1,0,0,0
+R0469,Spicy Street Food Bites,Delhi,Desserts,Desserts,3,3.8,False,0.592,54,9,151.22222222222223,4,9,0,0,0,1,0
+R0470,Spicy Biryani Kitchen,Bangalore,Italian,Italian,3,3.8,False,0.728,27,9,124.88888888888889,4,13,0,0,0,1,0
+R0471,Royal Desserts Junction,Pune,Continental,Continental,4,4.3,False,0.6,40,8,221.875,4,12,0,0,0,0,1
+R0472,Authentic Desserts Kitchen,Pune,Desserts,Desserts,1,3.6,False,0.823,30,9,114.88888888888889,4,11,0,1,0,0,0
+R0473,Delicious Continental Corner,Kolkata,South Indian,South Indian|Italian|Desserts,3,3.5,False,0.627,34,10,94.1,4,15,0,0,0,1,0
+R0474,Hot Desserts Bites,Mumbai,Street Food,Street Food|Italian|Fast Food,1,4.5,True,0.739,42,10,56.3,4,17,1,1,0,0,0
+R0475,Golden South Indian Bites,Bangalore,South Indian,South Indian,4,4.5,False,0.604,31,8,112.875,4,16,0,0,0,0,1
+R0476,The Biryani Corner,Mumbai,Italian,Italian,2,2.8,True,0.711,25,10,113.3,4,14,1,0,1,0,0
+R0477,Spicy Beverages Kitchen,Mumbai,Street Food,Street Food|Desserts,1,3.8,False,0.842,49,10,56.3,4,14,0,1,0,0,0
+R0478,New Fast Food Bites,Hyderabad,Beverages,Beverages|Italian|South Indian,1,4.8,True,0.927,47,9,65.55555555555556,4,14,1,1,0,0,0
+R0479,Fresh Fast Food Hub,Kolkata,Beverages,Beverages,4,4.2,False,0.509,55,8,86.625,4,11,0,0,0,0,1
+R0480,Spicy North Indian Place,Chennai,Fast Food,Fast Food,2,3.6,False,0.794,41,10,113.3,4,14,0,0,1,0,0
+R0481,Authentic Continental Eats,Mumbai,Street Food,Street Food|North Indian,3,4.2,False,0.669,39,9,64.33333333333333,4,17,0,0,0,1,0
+R0482,Authentic Fast Food Corner,Hyderabad,Chinese,Chinese|Beverages|Biryani,1,4.1,False,0.633,35,11,120.72727272727273,4,6,0,1,0,0,0
+R0483,Hot Biryani Point,Hyderabad,South Indian,South Indian|Continental|North Indian,2,3.4,False,0.616,30,11,83.45454545454545,4,18,0,0,1,0,0
+R0484,The South Indian Kitchen,Pune,Street Food,Street Food|Desserts|Biryani,2,3.2,False,0.531,39,10,65.4,4,11,0,0,1,0,0
+R0485,The Desserts Express,Hyderabad,North Indian,North Indian,2,4.0,False,0.701,54,12,156.25,4,6,0,0,1,0,0
+R0486,Spicy Street Food Junction,Chennai,Continental,Continental|Fast Food|Street Food,2,4.7,False,0.87,40,11,201.0,4,14,0,0,1,0,0
+R0487,New North Indian Kitchen,Hyderabad,Beverages,Beverages|North Indian,3,4.4,False,0.787,39,9,86.44444444444444,4,12,0,0,0,1,0
+R0488,Hot Biryani Eats,Pune,Fast Food,Fast Food|Italian|Continental,3,4.7,False,0.659,31,9,126.22222222222223,4,10,0,0,0,1,0
+R0489,New Beverages Corner,Bangalore,Continental,Continental|Desserts|North Indian,4,4.1,False,0.41,30,8,230.75,4,14,0,0,0,0,1
+R0490,Spicy Fast Food Corner,Mumbai,Biryani,Biryani|Beverages,2,3.3,False,0.559,58,11,150.0,4,11,0,0,1,0,0
+R0491,Authentic Desserts Hub,Mumbai,Biryani,Biryani,2,3.6,False,0.657,26,11,150.0,4,12,0,0,1,0,0
+R0492,Golden Italian Hub,Kolkata,Italian,Italian,3,4.7,False,0.619,36,9,129.0,4,7,0,0,0,1,0
+R0493,Fresh Biryani Point,Hyderabad,Desserts,Desserts|South Indian|Street Food,3,4.6,False,0.549,54,9,151.22222222222223,4,12,0,0,0,1,0
+R0494,Authentic Fast Food Junction,Delhi,Chinese,Chinese|Continental,2,4.1,False,0.832,37,11,140.0,4,12,0,0,1,0,0
+R0495,Delicious Biryani Bites,Kolkata,Desserts,Desserts|Italian,3,3.1,False,0.542,49,9,151.22222222222223,4,7,0,0,0,1,0
+R0496,Hot South Indian Express,Chennai,South Indian,South Indian,2,3.1,False,0.51,55,11,83.45454545454545,4,7,0,0,1,0,0
+R0497,Fresh Beverages Kitchen,Chennai,Desserts,Desserts,2,4.4,False,0.607,39,9,133.22222222222223,4,14,0,0,1,0,0
+R0498,Tasty Beverages Eats,Kolkata,Chinese,Chinese,3,2.9,True,0.423,26,10,152.3,4,14,1,0,0,1,0
+R0499,Authentic Street Food Eats,Hyderabad,Italian,Italian|Biryani,2,3.9,False,0.783,59,10,113.3,4,8,0,0,1,0,0
+R0500,Authentic Beverages Kitchen,Pune,South Indian,South Indian|Desserts,2,2.0,True,0.647,40,11,83.45454545454545,4,16,1,0,1,0,0
+R0501,Royal Beverages Corner,Mumbai,Street Food,Street Food|Desserts,4,4.8,False,0.504,45,8,60.375,4,12,0,0,0,0,1
+R0502,Authentic North Indian Hub,Delhi,North Indian,North Indian|Italian|Beverages,4,4.1,True,0.603,32,8,162.75,4,21,1,0,0,0,1
+R0503,The South Indian Hub,Pune,Desserts,Desserts,2,4.5,False,0.723,60,9,133.22222222222223,4,12,0,0,1,0,0
+R0504,Spicy Continental Bites,Mumbai,South Indian,South Indian,4,3.1,False,0.323,60,8,114.625,4,18,0,0,0,0,1
+R0505,Royal Italian Bites,Chennai,Fast Food,Fast Food|Beverages|North Indian,3,3.9,False,0.729,60,9,126.22222222222223,4,4,0,0,0,1,0
+R0506,Fresh Beverages House,Kolkata,Italian,Italian|Fast Food|South Indian,1,3.2,False,0.715,56,10,97.7,4,12,0,1,0,0,0
+R0507,Hot Italian Junction,Pune,Biryani,Biryani|Beverages,1,2.6,True,0.804,58,11,129.36363636363637,4,9,1,1,0,0,0
+R0508,Royal Chinese Kitchen,Chennai,Desserts,Desserts,3,3.2,False,0.701,43,9,151.22222222222223,4,10,0,0,0,1,0
+R0509,Hot Desserts Corner,Bangalore,Italian,Italian,1,3.8,False,0.833,52,10,97.7,4,14,0,1,0,0,0
+R0510,Golden Desserts Bites,Chennai,Italian,Italian|South Indian,2,4.1,False,0.635,40,10,113.3,4,15,0,0,1,0,0
+R0511,Golden Continental Corner,Delhi,Continental,Continental|Italian|Chinese,4,4.0,True,0.665,34,8,216.75,4,19,1,0,0,0,1
+R0512,Fresh Beverages Corner,Pune,Chinese,Chinese|Fast Food,2,4.8,False,0.863,45,11,140.0,4,7,0,0,1,0,0
+R0513,Royal Chinese Hub,Kolkata,Chinese,Chinese|Beverages|Biryani,2,4.2,False,0.645,40,11,140.0,4,13,0,0,1,0,0
+R0514,Fresh Street Food Junction,Kolkata,Street Food,Street Food,3,4.2,False,0.508,39,9,74.0,4,14,0,0,0,1,0
+R0515,The Desserts Express,Delhi,North Indian,North Indian|Continental|South Indian,2,3.5,False,0.531,46,12,156.25,4,13,0,0,1,0,0
+R0516,Tasty Continental Kitchen,Mumbai,Desserts,Desserts|Chinese|Street Food,2,2.2,False,0.417,47,9,133.22222222222223,4,9,0,0,1,0,0
+R0517,New Chinese Kitchen,Chennai,Fast Food,Fast Food|Italian,2,3.9,True,0.591,50,10,113.3,4,10,1,0,1,0,0
+R0518,The Italian House,Hyderabad,Italian,Italian|Continental,2,3.6,False,0.515,45,10,113.3,4,18,0,0,1,0,0
+R0519,Authentic Continental Eats,Mumbai,Beverages,Beverages|Italian,3,4.6,False,0.757,37,9,86.44444444444444,4,15,0,0,0,1,0
+R0520,Tasty Beverages Eats,Chennai,Biryani,Biryani|South Indian,2,4.5,False,0.629,53,11,150.0,4,12,0,0,1,0,0
+R0521,New South Indian Corner,Mumbai,Beverages,Beverages|Italian|Desserts,4,4.4,False,0.493,58,8,86.625,4,16,0,0,0,0,1
+R0522,Royal Biryani Junction,Hyderabad,Beverages,Beverages|South Indian,1,4.7,False,0.843,35,9,65.55555555555556,4,9,0,1,0,0,0
+R0523,Golden North Indian Kitchen,Delhi,Street Food,Street Food,2,4.2,False,0.571,57,10,65.4,4,14,0,0,1,0,0
+R0524,Royal Continental House,Pune,Fast Food,Fast Food|Continental|Chinese,2,4.1,False,0.826,35,10,113.3,4,11,0,0,1,0,0
+R0525,New North Indian Place,Kolkata,Street Food,Street Food|Italian|South Indian,1,4.3,False,0.859,47,10,56.3,4,20,0,1,0,0,0
+R0526,Spicy Street Food Hub,Kolkata,Chinese,Chinese,1,3.9,True,0.631,53,11,120.72727272727273,4,9,1,1,0,0,0
+R0527,The Street Food Express,Kolkata,Chinese,Chinese|Street Food|Biryani,3,4.4,True,0.707,35,10,153.6,4,9,1,0,0,1,0
+R0528,Authentic Desserts Point,Hyderabad,Desserts,Desserts|South Indian,1,4.3,False,0.742,46,9,114.88888888888889,4,13,0,1,0,0,0
+R0529,The North Indian Hub,Bangalore,South Indian,South Indian,2,4.5,False,0.792,41,11,83.45454545454545,4,16,0,0,1,0,0
+R0530,Royal Chinese Junction,Pune,Chinese,Chinese,3,2.4,True,0.468,53,10,152.3,4,21,1,0,0,1,0
+R0531,Royal Italian Hub,Delhi,North Indian,North Indian,3,4.2,False,0.487,37,10,169.9,4,13,0,0,0,1,0
+R0532,Spicy Chinese Express,Pune,Italian,Italian|Desserts,3,5.0,False,0.844,34,9,126.22222222222223,4,10,0,0,0,1,0
+R0533,Delicious North Indian Eats,Kolkata,South Indian,South Indian|Beverages,2,3.6,False,0.783,52,11,83.45454545454545,4,14,0,0,1,0,0
+R0534,Fresh Street Food Place,Chennai,Fast Food,Fast Food,2,4.4,False,0.653,42,10,113.3,4,14,0,0,1,0,0
+R0535,New North Indian Junction,Mumbai,South Indian,South Indian|Beverages,2,4.3,False,0.578,59,11,83.45454545454545,4,20,0,0,1,0,0
+R0536,Spicy Biryani Bites,Mumbai,North Indian,North Indian,2,4.5,False,0.732,44,12,156.25,4,13,0,0,1,0,0
+R0537,Authentic Desserts House,Delhi,Street Food,Street Food,2,4.8,False,0.645,25,10,65.4,4,15,0,0,1,0,0
+R0538,The Continental Junction,Mumbai,Continental,Continental|Desserts|South Indian,3,3.3,False,0.451,35,10,211.1,4,14,0,0,0,1,0
+R0539,Tasty Biryani House,Pune,Italian,Italian|Chinese|Continental,3,3.8,False,0.735,45,9,129.0,4,11,0,0,0,1,0
+R0540,Delicious Italian Place,Chennai,Beverages,Beverages|Fast Food|Italian,2,3.6,False,0.53,44,9,76.33333333333333,4,6,0,0,1,0,0
+R0541,Fresh Chinese Hub,Hyderabad,Italian,Italian|Desserts|North Indian,3,4.1,True,0.752,35,9,124.88888888888889,4,11,1,0,0,1,0
+R0542,Tasty Biryani Bites,Kolkata,Desserts,Desserts,2,4.7,False,0.767,36,9,133.22222222222223,4,4,0,0,1,0,0
+R0543,The Italian Corner,Hyderabad,Beverages,Beverages|Continental,2,4.3,False,0.575,47,9,76.33333333333333,4,13,0,0,1,0,0
+R0544,Delicious Street Food Kitchen,Kolkata,Continental,Continental|South Indian,3,4.2,False,0.726,44,10,221.1,4,16,0,0,0,1,0
+R0545,Royal Chinese Eats,Kolkata,Italian,Italian|Desserts,4,3.4,False,0.545,48,8,139.75,4,16,0,0,0,0,1
+R0546,Royal North Indian Hub,Chennai,Biryani,Biryani|Beverages|Street Food,2,3.9,False,0.719,30,11,150.0,4,10,0,0,1,0,0
+R0547,Golden Beverages Eats,Bangalore,Street Food,Street Food,1,4.8,False,0.783,51,10,56.3,4,22,0,1,0,0,0
+R0548,Hot Fast Food Hub,Delhi,South Indian,South Indian,4,4.0,True,0.566,47,8,104.125,4,17,1,0,0,0,1
+R0549,Authentic Beverages Kitchen,Chennai,South Indian,South Indian|Italian,1,3.7,False,0.656,58,11,71.9090909090909,4,11,0,1,0,0,0
+R0550,Fresh North Indian Kitchen,Chennai,Street Food,Street Food,2,3.9,False,0.762,33,10,65.4,4,15,0,0,1,0,0
+R0551,Delicious Continental Bites,Pune,Continental,Continental|Italian|North Indian,3,4.6,False,0.602,31,10,211.1,4,14,0,0,0,1,0
+R0552,New Italian Eats,Pune,Continental,Continental|Beverages|Chinese,2,3.6,False,0.792,50,11,201.0,4,18,0,0,1,0,0
+R0553,Golden Italian Bites,Bangalore,Beverages,Beverages|Continental|Biryani,3,4.6,True,0.628,60,9,86.44444444444444,4,14,1,0,0,1,0
+R0554,Authentic Street Food Junction,Kolkata,Street Food,Street Food|South Indian|Fast Food,3,3.1,False,0.538,40,9,64.33333333333333,4,9,0,0,0,1,0
+R0555,Authentic North Indian Kitchen,Bangalore,Beverages,Beverages,2,4.0,False,0.72,44,9,76.33333333333333,4,17,0,0,1,0,0
+R0556,Spicy Biryani Place,Kolkata,Fast Food,Fast Food|Biryani,1,4.2,False,0.772,35,10,97.7,4,19,0,1,0,0,0
+R0557,Fresh Chinese Junction,Pune,Biryani,Biryani|Italian,2,3.9,False,0.643,31,11,150.0,4,13,0,0,1,0,0
+R0558,Fresh North Indian Express,Pune,Italian,Italian|Continental,2,3.8,False,0.628,28,10,113.3,4,15,0,0,1,0,0
+R0559,Authentic Continental Junction,Hyderabad,Biryani,Biryani|Desserts|Street Food,2,4.3,False,0.771,46,11,150.0,4,8,0,0,1,0,0
+R0560,Delicious South Indian Junction,Hyderabad,Beverages,Beverages|Fast Food|Italian,4,2.7,False,0.438,38,8,83.125,4,17,0,0,0,0,1
+R0561,Hot South Indian Place,Bangalore,Beverages,Beverages|South Indian,3,4.0,False,0.728,45,9,86.44444444444444,4,20,0,0,0,1,0
+R0562,The North Indian Place,Pune,Street Food,Street Food|Italian|Desserts,2,2.3,True,0.468,57,10,65.4,4,10,1,0,1,0,0
+R0563,Spicy North Indian Point,Mumbai,Italian,Italian|Desserts,1,4.0,False,0.825,27,10,97.7,4,18,0,1,0,0,0
+R0564,Royal Italian Corner,Pune,Chinese,Chinese|Beverages|Desserts,1,4.1,False,0.722,46,11,120.72727272727273,4,15,0,1,0,0,0
+R0565,New Fast Food Eats,Kolkata,Beverages,Beverages,2,4.0,False,0.602,33,9,76.33333333333333,4,13,0,0,1,0,0
+R0566,Spicy Beverages Place,Delhi,South Indian,South Indian|Beverages,3,4.3,False,0.504,40,10,89.1,4,15,0,0,0,1,0
+R0567,Tasty Biryani Hub,Pune,Biryani,Biryani|Street Food|North Indian,4,4.3,True,0.431,32,8,152.125,4,10,1,0,0,0,1
+R0568,Spicy South Indian Point,Hyderabad,Desserts,Desserts|Fast Food,4,2.6,False,0.452,55,8,159.125,4,16,0,0,0,0,1
+R0569,Fresh South Indian House,Kolkata,South Indian,South Indian|Fast Food|Chinese,4,2.5,True,0.478,25,8,79.625,4,7,1,0,0,0,1
+R0570,Fresh Biryani Kitchen,Kolkata,Beverages,Beverages|Desserts|South Indian,4,4.1,False,0.448,59,8,86.625,4,10,0,0,0,0,1
+R0571,Golden North Indian Hub,Pune,Desserts,Desserts|Fast Food,2,4.2,False,0.635,25,9,133.22222222222223,4,13,0,0,1,0,0
+R0572,Tasty Biryani Hub,Mumbai,Biryani,Biryani|Desserts|North Indian,1,2.5,False,0.712,52,11,129.36363636363637,4,20,0,1,0,0,0
+R0573,Hot Beverages Place,Bangalore,Street Food,Street Food|Fast Food|Italian,2,3.6,True,0.636,37,10,65.4,4,7,1,0,1,0,0
+R0574,Authentic North Indian Express,Chennai,Desserts,Desserts,1,2.6,False,0.731,40,9,114.88888888888889,4,11,0,1,0,0,0
+R0575,Authentic Desserts House,Hyderabad,Desserts,Desserts|North Indian|Chinese,4,4.3,False,0.438,53,8,164.25,4,12,0,0,0,0,1
+R0576,Tasty North Indian Junction,Mumbai,South Indian,South Indian|North Indian,2,4.2,False,0.7,29,11,83.45454545454545,4,13,0,0,1,0,0
+R0577,New Chinese Kitchen,Mumbai,North Indian,North Indian,2,4.1,False,0.646,27,12,156.25,4,19,0,0,1,0,0
+R0578,Fresh Continental Place,Hyderabad,Chinese,Chinese,2,2.5,False,0.59,37,11,140.0,4,18,0,0,1,0,0
+R0579,Golden Italian Eats,Pune,South Indian,South Indian|Italian|Beverages,3,4.5,False,0.544,46,10,94.1,4,9,0,0,0,1,0
+R0580,The Beverages Corner,Delhi,Chinese,Chinese,4,3.9,True,0.404,60,8,164.375,4,10,1,0,0,0,1
+R0581,Royal Street Food Point,Delhi,Beverages,Beverages|Fast Food,1,3.5,False,0.675,60,9,65.55555555555556,4,10,0,1,0,0,0
+R0582,Hot Street Food Bites,Mumbai,Beverages,Beverages,3,2.8,False,0.393,37,9,86.44444444444444,4,14,0,0,0,1,0
+R0583,Royal Street Food Kitchen,Delhi,South Indian,South Indian,2,4.9,False,0.633,43,11,83.45454545454545,4,11,0,0,1,0,0
+R0584,Fresh Desserts Hub,Mumbai,Street Food,Street Food|Biryani|Chinese,3,4.5,False,0.633,51,9,64.33333333333333,4,17,0,0,0,1,0
+R0585,The Desserts Express,Kolkata,Beverages,Beverages,3,2.5,False,0.595,46,9,86.44444444444444,4,10,0,0,0,1,0
+R0586,Tasty Beverages Point,Delhi,Beverages,Beverages|Street Food|Fast Food,2,3.6,False,0.674,25,9,76.33333333333333,4,9,0,0,1,0,0
+R0587,The Continental Express,Hyderabad,Desserts,Desserts|Street Food,2,4.7,False,0.617,52,9,133.22222222222223,4,10,0,0,1,0,0
+R0588,Royal Continental Bites,Bangalore,Street Food,Street Food|Beverages|Chinese,2,4.1,False,0.71,33,10,65.4,4,21,0,0,1,0,0
+R0589,Royal Desserts Corner,Chennai,Desserts,Desserts|South Indian,2,4.5,True,0.644,56,9,133.22222222222223,4,12,1,0,1,0,0
+R0590,Delicious Desserts Kitchen,Bangalore,Biryani,Biryani|Beverages,2,4.6,True,0.653,50,11,150.0,4,17,1,0,1,0,0
+R0591,Spicy Beverages Eats,Hyderabad,Biryani,Biryani|South Indian|Chinese,2,3.9,False,0.806,36,11,150.0,4,9,0,0,1,0,0
+R0592,Spicy Chinese Bites,Kolkata,Biryani,Biryani,4,3.6,False,0.444,50,8,167.75,4,9,0,0,0,0,1
+R0593,The South Indian Eats,Kolkata,Continental,Continental,4,4.2,False,0.49,26,8,235.875,4,11,0,0,0,0,1
+R0594,Hot North Indian Corner,Chennai,Beverages,Beverages,3,4.1,False,0.684,56,9,86.44444444444444,4,10,0,0,0,1,0
+R0595,New Biryani House,Kolkata,North Indian,North Indian|Street Food,3,4.2,False,0.502,43,10,166.8,4,9,0,0,0,1,0
+R0596,Spicy Italian Point,Bangalore,Desserts,Desserts|Biryani|Street Food,2,4.5,False,0.63,43,9,133.22222222222223,4,15,0,0,1,0,0
+R0597,New North Indian Hub,Hyderabad,South Indian,South Indian,1,3.3,False,0.842,28,11,71.9090909090909,4,14,0,1,0,0,0
+R0598,Hot North Indian Corner,Pune,Beverages,Beverages|Biryani|North Indian,3,4.4,True,0.516,47,9,86.44444444444444,4,11,1,0,0,1,0
+R0599,Spicy Continental Place,Pune,Chinese,Chinese|Fast Food|Italian,1,3.8,True,0.806,55,11,120.72727272727273,4,8,1,1,0,0,0
+R0600,Authentic Continental Place,Mumbai,Fast Food,Fast Food|Street Food|Desserts,3,3.7,False,0.573,53,9,124.88888888888889,4,12,0,0,0,1,0
+R0601,Spicy Fast Food House,Pune,Biryani,Biryani,2,4.5,False,0.77,41,11,150.0,4,7,0,0,1,0,0
+R0602,Royal North Indian Express,Pune,South Indian,South Indian|Biryani,1,2.2,False,0.539,43,11,71.9090909090909,4,10,0,1,0,0,0
+R0603,Tasty South Indian Point,Bangalore,Italian,Italian|Fast Food,3,3.9,False,0.701,50,9,124.88888888888889,4,10,0,0,0,1,0
+R0604,Authentic Continental Place,Pune,Desserts,Desserts|South Indian|Beverages,3,4.7,True,0.685,46,9,151.22222222222223,4,12,1,0,0,1,0
+R0605,New Beverages Express,Hyderabad,Continental,Continental|North Indian|Biryani,2,3.8,False,0.646,57,11,201.0,4,13,0,0,1,0,0
+R0606,Spicy Fast Food Eats,Bangalore,Continental,Continental,2,4.2,False,0.807,46,11,201.0,4,13,0,0,1,0,0
+R0607,Fresh Chinese Express,Chennai,North Indian,North Indian|Desserts|Street Food,2,4.1,False,0.722,60,12,156.25,4,8,0,0,1,0,0
+R0608,Golden Chinese Express,Hyderabad,Biryani,Biryani,2,4.9,False,0.838,31,11,150.0,4,9,0,0,1,0,0
+R0609,New South Indian Kitchen,Bangalore,Street Food,Street Food|South Indian,4,4.7,False,0.654,57,8,77.875,4,19,0,0,0,0,1
+R0610,Delicious Biryani Eats,Chennai,Italian,Italian,1,4.6,False,0.841,32,10,97.7,4,17,0,1,0,0,0
+R0611,Golden North Indian Place,Chennai,Italian,Italian|Biryani|North Indian,3,3.8,True,0.501,51,9,124.88888888888889,4,12,1,0,0,1,0
+R0612,Royal Biryani Eats,Mumbai,Beverages,Beverages|Chinese|North Indian,2,4.3,False,0.733,35,9,76.33333333333333,4,8,0,0,1,0,0
+R0613,Authentic Street Food Place,Kolkata,Street Food,Street Food,3,3.4,True,0.441,43,9,64.33333333333333,4,16,1,0,0,1,0
+R0614,Spicy Continental Bites,Hyderabad,Fast Food,Fast Food|Biryani,2,4.3,False,0.744,54,10,113.3,4,10,0,0,1,0,0
+R0615,Hot Street Food Express,Bangalore,Beverages,Beverages,1,3.4,False,0.709,56,9,65.55555555555556,4,18,0,1,0,0,0
+R0616,Delicious North Indian Express,Mumbai,Biryani,Biryani,3,3.7,False,0.573,52,10,159.8,4,12,0,0,0,1,0
+R0617,Delicious Street Food Eats,Chennai,Beverages,Beverages|Continental|Street Food,4,3.7,False,0.455,57,8,86.625,4,9,0,0,0,0,1
+R0618,Hot Fast Food Corner,Mumbai,Italian,Italian|North Indian,1,3.1,False,0.847,38,10,97.7,4,20,0,1,0,0,0
+R0619,The Biryani Eats,Hyderabad,Desserts,Desserts,3,3.3,False,0.711,38,9,151.22222222222223,4,13,0,0,0,1,0
+R0620,Fresh Italian Bites,Mumbai,Continental,Continental,1,3.3,False,0.816,58,11,173.45454545454547,4,16,0,1,0,0,0
+R0621,Spicy Beverages Eats,Mumbai,Italian,Italian|Desserts,2,3.3,False,0.51,48,10,113.3,4,8,0,0,1,0,0
+R0622,Delicious Desserts House,Hyderabad,Chinese,Chinese|Fast Food|North Indian,4,4.7,False,0.459,51,8,164.375,4,19,0,0,0,0,1
+R0623,Authentic Fast Food Bites,Mumbai,North Indian,North Indian|Fast Food,1,3.9,True,0.824,53,12,134.83333333333334,4,21,1,1,0,0,0
+R0624,Spicy Italian Point,Pune,North Indian,North Indian,3,4.3,False,0.547,56,10,174.9,4,11,0,0,0,1,0
+R0625,Delicious Desserts House,Bangalore,Fast Food,Fast Food|Street Food,3,4.4,False,0.558,29,9,126.22222222222223,4,14,0,0,0,1,0
+R0626,New Chinese Corner,Kolkata,Italian,Italian|North Indian|Street Food,2,4.5,False,0.856,59,10,113.3,4,10,0,0,1,0,0
+R0627,The Desserts Junction,Kolkata,South Indian,South Indian|Biryani,2,4.4,False,0.676,50,11,83.45454545454545,4,12,0,0,1,0,0
+R0628,Golden Biryani Junction,Hyderabad,Biryani,Biryani|Fast Food|South Indian,2,4.0,True,0.734,60,11,150.0,4,12,1,0,1,0,0
+R0629,Delicious Chinese Hub,Pune,Chinese,Chinese,4,4.4,False,0.584,59,8,159.0,4,17,0,0,0,0,1
+R0630,Fresh Continental Kitchen,Hyderabad,Biryani,Biryani|Fast Food|Beverages,2,2.9,False,0.615,44,11,150.0,4,10,0,0,1,0,0
+R0631,Delicious Street Food House,Delhi,Street Food,Street Food|Beverages,3,3.9,False,0.475,30,9,64.33333333333333,4,15,0,0,0,1,0
+R0632,Golden Chinese Eats,Pune,Street Food,Street Food|Beverages|South Indian,3,3.8,False,0.504,35,9,65.66666666666667,4,17,0,0,0,1,0
+R0633,Golden Desserts Junction,Bangalore,Street Food,Street Food|Fast Food,1,3.1,False,0.81,55,10,56.3,4,10,0,1,0,0,0
+R0634,Fresh Chinese Junction,Chennai,Street Food,Street Food|Biryani|Chinese,2,3.8,False,0.751,26,10,65.4,4,8,0,0,1,0,0
+R0635,Golden Chinese Kitchen,Pune,Street Food,Street Food|Beverages,2,3.1,False,0.604,30,10,65.4,4,13,0,0,1,0,0
+R0636,The Desserts House,Pune,Street Food,Street Food,3,4.5,False,0.7,48,9,74.0,4,10,0,0,0,1,0
+R0637,Golden Biryani Junction,Hyderabad,Chinese,Chinese,4,3.6,True,0.604,53,8,164.375,4,9,1,0,0,0,1
+R0638,The North Indian Express,Hyderabad,Biryani,Biryani,2,3.3,False,0.664,38,11,150.0,4,9,0,0,1,0,0
+R0639,Royal Beverages Point,Bangalore,Chinese,Chinese,2,3.5,False,0.748,26,11,140.0,4,10,0,0,1,0,0
+R0640,Royal Fast Food Kitchen,Mumbai,Chinese,Chinese|Desserts,2,4.9,False,0.773,39,11,140.0,4,18,0,0,1,0,0
+R0641,Hot Beverages Kitchen,Chennai,Fast Food,Fast Food,1,3.6,False,0.755,29,10,97.7,4,5,0,1,0,0,0
+R0642,Authentic Desserts Express,Mumbai,Desserts,Desserts|Street Food|Italian,2,4.5,False,0.881,46,9,133.22222222222223,4,19,0,0,1,0,0
+R0643,Authentic North Indian Express,Hyderabad,Fast Food,Fast Food|Biryani|Beverages,2,4.0,False,0.601,36,10,113.3,4,10,0,0,1,0,0
+R0644,New Chinese Express,Chennai,Street Food,Street Food|Biryani|Continental,2,4.5,False,0.716,25,10,65.4,4,9,0,0,1,0,0
+R0645,Fresh Chinese Point,Pune,Continental,Continental|Biryani,2,3.4,False,0.75,35,11,201.0,4,11,0,0,1,0,0
+R0646,Spicy North Indian Place,Hyderabad,Desserts,Desserts,3,3.9,False,0.524,30,9,151.22222222222223,4,8,0,0,0,1,0
+R0647,The Italian Point,Delhi,Continental,Continental|North Indian|South Indian,2,3.8,False,0.679,49,11,201.0,4,13,0,0,1,0,0
+R0648,Delicious Italian Point,Delhi,Biryani,Biryani|Continental,3,3.9,False,0.728,29,10,162.3,4,14,0,0,0,1,0
+R0649,Delicious North Indian Corner,Bangalore,Biryani,Biryani,2,4.9,False,0.859,45,11,150.0,4,10,0,0,1,0,0
+R0650,Hot North Indian House,Hyderabad,Beverages,Beverages|Chinese,2,3.9,False,0.836,49,9,76.33333333333333,4,11,0,0,1,0,0
+R0651,Authentic Desserts Eats,Mumbai,Biryani,Biryani|Fast Food,2,3.1,False,0.644,48,11,150.0,4,13,0,0,1,0,0
+R0652,The Biryani Hub,Mumbai,Italian,Italian|Beverages|Chinese,2,3.2,False,0.614,44,10,113.3,4,19,0,0,1,0,0
+R0653,Tasty Fast Food Corner,Chennai,Street Food,Street Food,3,4.5,False,0.717,33,9,74.0,4,12,0,0,0,1,0
+R0654,Tasty Chinese Kitchen,Pune,Beverages,Beverages|Continental|Chinese,3,4.6,True,0.713,31,9,86.44444444444444,4,17,1,0,0,1,0
+R0655,New Continental House,Kolkata,South Indian,South Indian|Desserts,2,4.3,False,0.665,28,11,83.45454545454545,4,9,0,0,1,0,0
+R0656,Golden North Indian House,Kolkata,Beverages,Beverages|Desserts|Fast Food,2,4.3,True,0.788,60,9,76.33333333333333,4,19,1,0,1,0,0
+R0657,Spicy North Indian Point,Delhi,Biryani,Biryani|Italian|Chinese,3,4.6,True,0.569,43,10,152.3,4,15,1,0,0,1,0
+R0658,The Chinese Eats,Mumbai,Italian,Italian|Fast Food,2,4.2,False,0.797,41,10,113.3,4,6,0,0,1,0,0
+R0659,Royal South Indian Bites,Bangalore,North Indian,North Indian|Italian,2,3.8,False,0.704,28,12,156.25,4,10,0,0,1,0,0
+R0660,The Fast Food Place,Pune,Continental,Continental|South Indian,1,3.4,False,0.643,34,11,173.45454545454547,4,11,0,1,0,0,0
+R0661,Spicy Desserts Kitchen,Mumbai,South Indian,South Indian|Chinese|Continental,2,4.7,False,0.89,39,11,83.45454545454545,4,10,0,0,1,0,0
+R0662,Delicious Biryani Place,Mumbai,South Indian,South Indian,2,2.7,False,0.628,36,11,83.45454545454545,4,12,0,0,1,0,0
+R0663,Fresh Street Food Junction,Hyderabad,South Indian,South Indian,2,3.4,False,0.536,32,11,83.45454545454545,4,11,0,0,1,0,0
+R0664,The Chinese Eats,Delhi,South Indian,South Indian|Fast Food|Chinese,4,4.2,True,0.498,44,8,105.875,4,15,1,0,0,0,1
+R0665,The Chinese Eats,Chennai,Street Food,Street Food|North Indian|South Indian,2,4.4,False,0.668,48,10,65.4,4,16,0,0,1,0,0
+R0666,Golden South Indian Eats,Delhi,South Indian,South Indian|North Indian|Italian,1,3.9,False,0.708,60,11,71.9090909090909,4,21,0,1,0,0,0
+R0667,Golden South Indian Place,Pune,Chinese,Chinese,3,3.7,False,0.634,56,10,152.3,4,12,0,0,0,1,0
+R0668,Spicy South Indian Place,Bangalore,South Indian,South Indian,3,4.5,False,0.674,30,10,95.4,4,9,0,0,0,1,0
+R0669,New Street Food Place,Chennai,Fast Food,Fast Food,2,4.1,False,0.587,38,10,113.3,4,12,0,0,1,0,0
+R0670,Royal North Indian Point,Kolkata,Fast Food,Fast Food|Desserts,2,2.9,False,0.48,58,10,113.3,4,15,0,0,1,0,0
+R0671,Fresh Biryani Kitchen,Hyderabad,Beverages,Beverages|Biryani,3,3.5,False,0.642,54,9,86.44444444444444,4,15,0,0,0,1,0
+R0672,Golden South Indian Junction,Delhi,Italian,Italian,2,2.7,False,0.64,57,10,113.3,4,15,0,0,1,0,0
+R0673,New South Indian Kitchen,Pune,Biryani,Biryani|Street Food|North Indian,4,3.7,False,0.543,49,8,152.125,4,13,0,0,0,0,1
+R0674,Golden North Indian Junction,Kolkata,Desserts,Desserts|North Indian,1,3.7,False,0.68,50,9,114.88888888888889,4,4,0,1,0,0,0
+R0675,Authentic Italian House,Hyderabad,Italian,Italian,3,4.0,True,0.618,45,9,129.0,4,8,1,0,0,1,0
+R0676,The North Indian Eats,Chennai,Beverages,Beverages,2,4.1,True,0.679,40,9,76.33333333333333,4,19,1,0,1,0,0
+R0677,Golden Fast Food Point,Delhi,North Indian,North Indian|Desserts,3,3.5,False,0.518,59,10,169.9,4,9,0,0,0,1,0
+R0678,Delicious Street Food Point,Pune,Continental,Continental|Chinese|Italian,2,3.2,False,0.483,56,11,201.0,4,17,0,0,1,0,0
+R0679,Royal Street Food Hub,Delhi,Street Food,Street Food|Chinese|Biryani,2,4.0,False,0.627,45,10,65.4,4,15,0,0,1,0,0
+R0680,New Italian Eats,Kolkata,South Indian,South Indian|Beverages|North Indian,4,3.7,False,0.527,35,8,79.625,4,16,0,0,0,0,1
+R0681,Golden Desserts Place,Kolkata,Street Food,Street Food|Italian|Beverages,1,3.4,False,0.824,37,10,56.3,4,16,0,1,0,0,0
+R0682,Golden Street Food Kitchen,Delhi,North Indian,North Indian|Fast Food,2,2.9,False,0.613,51,12,156.25,4,11,0,0,1,0,0
+R0683,Spicy Street Food Junction,Hyderabad,Beverages,Beverages|Fast Food|South Indian,2,4.2,False,0.588,27,9,76.33333333333333,4,12,0,0,1,0,0
+R0684,Golden South Indian Place,Hyderabad,Biryani,Biryani|Chinese,2,2.8,False,0.46,41,11,150.0,4,9,0,0,1,0,0
+R0685,Delicious Fast Food Kitchen,Mumbai,Street Food,Street Food,1,4.1,False,0.704,30,10,56.3,4,14,0,1,0,0,0
+R0686,Hot Chinese Bites,Mumbai,South Indian,South Indian|Biryani|Fast Food,3,4.7,False,0.548,59,10,69.1,4,14,0,0,0,1,0
+R0687,New South Indian Express,Hyderabad,Desserts,Desserts,3,3.7,False,0.469,58,9,151.22222222222223,4,9,0,0,0,1,0
+R0688,Royal Desserts Kitchen,Chennai,Biryani,Biryani|Desserts,3,4.5,False,0.801,41,10,162.3,4,12,0,0,0,1,0
+R0689,Fresh Street Food Point,Delhi,Desserts,Desserts|Fast Food|Italian,2,4.3,True,0.649,26,9,133.22222222222223,4,13,1,0,1,0,0
+R0690,Spicy Fast Food Hub,Delhi,Fast Food,Fast Food|Desserts,3,4.0,False,0.479,39,9,129.0,4,9,0,0,0,1,0
+R0691,New South Indian Eats,Bangalore,Desserts,Desserts|Chinese|Continental,2,4.3,True,0.635,58,9,133.22222222222223,4,13,1,0,1,0,0
+R0692,Authentic Beverages Express,Hyderabad,Chinese,Chinese|South Indian|Street Food,3,3.9,False,0.579,58,10,152.3,4,8,0,0,0,1,0
+R0693,Delicious Biryani Kitchen,Delhi,Continental,Continental|Beverages,1,3.9,False,0.67,26,11,173.45454545454547,4,8,0,1,0,0,0
+R0694,Authentic Continental Corner,Kolkata,Desserts,Desserts|Biryani|North Indian,2,2.9,True,0.581,41,9,133.22222222222223,4,12,1,0,1,0,0
+R0695,The Italian Express,Kolkata,Street Food,Street Food|Fast Food|Continental,1,4.6,False,0.81,54,10,56.3,4,16,0,1,0,0,0
+R0696,The Desserts House,Bangalore,Beverages,Beverages|Biryani|Continental,3,3.3,True,0.657,47,9,86.44444444444444,4,15,1,0,0,1,0
+R0697,Spicy Continental Junction,Mumbai,Desserts,Desserts|Biryani|Fast Food,1,4.5,True,0.883,55,9,114.88888888888889,4,19,1,1,0,0,0
+R0698,Tasty Desserts House,Kolkata,Beverages,Beverages|Chinese,2,4.6,False,0.627,29,9,76.33333333333333,4,11,0,0,1,0,0
+R0699,Hot Italian Express,Pune,Fast Food,Fast Food|Biryani,3,4.2,False,0.541,45,9,129.0,4,16,0,0,0,1,0
+R0700,New Desserts Point,Pune,Street Food,Street Food,3,3.1,False,0.671,57,9,64.33333333333333,4,14,0,0,0,1,0
+R0701,Hot South Indian Kitchen,Chennai,North Indian,North Indian,2,4.4,False,0.867,31,12,156.25,4,5,0,0,1,0,0
+R0702,Authentic Fast Food Hub,Delhi,Beverages,Beverages|South Indian,3,3.6,False,0.695,44,9,86.44444444444444,4,11,0,0,0,1,0
+R0703,Spicy South Indian Express,Chennai,Chinese,Chinese|Fast Food|Desserts,3,4.3,False,0.73,59,10,152.3,4,14,0,0,0,1,0
+R0704,Golden Beverages House,Delhi,Street Food,Street Food|Biryani,3,4.6,False,0.69,60,9,65.66666666666667,4,12,0,0,0,1,0
+R0705,Golden North Indian House,Bangalore,Desserts,Desserts|Beverages,2,4.2,False,0.774,31,9,133.22222222222223,4,13,0,0,1,0,0
+R0706,New Biryani Bites,Kolkata,Street Food,Street Food,3,3.2,False,0.425,58,9,65.66666666666667,4,11,0,0,0,1,0
+R0707,Hot North Indian Bites,Kolkata,Continental,Continental|South Indian,4,4.6,False,0.589,32,8,216.75,4,12,0,0,0,0,1
+R0708,Fresh South Indian Corner,Bangalore,Fast Food,Fast Food|Biryani,2,4.8,False,0.634,31,10,113.3,4,12,0,0,1,0,0
+R0709,Delicious Italian Kitchen,Chennai,Continental,Continental|Biryani,3,4.3,False,0.724,56,10,207.4,4,10,0,0,0,1,0
+R0710,Delicious Street Food Hub,Delhi,Chinese,Chinese,2,3.2,False,0.626,43,11,140.0,4,17,0,0,1,0,0
+R0711,Hot Beverages Kitchen,Chennai,North Indian,North Indian|Continental,2,4.6,True,0.637,40,12,156.25,4,12,1,0,1,0,0
+R0712,Tasty South Indian House,Delhi,South Indian,South Indian|Continental|North Indian,2,3.3,False,0.539,55,11,83.45454545454545,4,18,0,0,1,0,0
+R0713,Authentic North Indian Eats,Chennai,Desserts,Desserts|Beverages|Continental,3,4.4,True,0.631,38,9,151.22222222222223,4,11,1,0,0,1,0
+R0714,Golden Continental Hub,Chennai,Beverages,Beverages,2,5.0,False,0.873,58,9,76.33333333333333,4,5,0,0,1,0,0
+R0715,New North Indian Kitchen,Delhi,Italian,Italian|Street Food|North Indian,3,3.8,False,0.707,26,9,129.0,4,16,0,0,0,1,0
+R0716,The Italian Place,Hyderabad,Street Food,Street Food,2,4.4,False,0.797,52,10,65.4,4,11,0,0,1,0,0
+R0717,Authentic Italian House,Kolkata,North Indian,North Indian|South Indian,2,2.9,False,0.611,42,12,156.25,4,12,0,0,1,0,0
+R0718,Spicy Continental House,Chennai,Desserts,Desserts|Fast Food,2,4.6,False,0.873,36,9,133.22222222222223,4,16,0,0,1,0,0
+R0719,Fresh Biryani Kitchen,Chennai,Beverages,Beverages|Fast Food,3,5.0,False,0.682,52,9,86.44444444444444,4,12,0,0,0,1,0
+R0720,Fresh Biryani Express,Hyderabad,South Indian,South Indian|Continental|Italian,2,4.0,False,0.721,56,11,83.45454545454545,4,12,0,0,1,0,0
+R0721,Authentic Biryani Kitchen,Hyderabad,North Indian,North Indian,2,3.9,False,0.763,28,12,156.25,4,12,0,0,1,0,0
+R0722,Fresh Chinese Junction,Delhi,Continental,Continental,1,3.7,True,0.819,41,11,173.45454545454547,4,13,1,1,0,0,0
+R0723,Royal Biryani Place,Mumbai,Italian,Italian,1,3.3,False,0.792,54,10,97.7,4,17,0,1,0,0,0
+R0724,Spicy North Indian Junction,Kolkata,Italian,Italian|South Indian,2,4.8,False,0.803,42,10,113.3,4,9,0,0,1,0,0
+R0725,Fresh Beverages Hub,Hyderabad,South Indian,South Indian,2,4.5,False,0.73,26,11,83.45454545454545,4,7,0,0,1,0,0
+R0726,Tasty Italian Junction,Bangalore,Desserts,Desserts|Italian|Continental,1,2.9,False,0.597,41,9,114.88888888888889,4,6,0,1,0,0,0
+R0727,Royal Street Food Hub,Delhi,Desserts,Desserts,3,3.7,False,0.515,33,9,151.22222222222223,4,10,0,0,0,1,0
+R0728,Golden Beverages House,Kolkata,Chinese,Chinese|Fast Food,1,4.7,False,0.745,55,11,120.72727272727273,4,18,0,1,0,0,0
+R0729,The North Indian Bites,Kolkata,Continental,Continental|Chinese,3,3.5,False,0.699,38,10,216.1,4,10,0,0,0,1,0
+R0730,Hot North Indian Express,Pune,Italian,Italian,2,4.5,False,0.79,59,10,113.3,4,12,0,0,1,0,0
+R0731,Delicious Italian Bites,Kolkata,Fast Food,Fast Food|Beverages,3,3.2,False,0.444,56,9,117.88888888888889,4,8,0,0,0,1,0
+R0732,The Fast Food Place,Chennai,Italian,Italian|South Indian,2,4.2,False,0.754,48,10,113.3,4,16,0,0,1,0,0
+R0733,New Beverages Junction,Kolkata,Continental,Continental|Desserts|North Indian,3,4.2,False,0.602,48,10,207.4,4,12,0,0,0,1,0
+R0734,Tasty Fast Food Express,Kolkata,Chinese,Chinese,2,3.5,False,0.667,39,11,140.0,4,12,0,0,1,0,0
+R0735,Authentic Chinese Junction,Hyderabad,Fast Food,Fast Food,2,1.6,False,0.542,53,10,113.3,4,11,0,0,1,0,0
+R0736,Authentic Desserts Bites,Delhi,Street Food,Street Food|Italian,2,4.9,False,0.775,60,10,65.4,4,10,0,0,1,0,0
+R0737,Authentic North Indian Point,Delhi,Continental,Continental|Beverages,4,3.6,False,0.518,38,8,235.875,4,15,0,0,0,0,1
+R0738,Golden South Indian Hub,Pune,North Indian,North Indian,1,3.7,False,0.708,51,12,134.83333333333334,4,15,0,1,0,0,0
+R0739,Tasty South Indian Kitchen,Mumbai,Chinese,Chinese|North Indian,2,2.6,False,0.706,58,11,140.0,4,12,0,0,1,0,0
+R0740,The Desserts Place,Hyderabad,Italian,Italian|Street Food,2,4.0,True,0.634,59,10,113.3,4,8,1,0,1,0,0
+R0741,Golden Chinese Bites,Hyderabad,Continental,Continental|South Indian,3,4.6,True,0.676,36,10,216.1,4,10,1,0,0,1,0
+R0742,Royal Beverages Junction,Mumbai,Chinese,Chinese,1,2.6,False,0.736,40,11,120.72727272727273,4,18,0,1,0,0,0
+R0743,Hot Fast Food Point,Pune,Continental,Continental|Desserts|Italian,2,4.0,False,0.646,43,11,201.0,4,10,0,0,1,0,0
+R0744,Golden Street Food Eats,Bangalore,Biryani,Biryani|Fast Food,2,4.4,False,0.776,48,11,150.0,4,10,0,0,1,0,0
+R0745,New Beverages Kitchen,Delhi,Street Food,Street Food|Italian,1,3.1,True,0.804,26,10,56.3,4,9,1,1,0,0,0
+R0746,Royal Beverages Point,Pune,Desserts,Desserts|Beverages|Italian,3,4.7,False,0.631,49,9,151.22222222222223,4,11,0,0,0,1,0
+R0747,Hot Italian House,Pune,Chinese,Chinese|Fast Food|Biryani,4,4.0,False,0.564,29,8,146.75,4,15,0,0,0,0,1
+R0748,Fresh North Indian Corner,Hyderabad,Continental,Continental,1,4.7,True,0.841,52,11,173.45454545454547,4,13,1,1,0,0,0
+R0749,The Beverages Point,Hyderabad,Chinese,Chinese|Biryani,2,4.6,False,0.825,60,11,140.0,4,6,0,0,1,0,0
+R0750,Golden Beverages Bites,Chennai,Biryani,Biryani|Desserts|Fast Food,1,2.3,False,0.722,26,11,129.36363636363637,4,12,0,1,0,0,0
+R0751,Golden Beverages Corner,Chennai,Desserts,Desserts|Biryani,3,3.2,False,0.41,47,9,151.22222222222223,4,6,0,0,0,1,0
+R0752,Hot Italian Express,Kolkata,Desserts,Desserts|Fast Food,2,4.3,False,0.633,39,9,133.22222222222223,4,14,0,0,1,0,0
+R0753,Hot Street Food Kitchen,Chennai,Biryani,Biryani,2,3.0,False,0.663,49,11,150.0,4,12,0,0,1,0,0
+R0754,Tasty South Indian Bites,Hyderabad,Italian,Italian|Continental,3,4.9,False,0.677,30,9,124.88888888888889,4,15,0,0,0,1,0
+R0755,Delicious Street Food Bites,Chennai,Italian,Italian|Biryani,2,4.7,False,0.614,50,10,113.3,4,9,0,0,1,0,0
+R0756,Tasty Continental Point,Chennai,Street Food,Street Food,2,3.8,False,0.546,40,10,65.4,4,11,0,0,1,0,0
+R0757,Delicious Continental Eats,Bangalore,Desserts,Desserts|Beverages,3,3.1,False,0.448,39,9,151.22222222222223,4,16,0,0,0,1,0
+R0758,Golden Biryani Express,Mumbai,Street Food,Street Food|Biryani,1,3.4,True,0.818,47,10,56.3,4,25,1,1,0,0,0
+R0759,The Italian Bites,Hyderabad,Beverages,Beverages,1,4.1,False,0.691,44,9,65.55555555555556,4,18,0,1,0,0,0
+R0760,Authentic Fast Food Junction,Hyderabad,Desserts,Desserts,4,4.0,False,0.413,55,8,162.5,4,9,0,0,0,0,1
+R0761,Spicy Beverages Express,Hyderabad,Beverages,Beverages|South Indian,3,2.6,False,0.486,36,9,86.44444444444444,4,9,0,0,0,1,0
+R0762,New Biryani Kitchen,Delhi,Italian,Italian|Beverages|Desserts,4,2.6,False,0.406,57,8,125.875,4,8,0,0,0,0,1
+R0763,New Continental Kitchen,Pune,North Indian,North Indian|Chinese,2,4.1,False,0.617,48,12,156.25,4,11,0,0,1,0,0
+R0764,Delicious Desserts Junction,Delhi,North Indian,North Indian,3,4.0,False,0.565,25,10,170.5,4,14,0,0,0,1,0
+R0765,The Chinese Eats,Kolkata,Biryani,Biryani|Italian,3,4.5,True,0.807,26,10,162.3,4,14,1,0,0,1,0
+R0766,Royal Fast Food Hub,Bangalore,Beverages,Beverages,4,3.8,True,0.491,28,8,86.625,4,13,1,0,0,0,1
+R0767,New Continental Express,Hyderabad,Continental,Continental|South Indian|Italian,4,3.8,False,0.596,27,8,237.75,4,11,0,0,0,0,1
+R0768,Tasty South Indian Eats,Mumbai,South Indian,South Indian|Fast Food|Beverages,2,4.7,True,0.731,56,11,83.45454545454545,4,16,1,0,1,0,0
+R0769,Hot North Indian Bites,Bangalore,North Indian,North Indian|Biryani|Italian,2,3.7,False,0.57,60,12,156.25,4,14,0,0,1,0,0
+R0770,Tasty North Indian Place,Pune,South Indian,South Indian|Beverages|Chinese,1,4.1,False,0.69,33,11,71.9090909090909,4,16,0,1,0,0,0
+R0771,Golden Fast Food Eats,Bangalore,Biryani,Biryani,4,3.1,True,0.584,41,8,138.125,4,13,1,0,0,0,1
+R0772,The Italian Place,Bangalore,South Indian,South Indian|Street Food,2,3.3,False,0.605,53,11,83.45454545454545,4,13,0,0,1,0,0
+R0773,Delicious North Indian Junction,Mumbai,Desserts,Desserts,1,3.6,False,0.872,36,9,114.88888888888889,4,14,0,1,0,0,0
+R0774,Royal North Indian Point,Hyderabad,North Indian,North Indian|Desserts,4,4.5,False,0.582,30,8,161.0,4,9,0,0,0,0,1
+R0775,New South Indian Bites,Delhi,Desserts,Desserts,3,4.2,True,0.511,32,9,151.22222222222223,4,14,1,0,0,1,0
+R0776,Royal Italian Eats,Pune,Continental,Continental,1,4.6,False,0.775,57,11,173.45454545454547,4,10,0,1,0,0,0
+R0777,Hot Continental House,Kolkata,North Indian,North Indian|Italian,2,2.4,False,0.662,46,12,156.25,4,13,0,0,1,0,0
+R0778,Fresh Street Food Bites,Chennai,Continental,Continental,3,4.0,False,0.681,31,10,207.4,4,17,0,0,0,1,0
+R0779,Fresh Street Food Kitchen,Chennai,Fast Food,Fast Food|North Indian,2,4.7,True,0.643,28,10,113.3,4,11,1,0,1,0,0
+R0780,Golden Desserts Kitchen,Kolkata,Street Food,Street Food,2,3.4,False,0.528,60,10,65.4,4,11,0,0,1,0,0
+R0781,The Fast Food Express,Kolkata,Desserts,Desserts,3,4.1,False,0.686,56,9,151.22222222222223,4,9,0,0,0,1,0
+R0782,Spicy North Indian Bites,Bangalore,Italian,Italian|Beverages,2,2.3,False,0.579,47,10,113.3,4,16,0,0,1,0,0
+R0783,Fresh North Indian Eats,Bangalore,Biryani,Biryani|North Indian|Beverages,3,4.4,False,0.639,46,10,159.8,4,15,0,0,0,1,0
+R0784,Fresh Continental Bites,Hyderabad,Italian,Italian|Continental|Desserts,2,4.0,True,0.622,42,10,113.3,4,15,1,0,1,0,0
+R0785,Spicy Chinese Eats,Bangalore,North Indian,North Indian|Desserts,2,3.2,False,0.676,52,12,156.25,4,12,0,0,1,0,0
+R0786,Tasty Italian Bites,Delhi,Fast Food,Fast Food|Beverages,3,3.8,False,0.717,47,9,117.88888888888889,4,13,0,0,0,1,0
+R0787,The South Indian Junction,Delhi,Fast Food,Fast Food|Chinese,2,4.2,False,0.598,43,10,113.3,4,13,0,0,1,0,0
+R0788,Fresh Street Food Hub,Pune,Continental,Continental,1,2.5,False,0.706,33,11,173.45454545454547,4,14,0,1,0,0,0
+R0789,Hot Desserts Corner,Chennai,South Indian,South Indian|Beverages,1,3.3,False,0.684,25,11,71.9090909090909,4,12,0,1,0,0,0
+R0790,Golden Fast Food Eats,Kolkata,Street Food,Street Food,2,3.9,False,0.8,51,10,65.4,4,14,0,0,1,0,0
+R0791,The South Indian Junction,Hyderabad,Biryani,Biryani|Chinese,3,2.7,False,0.612,43,10,152.3,4,15,0,0,0,1,0
+R0792,Royal South Indian Hub,Bangalore,Beverages,Beverages,2,4.1,False,0.597,34,9,76.33333333333333,4,6,0,0,1,0,0
+R0793,Royal Italian Hub,Mumbai,Chinese,Chinese|Beverages,3,4.1,True,0.574,58,10,142.3,4,12,1,0,0,1,0
+R0794,Authentic Fast Food Eats,Kolkata,Desserts,Desserts,2,4.0,True,0.832,28,9,133.22222222222223,4,9,1,0,1,0,0
+R0795,Royal North Indian Hub,Mumbai,Italian,Italian|Fast Food,3,3.4,False,0.458,42,9,129.0,4,7,0,0,0,1,0
+R0796,Fresh North Indian Hub,Mumbai,Continental,Continental|Italian|Fast Food,3,4.4,False,0.54,32,10,207.4,4,10,0,0,0,1,0
+R0797,Authentic South Indian House,Bangalore,Continental,Continental|Fast Food,3,3.6,False,0.471,42,10,211.1,4,22,0,0,0,1,0
+R0798,New Fast Food Kitchen,Pune,Street Food,Street Food|Continental,2,2.7,False,0.681,37,10,65.4,4,6,0,0,1,0,0
+R0799,Hot Beverages Eats,Pune,Street Food,Street Food,3,4.7,False,0.753,31,9,64.33333333333333,4,16,0,0,0,1,0
+R0800,Fresh Street Food House,Bangalore,Italian,Italian,2,3.9,False,0.707,58,10,113.3,4,12,0,0,1,0,0

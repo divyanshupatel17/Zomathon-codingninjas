@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zomato CSAO Recommendation System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+    <style>
+        /* Reset and base styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            margin: 0; 
+            padding: 0; 
+            font-family: Georgia, "Noto Serif", serif;
+            font-size: 11pt;
+            line-height: 1.6;
+            color: #333;
+            text-align: justify;
+            text-align-last: left;
+        }
+
+        /* Page setup */
+        @page {
+            size: A4;
+            margin: 2.5cm 2cm;
+            @top-center { content: string(doctitle); font-size: 9pt; color: #666; }
+            @bottom-center { content: counter(page); font-size: 9pt; }
+        }
+        @page :first { margin: 0; @top-center { content: none; } @bottom-center { content: none; } }
+        @page cover { @top-center { content: none; } @bottom-center { content: none; } }
+        @page toc { @top-center { content: none; } @bottom-center { content: none; } }
+
+        body { string-set: doctitle ""; }
+        h1 { string-set: doctitle content(); }
+
+        /* Cover page - Swiss style */
+        .cover {
+            width: 210mm;
+            height: 297mm;
+            margin: 0;
+            position: relative;
+            overflow: hidden;
+            page: cover;
+            page-break-after: always;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        /* Geometric decorations */
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(180deg, #FF6B6B 0%, #4ECDC4 100%);
+            clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        .cover::after {
+            content: '';
+            position: absolute;
+            bottom: 5cm;
+            left: 2cm;
+            width: 3cm;
+            height: 3cm;
+            border: 3px solid #333;
+            transform: rotate(45deg);
+        }
+
+        .cover-content {
+            position: absolute;
+            top: 50%;
+            left: 2cm;
+            transform: translateY(-50%);
+            width: 55%;
+            z-index: 10;
+        }
+
+        .cover-title {
+            font-size: 32pt;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5cm;
+            line-height: 1.2;
+        }
+
+        .cover-subtitle {
+            font-size: 14pt;
+            color: #666;
+            margin-bottom: 2cm;
+            font-style: italic;
+        }
+
+        .cover-meta {
+            font-size: 11pt;
+            color: #333;
+            line-height: 2;
+        }
+
+        .cover-badge {
+            position: absolute;
+            bottom: 3cm;
+            right: 3cm;
+            background: white;
+            padding: 0.5cm 1cm;
+            border: 2px solid #333;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        /* TOC */
+        .toc-page {
+            page: toc;
+            page-break-after: always;
+        }
+
+        .toc-title {
+            font-size: 20pt;
+            font-weight: bold;
+            margin-bottom: 1cm;
+            border-bottom: 2px solid #333;
+            padding-bottom: 0.3cm;
+        }
+
+        .toc { list-style: none; }
+        .toc li { margin: 0.4cm 0; }
+        .toc a { 
+            text-decoration: none; 
+            color: #333;
+            display: flex;
+            justify-content: space-between;
+        }
+        .toc a::after {
+            content: leader('.') target-counter(attr(href url), page);
+        }
+        .toc .toc-section { font-weight: bold; }
+        .toc .toc-subsection { padding-left: 1cm; }
+
+        /* Headings */
+        h1 {
+            font-size: 20pt;
+            font-weight: bold;
+            margin: 1cm 0 0.5cm 0;
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 0.2cm;
+            page-break-after: avoid;
+        }
+
+        h2 {
+            font-size: 14pt;
+            font-weight: bold;
+            margin: 0.8cm 0 0.4cm 0;
+            color: #333;
+            page-break-after: avoid;
+        }
+
+        h3 {
+            font-size: 12pt;
+            font-weight: bold;
+            margin: 0.5cm 0 0.3cm 0;
+            color: #444;
+            page-break-after: avoid;
+        }
+
+        /* Paragraphs */
+        p { margin: 0.3cm 0; }
+
+        /* Lists */
+        ul, ol { margin: 0.3cm 0 0.3cm 1cm; }
+        li { margin: 0.15cm 0; }
+
+        /* Tables - Three-line style */
+        table {
+            width: 100%;
+            max-width: 100%;
+            border-collapse: collapse;
+            margin: 0.5cm 0;
+            font-size: 10pt;
+            page-break-inside: avoid;
+        }
+
+        thead {
+            display: table-header-group;
+            border-top: 2px solid #333;
+            border-bottom: 1px solid #333;
+        }
+
+        tbody { border-bottom: 2px solid #333; }
+
+        th, td { 
+            padding: 0.3cm 0.4cm; 
+            text-align: left;
+        }
+
+        th { font-weight: bold; background: #f5f5f5; }
+        tr { page-break-inside: avoid; }
+
+        caption {
+            caption-side: top;
+            text-align: left;
+            font-weight: bold;
+            margin-bottom: 0.3cm;
+        }
+        caption::before { content: attr(data-label) "  "; }
+
+        /* Figures */
+        figure {
+            margin: 0.5cm 0;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+
+        figure img {
+            max-width: 100%;
+            max-height: 40vh;
+            height: auto;
+        }
+
+        figcaption {
+            font-size: 10pt;
+            color: #666;
+            margin-top: 0.3cm;
+        }
+        figcaption::before { content: attr(data-label) "  "; font-weight: bold; }
+
+        /* Code blocks */
+        pre {
+            background: #f5f5f5;
+            padding: 0.5cm;
+            border-radius: 3px;
+            font-family: "Courier New", monospace;
+            font-size: 9pt;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            max-width: 100%;
+        }
+
+        code {
+            font-family: "Courier New", monospace;
+            font-size: 9pt;
+            background: #f5f5f5;
+            padding: 0.05cm 0.1cm;
+            word-break: break-word;
+        }
+
+        /* Theorem/Definition boxes */
+        .theorem, .definition, .highlight-box {
+            border-left: 3px solid #333;
+            padding: 0.5cm 0.5cm 0.5cm 1cm;
+            margin: 0.5cm 0;
+            background: #f9f9f9;
+        }
+
+        .theorem-title, .definition-title {
+            font-weight: bold;
+            margin-bottom: 0.2cm;
+        }
+
+        /* Architecture diagram boxes */
+        .arch-box {
+            border: 1px solid #333;
+            padding: 0.3cm;
+            margin: 0.2cm 0;
+            background: white;
+        }
+
+        .arch-title {
+            font-weight: bold;
+            font-size: 10pt;
+            margin-bottom: 0.2cm;
+        }
+
+        /* Page breaks */
+        .page-break { page-break-after: always; }
+
+        /* Prevent overflow */
+        pre, table, figure, img, svg, blockquote {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        a { word-break: break-all; color: #333; }
+
+        /* Math */
+        .katex-display { overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <!-- Cover Page -->
+    <div class="cover">
+        <div class="cover-content">
+            <h1 class="cover-title">Cart-Smart Add-On (CSAO)<br>Recommendation System</h1>
+            <p class="cover-subtitle">An Intelligent ML-Powered Solution for Zomato</p>
+            <div class="cover-meta">
+                <p><strong>Problem Statement 2:</strong> Zomathon Hackathon</p>
+                <p><strong>Date:</strong> March 2025</p>
+                <p><strong>Approach:</strong> Graph Neural Networks + Session-Based Modeling + LLM Cold-Start</p>
+            </div>
+        </div>
+        <div class="cover-badge">ZOMATO CSAO</div>
+    </div>
+
+    <!-- Table of Contents -->
+    <div class="toc-page">
+        <h2 class="toc-title">Table of Contents</h2>
+        <ul class="toc">
+            <li class="toc-section"><a href="#sec1">1. Executive Summary</a></li>
+            <li class="toc-section"><a href="#sec2">2. Problem Understanding</a></li>
+            <li class="toc-subsection"><a href="#sec2-1">2.1 Objectives</a></li>
+            <li class="toc-subsection"><a href="#sec2-2">2.2 Success Metrics</a></li>
+            <li class="toc-section"><a href="#sec3">3. Data & Synthetic Dataset</a></li>
+            <li class="toc-subsection"><a href="#sec3-1">3.1 Schema Design</a></li>
+            <li class="toc-subsection"><a href="#sec3-2">3.2 Simulation Logic</a></li>
+            <li class="toc-section"><a href="#sec4">4. Feature Engineering</a></li>
+            <li class="toc-subsection"><a href="#sec4-1">4.1 User Features</a></li>
+            <li class="toc-subsection"><a href="#sec4-2">4.2 Item & Restaurant Features</a></li>
+            <li class="toc-subsection"><a href="#sec4-3">4.3 Cart & Context Features</a></li>
+            <li class="toc-section"><a href="#sec5">5. Problem Formulation</a></li>
+            <li class="toc-section"><a href="#sec6">6. Model Architecture</a></li>
+            <li class="toc-subsection"><a href="#sec6-1">6.1 Baseline Models</a></li>
+            <li class="toc-subsection"><a href="#sec6-2">6.2 Graph Embeddings</a></li>
+            <li class="toc-subsection"><a href="#sec6-3">6.3 Session-Based Model</a></li>
+            <li class="toc-subsection"><a href="#sec6-4">6.4 Hybrid Ranker</a></li>
+            <li class="toc-section"><a href="#sec7">7. LLM-Powered Cold-Start</a></li>
+            <li class="toc-section"><a href="#sec8">8. System Design</a></li>
+            <li class="toc-subsection"><a href="#sec8-1">8.1 Architecture</a></li>
+            <li class="toc-subsection"><a href="#sec8-2">8.2 Latency Budget</a></li>
+            <li class="toc-section"><a href="#sec9">9. Evaluation Results</a></li>
+            <li class="toc-section"><a href="#sec10">10. Business Impact & A/B Testing</a></li>
+            <li class="toc-section"><a href="#sec11">11. Conclusion</a></li>
+        </ul>
+    </div>

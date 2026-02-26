@@ -1,0 +1,133 @@
+
+    <!-- Section 4: Feature Engineering -->
+    <h1 id="sec4">4. Feature Engineering</h1>
+
+    <p>We designed a comprehensive feature pipeline capturing user preferences, item characteristics, cart composition, and contextual signals.</p>
+
+    <h2 id="sec4-1">4.1 User Features</h2>
+
+    <table>
+        <caption data-label="Table 4">User Feature Categories</caption>
+        <thead>
+            <tr><th>Category</th><th>Features</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>RFM</td><td>recency, frequency, monetary</td><td>Days since last order, orders/month, avg order value</td></tr>
+            <tr><td>Preferences</td><td>preferred_cuisines, veg_preference</td><td>Top cuisines, dietary preference</td></tr>
+            <tr><td>Segment</td><td>budget, premium, occasional</td><td>User segment derived from RFM</td></tr>
+            <tr><td>Behavior</td><td>csao_acceptance_rate, total_orders</td><td>Historical CSAO acceptance, order count</td></tr>
+            <tr><td>Temporal</td><td>preferred_meal_time, weekend_ratio</td><td>Favorite meal time, weekend ordering %</td></tr>
+        </tbody>
+    </table>
+
+    <h2 id="sec4-2">4.2 Item & Restaurant Features</h2>
+
+    <table>
+        <caption data-label="Table 5">Item & Restaurant Features</caption>
+        <thead>
+            <tr><th>Entity</th><th>Features</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Item</td><td>category (main/side/dessert/beverage), veg_flag, price, historical_attach_rate, price_percentile</td></tr>
+            <tr><td>Restaurant</td><td>rating, popularity, menu_size, avg_item_price, category_diversity, is_chain, price_band</td></tr>
+        </tbody>
+    </table>
+
+    <h2 id="sec4-3">4.3 Cart & Context Features</h2>
+
+    <table>
+        <caption data-label="Table 6">Cart & Context Features</caption>
+        <thead>
+            <tr><th>Category</th><th>Features</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Cart Aggregates</td><td>cart_value, cart_size, cart_category_diversity, meal_complete</td></tr>
+            <tr><td>Cart Composition</td><td>cart_has_main, cart_has_side, cart_has_dessert, cart_has_beverage</td></tr>
+            <tr><td>Temporal</td><td>meal_breakfast, meal_lunch, meal_dinner, meal_snack, meal_late_night</td></tr>
+            <tr><td>Device</td><td>device_mobile, device_web, device_tablet</td></tr>
+            <tr><td>Candidate</td><td>candidate_price, candidate_is_side, candidate_is_dessert, candidate_is_beverage</td></tr>
+        </tbody>
+    </table>
+
+    <!-- Section 5: Problem Formulation -->
+    <h1 id="sec5">5. Problem Formulation</h1>
+
+    <div class="definition">
+        <div class="definition-title">Task Definition</div>
+        <p>For each cart update, rank candidate add-on items by probability of acceptance (click/add-to-cart) given user $u$, restaurant $r$, cart state $C$, and context $x$:</p>
+        <p style="text-align: center; margin: 0.5cm 0;">
+            $$P(accept | u, i, C, x) = f(u, i, C, x; \theta)$$
+        </p>
+    </div>
+
+    <p><strong>Problem Type:</strong> Ranking problem solved via pointwise classification, with sequential elements since the cart evolves over time.</p>
+
+    <p><strong>Labels:</strong></p>
+    <ul>
+        <li>1: Item was shown as CSAO and added to cart (accept)</li>
+        <li>0: Item was shown as CSAO but ignored (reject)</li>
+    </ul>
+
+    <p><strong>Two-Stage Architecture:</strong></p>
+    <ol>
+        <li><strong>Candidate Generation:</strong> Filter + retrieve ~50-100 candidates using ANN over embeddings</li>
+        <li><strong>Personalized Ranking:</strong> Score and rank top 8-10 items using hybrid model</li>
+    </ol>
+
+    <!-- Section 6: Model Architecture -->
+    <h1 id="sec6">6. Model Architecture</h1>
+
+    <p>Our solution follows a baseline to advanced progression, culminating in a hybrid model that combines multiple signals.</p>
+
+    <h2 id="sec6-1">6.1 Baseline Models</h2>
+
+    <h3>Popularity Baseline</h3>
+    <p>Recommends top-N popular add-ons per restaurant based on historical attach rate. This provides a strong baseline that captures general item popularity.</p>
+
+    <h3>Logistic Regression</h3>
+    <p>Pointwise classifier using hand-engineered features (user + item + context + cart aggregates). Provides an interpretable baseline with AUC = 0.769.</p>
+
+    <h3>Gradient Boosting</h3>
+    <p>Tree-based ensemble capturing non-linear feature interactions. Top features: csao_acceptance_rate (39%), actual_attach_rate (26%), cart_category_diversity (2%).</p>
+
+    <h2 id="sec6-2">6.2 Graph Embeddings (GNN)</h2>
+
+    <p>Inspired by Uber Eats and Swiggy's use of Graph Neural Networks, we build a heterogeneous graph:</p>
+
+    <ul>
+        <li><strong>Nodes:</strong> Users (5,000), Items (7,914), Restaurants (800)</li>
+        <li><strong>Edges:</strong> User-Item (orders), Item-Restaurant (menu), User-Restaurant (sessions)</li>
+    </ul>
+
+    <p>The graph embeddings capture collaborative filtering signals and enable similarity-based recommendations:</p>
+    <ul>
+        <li>sim(user, item): User preference for item</li>
+        <li>sim(cart, item): Cart intent similarity</li>
+        <li>sim(restaurant, item): Restaurant-item affinity</li>
+    </ul>
+
+    <h2 id="sec6-3">6.3 Session-Based Model</h2>
+
+    <p>We use a VMIS-kNN (Vector Space Model for Item Selection with k-Nearest Neighbors) approach for session-based recommendations:</p>
+
+    <ul>
+        <li>Represents each session as a sequence of item interactions</li>
+        <li>Finds similar sessions based on cart composition</li>
+        <li>Recommends items that were added in similar sessions</li>
+        <li>Achieves P90 latencies of a few milliseconds at scale</li>
+    </ul>
+
+    <h2 id="sec6-4">6.4 Hybrid Ranker</h2>
+
+    <p>The final model combines all signals:</p>
+
+    <div class="arch-box">
+        <div class="arch-title">Hybrid Model Architecture</div>
+        <ul>
+            <li><strong>Graph Embeddings (16-dim each):</strong> User, Item, Restaurant embeddings</li>
+            <li><strong>Similarity Features:</strong> user_item_sim, rest_item_sim</li>
+            <li><strong>Context Features:</strong> Cart aggregates, temporal, device</li>
+            <li><strong>Raw Features:</strong> Price, margins, user segment, time-of-day</li>
+            <li><strong>Ranker:</strong> Gradient Boosting with 150 trees, max_depth=5</li>
+        </ul>
+    </div>
