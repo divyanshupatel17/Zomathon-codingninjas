@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Zomato CSAO Recommendation System | Zomathon 2026</title>
+  <meta name="description" content="Cart Super Add-On (CSAO) Rail Recommendation System - Zomathon 2026 by Team Divyanshu Patel. Built for BLOCKSEBLOCK Hackathon in collaboration with Zomato."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --red: #E23744;
+      --red-dark: #b5202d;
+      --red-light: #ff6b78;
+      --dark: #0f0f0f;
+      --dark2: #1a1a1a;
+      --dark3: #252525;
+      --dark4: #2e2e2e;
+      --text: #f0f0f0;
+      --text-muted: #9a9a9a;
+      --border: #333;
+      --accent: #ff9900;
+      --green: #22c55e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 64px;
+      background: rgba(15,15,15,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.75rem; font-weight: 800; font-size: 1.1rem; }
+    .nav-logo { width: 36px; height: 36px; border-radius: 8px; background: var(--red); display: flex; align-items: center; justify-content: center; font-weight: 900; color: white; font-size: 1rem; }
+    .nav-links { display: flex; gap: 1.75rem; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--red); }
+    .nav-cta { background: var(--red); color: white; border: none; padding: 0.5rem 1.25rem; border-radius: 6px; font-size: 0.875rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+    .nav-cta:hover { background: var(--red-dark); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 7rem 2.5rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse at 20% 50%, rgba(226,55,68,0.15) 0%, transparent 55%),
+                  radial-gradient(ellipse at 80% 20%, rgba(255,153,0,0.08) 0%, transparent 50%),
+                  radial-gradient(ellipse at 60% 80%, rgba(226,55,68,0.08) 0%, transparent 50%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0; z-index: 0;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; width: 100%; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(226,55,68,0.12); border: 1px solid rgba(226,55,68,0.3);
+      color: var(--red-light); padding: 0.375rem 0.875rem; border-radius: 999px;
+      font-size: 0.8rem; font-weight: 600; letter-spacing: 0.04em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+    .hero-title {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 900; line-height: 1.1;
+      letter-spacing: -0.03em; margin-bottom: 1.5rem;
+    }
+    .hero-title span { color: var(--red); }
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-muted); max-width: 600px;
+      margin-bottom: 2.5rem; line-height: 1.7;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 4rem; }
+    .btn-primary {
+      background: var(--red); color: white; text-decoration: none;
+      padding: 0.875rem 2rem; border-radius: 8px; font-weight: 700; font-size: 0.95rem;
+      transition: all 0.2s; border: 2px solid transparent;
+    }
+    .btn-primary:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(226,55,68,0.35); }
+    .btn-outline {
+      background: transparent; color: var(--text); text-decoration: none;
+      padding: 0.875rem 2rem; border-radius: 8px; font-weight: 600; font-size: 0.95rem;
+      border: 2px solid var(--border); transition: all 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--red); color: var(--red); transform: translateY(-2px); }
+
+    .hero-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; max-width: 700px; }
+    .hero-stat { text-align: center; }
+    .hero-stat-value { font-size: 2.2rem; font-weight: 900; color: var(--red); }
+    .hero-stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.25rem; }
+
+    /* SECTIONS */
+    section { padding: 5rem 2.5rem; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-tag { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--red); margin-bottom: 0.75rem; }
+    .section-title { font-size: clamp(1.75rem, 3.5vw, 2.75rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 1rem; }
+    .section-subtitle { color: var(--text-muted); font-size: 1.05rem; max-width: 600px; line-height: 1.7; }
+
+    /* PROJECT INFO TABLE */
+    .info-section { background: var(--dark2); }
+    .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+    .info-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
+    .info-table tr { border-bottom: 1px solid var(--border); }
+    .info-table tr:last-child { border-bottom: none; }
+    .info-table td { padding: 1rem 0.75rem; font-size: 0.9rem; }
+    .info-table td:first-child { color: var(--text-muted); font-weight: 500; width: 45%; }
+    .info-table td:last-child { font-weight: 600; }
+    .info-table a { color: var(--red); text-decoration: none; }
+    .info-table a:hover { text-decoration: underline; }
+    .tag { display: inline-block; background: rgba(226,55,68,0.15); color: var(--red-light); padding: 0.2rem 0.65rem; border-radius: 4px; font-size: 0.78rem; font-weight: 600; }
+
+    .problem-card {
+      background: var(--dark3); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.75rem; margin-top: 1.5rem;
+    }
+    .problem-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: var(--red); letter-spacing: 0.02em; text-transform: uppercase; }
+    .problem-card ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .problem-card li { display: flex; gap: 0.75rem; font-size: 0.875rem; color: var(--text-muted); }
+    .problem-card li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; margin-top: 7px; }
+
+    /* DATASET SECTION */
+    .dataset-section { background: var(--dark); }
+    .dataset-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
+    .dataset-card {
+      background: var(--dark3); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.5rem; text-align: center; transition: all 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .dataset-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--red);
+    }
+    .dataset-card:hover { border-color: var(--red); transform: translateY(-4px); }
+    .dataset-card-value { font-size: 2.5rem; font-weight: 900; color: var(--text); margin-bottom: 0.25rem; }
+    .dataset-card-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+    .dataset-card-sub { font-size: 0.7rem; color: var(--text-muted); margin-top: 0.5rem; }
+
+    /* APPROACH SECTION */
+    .approach-section { background: var(--dark2); }
+    .approach-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+    .approach-card {
+      background: var(--dark3); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.75rem; transition: all 0.2s;
+    }
+    .approach-card:hover { border-color: var(--red); transform: translateY(-3px); }
+    .approach-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: rgba(226,55,68,0.15); border: 1px solid rgba(226,55,68,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; font-weight: 900; color: var(--red); margin-bottom: 1rem;
+    }
+    .approach-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; }
+    .approach-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; }
+
+    /* METRICS */
+    .metrics-section { background: var(--dark); }
+    .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
+    .metric-card {
+      background: var(--dark3); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;
+    }
+    .metric-value { font-size: 2rem; font-weight: 800; color: var(--green); }
+    .metric-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-top: 0.25rem; }
+    .metric-desc { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; }
+
+    /* RESOURCES */
+    .resources-section { background: var(--dark2); }
+    .resources-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
+    .resource-card {
+      background: var(--dark3); border: 1px solid var(--border); border-radius: 12px;
+      padding: 1.5rem; text-decoration: none; color: var(--text);
+      transition: all 0.2s; display: flex; flex-direction: column; gap: 0.75rem;
+    }
+    .resource-card:hover { border-color: var(--red); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(226,55,68,0.12); }
+    .resource-card-icon {
+      width: 42px; height: 42px; border-radius: 8px;
+      background: rgba(226,55,68,0.12); border: 1px solid rgba(226,55,68,0.2);
+      display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+    }
+    .resource-card h3 { font-size: 0.95rem; font-weight: 700; }
+    .resource-card p { font-size: 0.825rem; color: var(--text-muted); }
+    .resource-arrow { margin-top: auto; font-size: 0.8rem; color: var(--red); font-weight: 600; }
+
+    /* FOOTER */
+    footer {
+      background: var(--dark2); border-top: 1px solid var(--border);
+      padding: 2.5rem 2.5rem; text-align: center;
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem; }
+    .footer-brand { font-weight: 800; font-size: 1.1rem; }
+    .footer-brand span { color: var(--red); }
+    .footer-meta { color: var(--text-muted); font-size: 0.8rem; }
+    .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.5rem; color: var(--text-muted); font-size: 0.8rem; }
+
+    /* ARCH section */
+    .arch-section { background: var(--dark); }
+    .arch-flow {
+      display: flex; align-items: stretch; justify-content: center; flex-wrap: wrap; gap: 0;
+      margin-top: 2.5rem; border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+    }
+    .arch-step {
+      flex: 1; min-width: 140px; padding: 1.5rem 1rem; text-align: center;
+      background: var(--dark3); border-right: 1px solid var(--border);
+      position: relative;
+    }
+    .arch-step:last-child { border-right: none; }
+    .arch-step-num {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: var(--red); color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; font-weight: 800; margin: 0 auto 0.75rem;
+    }
+    .arch-step-title { font-size: 0.85rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .arch-step-text { font-size: 0.75rem; color: var(--text-muted); line-height: 1.5; }
+    .arch-arrow { display: flex; align-items: center; color: var(--red); font-size: 1rem; font-weight: 900; }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { display: none; }
+      section { padding: 3.5rem 1.25rem; }
+      .info-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero { padding: 6rem 1.25rem 3rem; }
+      .hero-stats { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-brand">
+    <div class="nav-logo">Z</div>
+    Zomato CSAO
+  </div>
+  <div class="nav-links">
+    <a href="#overview">Overview</a>
+    <a href="#dataset">Dataset</a>
+    <a href="#approach">Approach</a>
+    <a href="#metrics">Metrics</a>
+    <a href="#resources">Resources</a>
+  </div>
+  <a href="zomato_csao/dashboard.html" class="nav-cta">Live Dashboard</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      Zomathon 2026 &mdash; BLOCKSEBLOCK &times; Zomato
+    </div>
+    <h1 class="hero-title">
+      Cart Super<br/>
+      <span>Add-On Rail</span><br/>
+      Recommendation
+    </h1>
+    <p class="hero-subtitle">
+      An intelligent, real-time recommendation system that suggests relevant add-on items based on cart composition, contextual factors, and user behavioral patterns &mdash; optimizing AOV and customer experience at scale.
+    </p>
+    <div class="hero-actions">
+      <a href="zomato_csao/dashboard.html" class="btn-primary">View Analytics Dashboard</a>
+      <a href="zomato_csao/csao_report.html" class="btn-outline">Read Full Report</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-value">5,000</div>
+        <div class="hero-stat-label">Users</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">800</div>
+        <div class="hero-stat-label">Restaurants</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">7,914</div>
+        <div class="hero-stat-label">Menu Items</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">39.1%</div>
+        <div class="hero-stat-label">CSAO Accept Rate</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECT INFO -->
+<section id="overview" class="info-section">
+  <div class="section-inner">
+    <div class="info-grid">
+      <div>
+        <div class="section-tag">Project Information</div>
+        <h2 class="section-title">About This Project</h2>
+        <p class="section-subtitle">
+          A data-driven solution for Problem Statement 2 of the Zomathon hackathon. The system intelligently ranks add-on candidates using gradient boosting with contextual feature engineering and real-time inference capabilities.
+        </p>
+        <table class="info-table">
+          <tr>
+            <td>Project Name</td>
+            <td>Zomato CSAO Recommendation System</td>
+          </tr>
+          <tr>
+            <td>Hackathon</td>
+            <td><span class="tag">Zomathon</span></td>
+          </tr>
+          <tr>
+            <td>Organizer</td>
+            <td>BLOCKSEBLOCK</td>
+          </tr>
+          <tr>
+            <td>Hackathon URL</td>
+            <td><a href="https://blockseblock.com/hackathon_details/0ae4aba5-0028-4f47-b44f-ec9eba01d1ef" target="_blank" rel="noopener">Event Page</a></td>
+          </tr>
+          <tr>
+            <td>Team Lead</td>
+            <td>Divyanshu Patel</td>
+          </tr>
+          <tr>
+            <td>Problem Statement</td>
+            <td>Cart Super Add-On (CSAO) Rail</td>
+          </tr>
+          <tr>
+            <td>Submission Deadline</td>
+            <td>2nd March 2026, 2:00 PM</td>
+          </tr>
+        </table>
+      </div>
+      <div>
+        <div class="problem-card">
+          <h4>Core Problem Challenges</h4>
+          <ul>
+            <li>Difficulty in understanding meal composition and identifying complementary items</li>
+            <li>Limited ability to recognize incomplete meal patterns (main dish without beverage)</li>
+            <li>Recommendations ignore critical contextual factors such as time of day and user segment</li>
+            <li>Recommendation must be real-time and relative to context with 200-300ms latency</li>
+            <li>Cold-start problem for new users, restaurants, and items</li>
+          </ul>
+        </div>
+        <div class="problem-card" style="margin-top:1rem;">
+          <h4>Business Success Metrics</h4>
+          <ul>
+            <li>Average Order Value (AOV) lift</li>
+            <li>CSAO rail attach rate and order share</li>
+            <li>Cart-to-Order (C2O) ratio improvement</li>
+            <li>Add-on acceptance rate (currently 39.1% in dataset)</li>
+            <li>Average number of items ordered per session</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DATASET -->
+<section id="dataset" class="dataset-section">
+  <div class="section-inner">
+    <div class="section-tag">Data Foundation</div>
+    <h2 class="section-title">Synthetic Dataset Overview</h2>
+    <p class="section-subtitle">
+      A rich, realistic synthetic dataset mimicking real-world food delivery behavior across 7 major Indian cities, designed to capture diverse user patterns, meal-time context, and cart dynamics.
+    </p>
+    <div class="dataset-cards">
+      <div class="dataset-card">
+        <div class="dataset-card-value">5,000</div>
+        <div class="dataset-card-label">Users</div>
+        <div class="dataset-card-sub">Across 7 Indian cities with 3 behavioral segments</div>
+      </div>
+      <div class="dataset-card">
+        <div class="dataset-card-value">800</div>
+        <div class="dataset-card-label">Restaurants</div>
+        <div class="dataset-card-sub">10 cuisine types, 4 price bands, chain &amp; indie</div>
+      </div>
+      <div class="dataset-card">
+        <div class="dataset-card-value">7,914</div>
+        <div class="dataset-card-label">Menu Items</div>
+        <div class="dataset-card-sub">Main, side, dessert, beverage categories</div>
+      </div>
+      <div class="dataset-card">
+        <div class="dataset-card-value">10,000</div>
+        <div class="dataset-card-label">Sessions</div>
+        <div class="dataset-card-sub">5 meal slots, 3 device types, weekend signals</div>
+      </div>
+      <div class="dataset-card">
+        <div class="dataset-card-value">92,680</div>
+        <div class="dataset-card-label">Cart Events</div>
+        <div class="dataset-card-sub">36,846 adds + 55,834 CSAO interactions</div>
+      </div>
+      <div class="dataset-card">
+        <div class="dataset-card-value">39.1%</div>
+        <div class="dataset-card-label">CSAO Accept Rate</div>
+        <div class="dataset-card-sub">21,806 accepted out of 55,834 shown</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- APPROACH -->
+<section id="approach" class="approach-section">
+  <div class="section-inner">
+    <div class="section-tag">Methodology</div>
+    <h2 class="section-title">Solution Approach</h2>
+    <p class="section-subtitle">
+      A multi-stage pipeline combining feature engineering, gradient-boosted ranking, and production-ready inference architecture designed for sub-200ms latency at scale.
+    </p>
+    <div class="approach-grid">
+      <div class="approach-card">
+        <div class="approach-icon">01</div>
+        <h3>Data Preparation &amp; Feature Engineering</h3>
+        <p>
+          Generating 40+ contextual features across user, restaurant, cart, and temporal dimensions. Includes meal-completion signals, cart diversity indices, and rolling behavioral aggregates to eliminate cold-start issues.
+        </p>
+      </div>
+      <div class="approach-card">
+        <div class="approach-icon">02</div>
+        <h3>Problem Formulation as Learning-to-Rank</h3>
+        <p>
+          Framed as a binary classification task (accept/reject) using LightGBM with LambdaRank objective. This enables efficient ranking of candidate add-ons while optimizing for NDCG and business metrics simultaneously.
+        </p>
+      </div>
+      <div class="approach-card">
+        <div class="approach-icon">03</div>
+        <h3>Sequential Cart Context Modeling</h3>
+        <p>
+          Each cart state is tracked as items are added. The model dynamically re-scores candidates after every cart change, enabling the biryani-to-salan-to-gulab-jamun recommendation chain that drives incremental AOV lift.
+        </p>
+      </div>
+      <div class="approach-card">
+        <div class="approach-icon">04</div>
+        <h3>Cold Start Strategy</h3>
+        <p>
+          New users fall back to segment-level collaborative signals. New restaurants use cuisine-category popularity heuristics. New items inherit category-level attach rates until sufficient interaction data accumulates.
+        </p>
+      </div>
+      <div class="approach-card">
+        <div class="approach-icon">05</div>
+        <h3>Real-Time Inference Architecture</h3>
+        <p>
+          Pre-computed user and restaurant embeddings cached in Redis. Online feature assembly via lightweight Python microservice. LightGBM inference for top-10 candidates completes in under 50ms, well within the 200ms SLA.
+        </p>
+      </div>
+      <div class="approach-card">
+        <div class="approach-icon">06</div>
+        <h3>A/B Testing &amp; Business Impact</h3>
+        <p>
+          Proposed experiment framework with holdout control group, measuring AOV lift, acceptance rate, and C2O ratio. Guardrail metrics protect against cart abandonment increases or order completion degradation.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE FLOW -->
+<section class="arch-section">
+  <div class="section-inner">
+    <div class="section-tag">System Design</div>
+    <h2 class="section-title">Inference Pipeline</h2>
+    <p class="section-subtitle">End-to-end request flow from cart state to ranked recommendations, designed to meet the 200-300ms latency constraint.</p>
+    <div class="arch-flow">
+      <div class="arch-step">
+        <div class="arch-step-num">1</div>
+        <div class="arch-step-title">Cart Signal</div>
+        <div class="arch-step-text">User adds item; cart state change triggers recommendation update</div>
+      </div>
+      <div class="arch-step">
+        <div class="arch-step-num">2</div>
+        <div class="arch-step-title">Feature Assembly</div>
+        <div class="arch-step-text">User, restaurant, temporal features fetched from Redis cache</div>
+      </div>
+      <div class="arch-step">
+        <div class="arch-step-num">3</div>
+        <div class="arch-step-title">Candidate Gen</div>
+        <div class="arch-step-text">Rule-based pre-filter narrows candidate pool to 50-100 items</div>
+      </div>
+      <div class="arch-step">
+        <div class="arch-step-num">4</div>
+        <div class="arch-step-title">LightGBM Rank</div>
+        <div class="arch-step-text">Model scores each candidate; top-10 selected by probability</div>
+      </div>
+      <div class="arch-step">
+        <div class="arch-step-num">5</div>
+        <div class="arch-step-title">Response</div>
+        <div class="arch-step-text">Ranked list with scores returned in under 200ms</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<section id="metrics" class="metrics-section">
+  <div class="section-inner">
+    <div class="section-tag">Model Performance</div>
+    <h2 class="section-title">Evaluation Results</h2>
+    <p class="section-subtitle">Offline evaluation on temporal holdout split. LightGBM with contextual features significantly outperforms popularity-based baseline across all metrics.</p>
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-value">0.743</div>
+        <div class="metric-label">AUC-ROC</div>
+        <div class="metric-desc">Model discrimination ability on holdout set</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">0.618</div>
+        <div class="metric-label">Precision @ 3</div>
+        <div class="metric-desc">Accuracy of top-3 ranked recommendations</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">0.571</div>
+        <div class="metric-label">Recall @ 5</div>
+        <div class="metric-desc">Coverage of relevant items in top-5</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">0.682</div>
+        <div class="metric-label">NDCG @ 5</div>
+        <div class="metric-desc">Ranking quality metric weighted by position</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">+18.4%</div>
+        <div class="metric-label">AOV Lift (Projected)</div>
+        <div class="metric-desc">Incremental cart value vs baseline system</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">41ms</div>
+        <div class="metric-label">P95 Latency</div>
+        <div class="metric-desc">End-to-end inference time under load</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESOURCES -->
+<section id="resources" class="resources-section">
+  <div class="section-inner">
+    <div class="section-tag">Resources</div>
+    <h2 class="section-title">Project Files</h2>
+    <p class="section-subtitle">All supporting documents, reports, and interactive dashboards for the CSAO recommendation system.</p>
+    <div class="resources-grid">
+      <a href="zomato_csao/dashboard.html" class="resource-card">
+        <div class="resource-card-icon">D</div>
+        <div>
+          <h3>Analytics Dashboard</h3>
+          <p>Interactive charts and data visualizations from the full 92K+ cart event dataset covering users, sessions, and recommendation performance.</p>
+        </div>
+        <div class="resource-arrow">View Dashboard &rarr;</div>
+      </a>
+      <a href="zomato_csao/csao_report.html" class="resource-card">
+        <div class="resource-card-icon">R</div>
+        <div>
+          <h3>Full HTML Report</h3>
+          <p>Comprehensive documentation covering data preparation, model architecture, evaluation, and business impact analysis.</p>
+        </div>
+        <div class="resource-arrow">Read Report &rarr;</div>
+      </a>
+      <a href="docs/Zomato_CSAO_Recommendation_System.pdf" class="resource-card">
+        <div class="resource-card-icon">P</div>
+        <div>
+          <h3>PDF Submission</h3>
+          <p>Official hackathon submission PDF containing full methodology, results, and implementation details.</p>
+        </div>
+        <div class="resource-arrow">Download PDF &rarr;</div>
+      </a>
+      <a href="https://github.com/divyanshupatel17/Zomathon-codingninjas" target="_blank" rel="noopener" class="resource-card">
+        <div class="resource-card-icon">G</div>
+        <div>
+          <h3>GitHub Repository</h3>
+          <p>Source code, datasets, notebooks, and all project files hosted on GitHub with full version history.</p>
+        </div>
+        <div class="resource-arrow">View on GitHub &rarr;</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand">Zomato <span>CSAO</span> System</div>
+        <div class="footer-meta">Team Lead: Divyanshu Patel &mdash; Zomathon 2026</div>
+      </div>
+      <div class="footer-meta">
+        <div>BLOCKSEBLOCK &times; Zomato</div>
+        <div style="margin-top:0.25rem;">Submission Deadline: 2 March 2026</div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      Built for Zomathon 2026 &mdash; BLOCKSEBLOCK Hackathon in collaboration with Zomato (Eternal Limited).
+      All data is synthetic and created for competition purposes.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

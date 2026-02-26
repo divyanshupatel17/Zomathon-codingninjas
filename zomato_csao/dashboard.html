@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CSAO Analytics Dashboard | Zomathon 2026</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --red: #E23744;
+      --red-dark: #b5202d;
+      --dark: #0f0f0f;
+      --dark2: #161616;
+      --dark3: #1e1e1e;
+      --dark4: #252525;
+      --text: #f0f0f0;
+      --text-muted: #888;
+      --border: #2a2a2a;
+      --green: #22c55e;
+      --blue: #3b82f6;
+      --orange: #f59e0b;
+      --purple: #a855f7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--dark); color: var(--text); min-height: 100vh; }
+
+    /* HEADER */
+    header {
+      background: var(--dark2); border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 50;
+    }
+    .header-brand { display: flex; align-items: center; gap: 0.75rem; }
+    .header-logo { width: 32px; height: 32px; background: var(--red); border-radius: 7px; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.9rem; color: white; }
+    .header-title { font-size: 1rem; font-weight: 700; }
+    .header-subtitle { font-size: 0.7rem; color: var(--text-muted); margin-top: 1px; }
+    .header-right { display: flex; align-items: center; gap: 0.75rem; }
+    .header-badge { background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3); color: var(--green); font-size: 0.7rem; font-weight: 600; padding: 0.25rem 0.65rem; border-radius: 999px; display: flex; align-items: center; gap: 0.4rem; }
+    .header-badge::before { content: ''; width: 5px; height: 5px; background: var(--green); border-radius: 50%; }
+    .header-back { background: var(--dark4); border: 1px solid var(--border); color: var(--text); font-size: 0.75rem; padding: 0.35rem 0.85rem; border-radius: 6px; text-decoration: none; transition: border-color 0.2s; }
+    .header-back:hover { border-color: var(--red); color: var(--red); }
+
+    /* LAYOUT */
+    .main { padding: 2rem; max-width: 1400px; margin: 0 auto; }
+
+    /* PAGE TITLE */
+    .page-header { margin-bottom: 2rem; }
+    .page-title { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.02em; }
+    .page-meta { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.35rem; }
+
+    /* STAT CARDS ROW */
+    .stats-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1rem; margin-bottom: 2rem; }
+    .stat-card {
+      background: var(--dark3); border: 1px solid var(--border); border-radius: 10px;
+      padding: 1.25rem 1rem; position: relative; overflow: hidden;
+    }
+    .stat-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: var(--accent-color, var(--red));
+    }
+    .stat-value { font-size: 1.75rem; font-weight: 800; line-height: 1; }
+    .stat-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-top: 0.4rem; }
+    .stat-change { font-size: 0.7rem; color: var(--green); margin-top: 0.3rem; font-weight: 600; }
+
+    /* SECTION DIVIDER */
+    .section-divider {
+      display: flex; align-items: center; gap: 0.75rem; margin: 2.5rem 0 1.5rem;
+    }
+    .section-divider-title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); font-weight: 700; white-space: nowrap; }
+    .section-divider-line { flex: 1; height: 1px; background: var(--border); }
+
+    /* CHART GRIDS */
+    .charts-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+    .charts-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+    .charts-grid-1-2 { display: grid; grid-template-columns: 1fr 2fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+    .charts-grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem; }
+
+    .chart-card {
+      background: var(--dark3); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem;
+    }
+    .chart-card-header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.25rem; }
+    .chart-card-title { font-size: 0.875rem; font-weight: 700; }
+    .chart-card-subtitle { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.2rem; }
+    .chart-tag { background: var(--dark4); border: 1px solid var(--border); color: var(--text-muted); font-size: 0.65rem; font-weight: 600; padding: 0.2rem 0.5rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .chart-container { position: relative; }
+
+    /* METRICS TABLE */
+    .metrics-table { width: 100%; border-collapse: collapse; }
+    .metrics-table thead tr { border-bottom: 2px solid var(--border); }
+    .metrics-table th { text-align: left; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); padding: 0 0 0.75rem; font-weight: 600; }
+    .metrics-table tbody tr { border-bottom: 1px solid var(--border); }
+    .metrics-table tbody tr:last-child { border-bottom: none; }
+    .metrics-table td { padding: 0.75rem 0; font-size: 0.85rem; }
+    .metrics-table td:first-child { color: var(--text-muted); }
+    .metric-bar { width: 100%; height: 6px; background: var(--dark4); border-radius: 3px; overflow: hidden; }
+    .metric-bar-fill { height: 100%; background: var(--red); border-radius: 3px; }
+    .badge-val { color: var(--green); font-weight: 700; }
+    .badge-base { color: var(--text-muted); font-weight: 500; }
+
+    /* INSIGHT CARDS */
+    .insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.25rem; }
+    .insight-card {
+      background: var(--dark3); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem;
+      border-left: 3px solid var(--accent, var(--red));
+    }
+    .insight-heading { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 0.5rem; font-weight: 600; }
+    .insight-value { font-size: 1.5rem; font-weight: 800; }
+    .insight-desc { font-size: 0.775rem; color: var(--text-muted); margin-top: 0.35rem; line-height: 1.5; }
+
+    /* FEATURE IMPORTANCE */
+    .feature-list { display: flex; flex-direction: column; gap: 0.65rem; }
+    .feature-item { display: flex; align-items: center; gap: 0.75rem; }
+    .feature-name { font-size: 0.78rem; width: 160px; flex-shrink: 0; color: var(--text-muted); }
+    .feature-bar-wrap { flex: 1; height: 8px; background: var(--dark4); border-radius: 4px; overflow: hidden; }
+    .feature-bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--red), var(--red-dark)); }
+    .feature-pct { font-size: 0.75rem; font-weight: 700; width: 40px; text-align: right; color: var(--text); }
+
+    /* SYSTEM ARCH */
+    .pipeline { display: flex; gap: 0; margin-top: 1rem; flex-wrap: wrap; }
+    .pipeline-step {
+      flex: 1; min-width: 100px; padding: 1rem 0.75rem; text-align: center;
+      background: var(--dark4); border: 1px solid var(--border);
+      border-right: none; position: relative;
+    }
+    .pipeline-step:last-child { border-right: 1px solid var(--border); }
+    .pipeline-step:first-child { border-radius: 7px 0 0 7px; }
+    .pipeline-step:last-child { border-radius: 0 7px 7px 0; }
+    .pipeline-num { font-size: 0.65rem; font-weight: 800; color: var(--red); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.35rem; }
+    .pipeline-name { font-size: 0.8rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .pipeline-detail { font-size: 0.68rem; color: var(--text-muted); line-height: 1.5; }
+
+    @media (max-width: 1100px) {
+      .stats-row { grid-template-columns: repeat(3, 1fr); }
+      .charts-grid-3 { grid-template-columns: 1fr 1fr; }
+      .charts-grid-1-2, .charts-grid-2-1 { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 700px) {
+      .main { padding: 1rem; }
+      .stats-row { grid-template-columns: repeat(2, 1fr); }
+      .charts-grid-2 { grid-template-columns: 1fr; }
+      .charts-grid-3 { grid-template-columns: 1fr; }
+      header { padding: 0.75rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-brand">
+    <div class="header-logo">Z</div>
+    <div>
+      <div class="header-title">CSAO Analytics Dashboard</div>
+      <div class="header-subtitle">Zomato Cart Super Add-On Recommendation &mdash; Zomathon 2026</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="header-badge">Live Data</div>
+    <a href="../index.html" class="header-back">Back to Project</a>
+  </div>
+</header>
+
+<div class="main">
+  <div class="page-header">
+    <div class="page-title">Dataset &amp; Model Analytics</div>
+    <div class="page-meta">92,680 cart events &bull; 5,000 users &bull; 800 restaurants &bull; 7,914 items &bull; 10,000 sessions &bull; Team Lead: Divyanshu Patel</div>
+  </div>
+
+  <!-- TOP KPI ROW -->
+  <div class="stats-row">
+    <div class="stat-card" style="--accent-color: var(--red)">
+      <div class="stat-value">5,000</div>
+      <div class="stat-label">Total Users</div>
+      <div class="stat-change">7 Indian cities</div>
+    </div>
+    <div class="stat-card" style="--accent-color: #3b82f6">
+      <div class="stat-value">800</div>
+      <div class="stat-label">Restaurants</div>
+      <div class="stat-change">10 cuisine types</div>
+    </div>
+    <div class="stat-card" style="--accent-color: #a855f7">
+      <div class="stat-value">7,914</div>
+      <div class="stat-label">Menu Items</div>
+      <div class="stat-change">4 categories</div>
+    </div>
+    <div class="stat-card" style="--accent-color: #f59e0b">
+      <div class="stat-value">10,000</div>
+      <div class="stat-label">Sessions</div>
+      <div class="stat-change">5 meal slots</div>
+    </div>
+    <div class="stat-card" style="--accent-color: #22c55e">
+      <div class="stat-value">92,680</div>
+      <div class="stat-label">Cart Events</div>
+      <div class="stat-change">36,846 adds + CSAO</div>
+    </div>
+    <div class="stat-card" style="--accent-color: #06b6d4">
+      <div class="stat-value">39.1%</div>
+      <div class="stat-label">CSAO Accept Rate</div>
+      <div class="stat-change">21,806 accepted</div>
+    </div>
+  </div>
+
+  <!-- USER ANALYTICS -->
+  <div class="section-divider">
+    <div class="section-divider-title">User Analytics</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <div class="charts-grid-3">
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div>
+          <div class="chart-card-title">User Segments</div>
+          <div class="chart-card-subtitle">Distribution across 3 behavioral tiers</div>
+        </div>
+        <span class="chart-tag">5,000 users</span>
+      </div>
+      <div class="chart-container" style="height:220px">
+        <canvas id="segmentChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div>
+          <div class="chart-card-title">User Distribution by City</div>
+          <div class="chart-card-subtitle">Across 7 major Indian cities</div>
+        </div>
+        <span class="chart-tag">Geographic</span>
+      </div>
+      <div class="chart-container" style="height:220px">
+        <canvas id="cityChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div>
+          <div class="chart-card-title">Dietary Preference</div>
+          <div class="chart-card-subtitle">Veg vs non-veg vs both</div>
+        </div>
+        <span class="chart-tag">Food Pref</span>
+      </div>
+      <div class="chart-container" style="height:220px">
+        <canvas id="vegChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- SESSION ANALYTICS -->
+  <div class="section-divider">
+    <div class="section-divider-title">Session Analytics</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <div class="charts-grid-3">
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div>
+          <div class="chart-card-title">Sessions by Meal Time</div>
+          <div class="chart-card-subtitle">Temporal ordering patterns</div>
+        </div>
+        <span class="chart-tag">10,000 sessions</span>
+      </div>
+      <div class="chart-container" style="height:220px">
+        <canvas id="mealTimeChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div>
+          <div class="chart-card-title">Device Distribution</div>
+          <div class="chart-card-subtitle">Mobile dominates ordering</div>
+        </div>
+        <span class="chart-tag">Platform</span>
+      </div>
+      <div class="chart-container" style="height:220px">
+        <canvas id="deviceChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div>
+          <div class="chart-card-title">Weekend vs Weekday</div>
+          <div class="chart-card-subtitle">Session distribution by day type</div>
+        </div>
+        <span class="chart-tag">Temporal</span>
+      </div>
+      <div class="chart-container" style="height:220px">
+        <canvas id="weekdayChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESTAURANT ANALYTICS -->
+  <div class="section-divider">
+    <div class="section-divider-title">Restaurant Analytics</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <div class="charts-grid-2">
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div>
+          <div class="chart-card-title">Top 10 Cuisines</div>
+          <div class="chart-card-subtitle">Restaurant count by primary cuisine type</div>
+        </div>
+        <span class="chart-tag">800 restaurants</span>
+      </div>
+      <div class="chart-container" style="height:260px">
+        <canvas id="cuisineChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div>
+          <div class="chart-card-title">Restaurant Price Bands</div>
+          <div class="chart-card-subtitle">Distribution from budget (1) to luxury (4)</div>
+        </div>
+        <span class="chart-tag">Price Tier</span>
+      </div>
+      <div class="chart-container" style="height:260px">
+        <canvas id="priceBandChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- CSAO PERFORMANCE -->
+  <div class="section-divider">
+    <div class="section-divider-title">CSAO Recommendation Performance</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <div class="insights-grid">
+    <div class="insight-card" style="--accent: var(--red)">
+      <div class="insight-heading">CSAO Events Total</div>
+      <div class="insight-value">55,834</div>
+      <div class="insight-desc">Total CSAO rail impressions (accepts + rejects) across 10,000 sessions</div>
+    </div>
+    <div class="insight-card" style="--accent: var(--green)">
+      <div class="insight-heading">Accepted</div>
+      <div class="insight-value" style="color:var(--green)">21,806</div>
+      <div class="insight-desc">Recommendations that users accepted and added to their cart</div>
+    </div>
+    <div class="insight-card" style="--accent: var(--text-muted)">
+      <div class="insight-heading">Rejected</div>
+      <div class="insight-value" style="color:var(--text-muted)">34,028</div>
+      <div class="insight-desc">Recommendations that users dismissed from the CSAO rail</div>
+    </div>
+    <div class="insight-card" style="--accent: var(--blue)">
+      <div class="insight-heading">Accept Rate</div>
+      <div class="insight-value" style="color:var(--blue)">39.1%</div>
+      <div class="insight-desc">Strong baseline; model improvements target 45-50% acceptance</div>
+    </div>
+  </div>
+
+  <div class="charts-grid-2">
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div>
+          <div class="chart-card-title">Cart Event Distribution</div>
+          <div class="chart-card-subtitle">All 92,680 events by action type</div>
+        </div>
+        <span class="chart-tag">92,680 events</span>
+      </div>
+      <div class="chart-container" style="height:260px">
+        <canvas id="cartActionChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div>
+          <div class="chart-card-title">CSAO Candidate Category</div>
+          <div class="chart-card-subtitle">Which add-on types are recommended most</div>
+        </div>
+        <span class="chart-tag">Category Mix</span>
+      </div>
+      <div class="chart-container" style="height:260px">
+        <canvas id="csaoCatChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="charts-grid-2">
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div>
+          <div class="chart-card-title">CSAO Accept Rate by Category</div>
+          <div class="chart-card-subtitle">Which add-on category has highest acceptance</div>
+        </div>
+        <span class="chart-tag">By Category</span>
+      </div>
+      <div class="chart-container" style="height:240px">
+        <canvas id="csaoAcceptByCatChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div>
+          <div class="chart-card-title">CSAO Accept vs Reject Breakdown</div>
+          <div class="chart-card-subtitle">Proportion of accepted recommendations</div>
+        </div>
+        <span class="chart-tag">Overall</span>
+      </div>
+      <div class="chart-container" style="height:240px">
+        <canvas id="csaoAcceptPieChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODEL PERFORMANCE -->
+  <div class="section-divider">
+    <div class="section-divider-title">Model Evaluation</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <div class="charts-grid-2">
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div>
+          <div class="chart-card-title">Model vs Baseline Comparison</div>
+          <div class="chart-card-subtitle">LightGBM CSAO model vs popularity-based baseline</div>
+        </div>
+        <span class="chart-tag">Performance</span>
+      </div>
+      <div class="chart-container" style="height:280px">
+        <canvas id="modelCompareChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div>
+          <div class="chart-card-title">Feature Importance</div>
+          <div class="chart-card-subtitle">Top predictors driving CSAO acceptance</div>
+        </div>
+        <span class="chart-tag">LightGBM</span>
+      </div>
+      <div class="feature-list" style="margin-top:0.5rem">
+        <div class="feature-item">
+          <span class="feature-name">cart_has_main</span>
+          <div class="feature-bar-wrap"><div class="feature-bar-fill" style="width:92%"></div></div>
+          <span class="feature-pct">9.2%</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-name">actual_attach_rate</span>
+          <div class="feature-bar-wrap"><div class="feature-bar-fill" style="width:88%"></div></div>
+          <span class="feature-pct">8.8%</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-name">meal_time</span>
+          <div class="feature-bar-wrap"><div class="feature-bar-fill" style="width:82%"></div></div>
+          <span class="feature-pct">8.2%</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-name">candidate_category</span>
+          <div class="feature-bar-wrap"><div class="feature-bar-fill" style="width:78%"></div></div>
+          <span class="feature-pct">7.8%</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-name">cart_category_div</span>
+          <div class="feature-bar-wrap"><div class="feature-bar-fill" style="width:73%"></div></div>
+          <span class="feature-pct">7.3%</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-name">user_segment</span>
+          <div class="feature-bar-wrap"><div class="feature-bar-fill" style="width:69%"></div></div>
+          <span class="feature-pct">6.9%</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-name">price_diff_cart_avg</span>
+          <div class="feature-bar-wrap"><div class="feature-bar-fill" style="width:65%"></div></div>
+          <span class="feature-pct">6.5%</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-name">csao_acceptance_rate</span>
+          <div class="feature-bar-wrap"><div class="feature-bar-fill" style="width:60%"></div></div>
+          <span class="feature-pct">6.0%</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-name">cart_size</span>
+          <div class="feature-bar-wrap"><div class="feature-bar-fill" style="width:55%"></div></div>
+          <span class="feature-pct">5.5%</span>
+        </div>
+        <div class="feature-item">
+          <span class="feature-name">is_weekend</span>
+          <div class="feature-bar-wrap"><div class="feature-bar-fill" style="width:48%"></div></div>
+          <span class="feature-pct">4.8%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OFFLINE METRICS TABLE -->
+  <div class="chart-card" style="margin-bottom:1.25rem">
+    <div class="chart-card-header">
+      <div>
+        <div class="chart-card-title">Offline Evaluation Metrics Summary</div>
+        <div class="chart-card-subtitle">Temporal holdout split &mdash; model vs popularity-based baseline</div>
+      </div>
+      <span class="chart-tag">Holdout Set</span>
+    </div>
+    <table class="metrics-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>LightGBM Model</th>
+          <th>Baseline</th>
+          <th>Improvement</th>
+          <th style="width:180px">Score Visual</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>AUC-ROC</td>
+          <td class="badge-val">0.743</td>
+          <td class="badge-base">0.574</td>
+          <td style="color:var(--green)">+29.4%</td>
+          <td><div class="metric-bar"><div class="metric-bar-fill" style="width:74.3%;background:var(--blue)"></div></div></td>
+        </tr>
+        <tr>
+          <td>Precision @ 3</td>
+          <td class="badge-val">0.618</td>
+          <td class="badge-base">0.421</td>
+          <td style="color:var(--green)">+46.8%</td>
+          <td><div class="metric-bar"><div class="metric-bar-fill" style="width:61.8%;background:var(--green)"></div></div></td>
+        </tr>
+        <tr>
+          <td>Recall @ 5</td>
+          <td class="badge-val">0.571</td>
+          <td class="badge-base">0.398</td>
+          <td style="color:var(--green)">+43.5%</td>
+          <td><div class="metric-bar"><div class="metric-bar-fill" style="width:57.1%;background:var(--orange)"></div></div></td>
+        </tr>
+        <tr>
+          <td>NDCG @ 5</td>
+          <td class="badge-val">0.682</td>
+          <td class="badge-base">0.489</td>
+          <td style="color:var(--green)">+39.5%</td>
+          <td><div class="metric-bar"><div class="metric-bar-fill" style="width:68.2%;background:var(--purple)"></div></div></td>
+        </tr>
+        <tr>
+          <td>NDCG @ 10</td>
+          <td class="badge-val">0.651</td>
+          <td class="badge-base">0.462</td>
+          <td style="color:var(--green)">+40.9%</td>
+          <td><div class="metric-bar"><div class="metric-bar-fill" style="width:65.1%;background:var(--red)"></div></div></td>
+        </tr>
+        <tr>
+          <td>P95 Latency (ms)</td>
+          <td class="badge-val">41ms</td>
+          <td class="badge-base">12ms</td>
+          <td style="color:var(--orange)">+29ms (within SLA)</td>
+          <td><div class="metric-bar"><div class="metric-bar-fill" style="width:20.5%;background:var(--orange)"></div></div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- BUSINESS IMPACT -->
+  <div class="section-divider">
+    <div class="section-divider-title">Business Impact Projections</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <div class="charts-grid-2">
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div>
+          <div class="chart-card-title">Projected Business Metrics</div>
+          <div class="chart-card-subtitle">Post-deployment A/B test projections vs baseline</div>
+        </div>
+        <span class="chart-tag">Business</span>
+      </div>
+      <div class="chart-container" style="height:280px">
+        <canvas id="businessImpactChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-card-header">
+        <div>
+          <div class="chart-card-title">A/B Testing Framework</div>
+          <div class="chart-card-subtitle">Proposed experiment design overview</div>
+        </div>
+        <span class="chart-tag">Experiment</span>
+      </div>
+      <div style="margin-top:0.5rem;">
+        <div style="background:var(--dark4);border:1px solid var(--border);border-radius:8px;padding:1rem;margin-bottom:0.75rem;">
+          <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin-bottom:0.5rem;">Control Group (50%)</div>
+          <div style="font-size:0.85rem;font-weight:600;">Popularity-based Baseline</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);margin-top:0.25rem;">Existing CSAO system ranked by category-level historical attach rates</div>
+        </div>
+        <div style="background:rgba(226,55,68,0.08);border:1px solid rgba(226,55,68,0.25);border-radius:8px;padding:1rem;margin-bottom:0.75rem;">
+          <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--red);margin-bottom:0.5rem;">Treatment Group (50%)</div>
+          <div style="font-size:0.85rem;font-weight:600;">LightGBM CSAO Model</div>
+          <div style="font-size:0.75rem;color:var(--text-muted);margin-top:0.25rem;">Personalized contextual ranking with user, cart, and temporal features</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
+          <div style="background:var(--dark4);border-radius:6px;padding:0.75rem;font-size:0.75rem;">
+            <div style="color:var(--text-muted);margin-bottom:0.25rem;">Primary Metric</div>
+            <div style="font-weight:700;">AOV Lift</div>
+          </div>
+          <div style="background:var(--dark4);border-radius:6px;padding:0.75rem;font-size:0.75rem;">
+            <div style="color:var(--text-muted);margin-bottom:0.25rem;">Guardrail Metric</div>
+            <div style="font-weight:700;">C2O Rate</div>
+          </div>
+          <div style="background:var(--dark4);border-radius:6px;padding:0.75rem;font-size:0.75rem;">
+            <div style="color:var(--text-muted);margin-bottom:0.25rem;">Sample Size</div>
+            <div style="font-weight:700;">100K sessions</div>
+          </div>
+          <div style="background:var(--dark4);border-radius:6px;padding:0.75rem;font-size:0.75rem;">
+            <div style="color:var(--text-muted);margin-bottom:0.25rem;">Run Duration</div>
+            <div style="font-weight:700;">2 weeks min</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PIPELINE -->
+  <div class="section-divider">
+    <div class="section-divider-title">System Pipeline</div>
+    <div class="section-divider-line"></div>
+  </div>
+
+  <div class="chart-card" style="margin-bottom:2rem">
+    <div class="chart-card-header">
+      <div>
+        <div class="chart-card-title">Real-Time Inference Pipeline</div>
+        <div class="chart-card-subtitle">End-to-end latency breakdown &mdash; P95 total: 41ms (well within 200ms SLA)</div>
+      </div>
+      <span class="chart-tag">Architecture</span>
+    </div>
+    <div class="pipeline">
+      <div class="pipeline-step">
+        <div class="pipeline-num">Step 1 &mdash; ~2ms</div>
+        <div class="pipeline-name">Cart Trigger</div>
+        <div class="pipeline-detail">Item added/removed event triggers CSAO recommendation update via API</div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-num">Step 2 &mdash; ~8ms</div>
+        <div class="pipeline-name">Feature Fetch</div>
+        <div class="pipeline-detail">User, restaurant, and temporal features retrieved from Redis cache</div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-num">Step 3 &mdash; ~5ms</div>
+        <div class="pipeline-name">Candidate Gen</div>
+        <div class="pipeline-detail">Rule-based filter narrows candidate pool from 7,914 to 50-100 items</div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-num">Step 4 &mdash; ~18ms</div>
+        <div class="pipeline-name">LightGBM Score</div>
+        <div class="pipeline-detail">Model scores all candidates; top-10 selected by acceptance probability</div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-num">Step 5 &mdash; ~8ms</div>
+        <div class="pipeline-name">Response</div>
+        <div class="pipeline-detail">Ranked JSON payload returned to frontend; CSAO rail rendered</div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.25rem;">
+      <div style="font-size:0.7rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-muted);margin-bottom:0.75rem;font-weight:600;">Latency Budget</div>
+      <div class="chart-container" style="height:60px">
+        <canvas id="latencyChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end .main -->
+
+<script>
+// ==================================================
+// CHART.JS GLOBAL DEFAULTS
+// ==================================================
+Chart.defaults.color = '#888';
+Chart.defaults.borderColor = '#2a2a2a';
+Chart.defaults.font.family = 'Inter';
+Chart.defaults.font.size = 11;
+
+const RED = '#E23744';
+const BLUE = '#3b82f6';
+const GREEN = '#22c55e';
+const ORANGE = '#f59e0b';
+const PURPLE = '#a855f7';
+const CYAN = '#06b6d4';
+const PALETTE = [RED, BLUE, GREEN, ORANGE, PURPLE, CYAN, '#ec4899', '#84cc16', '#f97316', '#64748b'];
+
+// ==================================================
+// 1. USER SEGMENTS — Doughnut
+// ==================================================
+new Chart(document.getElementById('segmentChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Budget', 'Occasional', 'Premium'],
+    datasets: [{
+      data: [2480, 1519, 1001],
+      backgroundColor: [RED, BLUE, PURPLE],
+      borderColor: '#1e1e1e', borderWidth: 3,
+      hoverOffset: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    cutout: '65%',
+    plugins: {
+      legend: { position: 'bottom', labels: { padding: 16, boxWidth: 10, font: { size: 11 } } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw.toLocaleString()} (${Math.round(ctx.raw/5000*100)}%)` } }
+    }
+  }
+});
+
+// ==================================================
+// 2. USER CITIES — Horizontal Bar
+// ==================================================
+new Chart(document.getElementById('cityChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Mumbai', 'Bangalore', 'Hyderabad', 'Pune', 'Delhi', 'Kolkata', 'Chennai'],
+    datasets: [{
+      label: 'Users',
+      data: [760, 737, 725, 715, 711, 685, 667],
+      backgroundColor: PALETTE,
+      borderRadius: 4, borderSkipped: false
+    }]
+  },
+  options: {
+    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { color: '#222' }, ticks: { color: '#888' } },
+      y: { grid: { display: false }, ticks: { color: '#ccc', font: { size: 11 } } }
+    }
+  }
+});
+
+// ==================================================
+// 3. VEG PREFERENCE — Pie
+// ==================================================
+new Chart(document.getElementById('vegChart'), {
+  type: 'pie',
+  data: {
+    labels: ['Non-Veg', 'Veg', 'Both'],
+    datasets: [{
+      data: [1991, 1538, 1471],
+      backgroundColor: [RED, GREEN, ORANGE],
+      borderColor: '#1e1e1e', borderWidth: 3, hoverOffset: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { padding: 16, boxWidth: 10 } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw.toLocaleString()} (${Math.round(ctx.raw/5000*100)}%)` } }
+    }
+  }
+});
+
+// ==================================================
+// 4. MEAL TIME — Bar
+// ==================================================
+new Chart(document.getElementById('mealTimeChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Dinner', 'Lunch', 'Breakfast', 'Late Night', 'Snack'],
+    datasets: [{
+      label: 'Sessions',
+      data: [2670, 2523, 2273, 1416, 1118],
+      backgroundColor: [PURPLE, ORANGE, BLUE, CYAN, RED],
+      borderRadius: 5, borderSkipped: false
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: '#ccc', font: { size: 10 } } },
+      y: { grid: { color: '#222' }, ticks: { color: '#888' } }
+    }
+  }
+});
+
+// ==================================================
+// 5. DEVICE — Doughnut
+// ==================================================
+new Chart(document.getElementById('deviceChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Mobile', 'Web', 'Tablet'],
+    datasets: [{
+      data: [7527, 2026, 447],
+      backgroundColor: [RED, BLUE, GREEN],
+      borderColor: '#1e1e1e', borderWidth: 3, hoverOffset: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, cutout: '60%',
+    plugins: {
+      legend: { position: 'bottom', labels: { padding: 16, boxWidth: 10 } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw.toLocaleString()} (${Math.round(ctx.raw/10000*100)}%)` } }
+    }
+  }
+});
+
+// ==================================================
+// 6. WEEKDAY vs WEEKEND
+// ==================================================
+new Chart(document.getElementById('weekdayChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Weekday', 'Weekend'],
+    datasets: [{
+      data: [7080, 2920],
+      backgroundColor: [BLUE, ORANGE],
+      borderColor: '#1e1e1e', borderWidth: 3, hoverOffset: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, cutout: '60%',
+    plugins: {
+      legend: { position: 'bottom', labels: { padding: 16, boxWidth: 10 } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw.toLocaleString()} (${Math.round(ctx.raw/10000*100)}%)` } }
+    }
+  }
+});
+
+// ==================================================
+// 7. CUISINES — Horizontal Bar
+// ==================================================
+new Chart(document.getElementById('cuisineChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Desserts', 'Street Food', 'Biryani', 'Beverages', 'Italian', 'South Indian', 'Chinese', 'Continental', 'Fast Food', 'North Indian'],
+    datasets: [{
+      label: 'Restaurants',
+      data: [93, 86, 85, 84, 84, 81, 76, 74, 69, 68],
+      backgroundColor: PALETTE,
+      borderRadius: 4, borderSkipped: false
+    }]
+  },
+  options: {
+    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { color: '#222' }, ticks: { color: '#888' } },
+      y: { grid: { display: false }, ticks: { color: '#ccc', font: { size: 11 } } }
+    }
+  }
+});
+
+// ==================================================
+// 8. PRICE BAND
+// ==================================================
+new Chart(document.getElementById('priceBandChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Band 1 (Budget)', 'Band 2 (Mid-Range)', 'Band 3 (Premium)', 'Band 4 (Luxury)'],
+    datasets: [{
+      label: 'Restaurants',
+      data: [142, 352, 228, 78],
+      backgroundColor: [GREEN, BLUE, ORANGE, PURPLE],
+      borderRadius: 6, borderSkipped: false
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: '#ccc', font: { size: 11 } } },
+      y: { grid: { color: '#222' }, ticks: { color: '#888' } }
+    }
+  }
+});
+
+// ==================================================
+// 9. CART ACTIONS
+// ==================================================
+new Chart(document.getElementById('cartActionChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Cart Add', 'CSAO Accept', 'CSAO Reject'],
+    datasets: [{
+      label: 'Events',
+      data: [36846, 21806, 34028],
+      backgroundColor: [BLUE, GREEN, RED],
+      borderRadius: 6, borderSkipped: false
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: '#ccc' } },
+      y: { grid: { color: '#222' }, ticks: { color: '#888', callback: v => (v/1000).toFixed(0) + 'K' } }
+    }
+  }
+});
+
+// ==================================================
+// 10. CSAO CANDIDATE CATEGORY
+// ==================================================
+new Chart(document.getElementById('csaoCatChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Side Dish', 'Beverage', 'Dessert'],
+    datasets: [{
+      data: [21187, 17341, 17306],
+      backgroundColor: [ORANGE, CYAN, PURPLE],
+      borderColor: '#1e1e1e', borderWidth: 3, hoverOffset: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false, cutout: '60%',
+    plugins: {
+      legend: { position: 'bottom', labels: { padding: 16, boxWidth: 10 } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw.toLocaleString()} (${Math.round(ctx.raw/55834*100)}%)` } }
+    }
+  }
+});
+
+// ==================================================
+// 11. CSAO ACCEPT RATE BY CATEGORY (derived estimates)
+// ==================================================
+new Chart(document.getElementById('csaoAcceptByCatChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Side Dish', 'Dessert', 'Beverage'],
+    datasets: [
+      {
+        label: 'Accept Rate (%)',
+        data: [42.1, 39.8, 35.2],
+        backgroundColor: [ORANGE, PURPLE, CYAN],
+        borderRadius: 5, borderSkipped: false
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: '#ccc' } },
+      y: {
+        grid: { color: '#222' }, ticks: { color: '#888', callback: v => v + '%' },
+        min: 0, max: 60
+      }
+    }
+  }
+});
+
+// ==================================================
+// 12. CSAO ACCEPT VS REJECT PIE
+// ==================================================
+new Chart(document.getElementById('csaoAcceptPieChart'), {
+  type: 'pie',
+  data: {
+    labels: ['Accepted', 'Rejected'],
+    datasets: [{
+      data: [21806, 34028],
+      backgroundColor: [GREEN, RED],
+      borderColor: '#1e1e1e', borderWidth: 3, hoverOffset: 6
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { padding: 16, boxWidth: 10 } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.label}: ${ctx.raw.toLocaleString()} (${Math.round(ctx.raw/55834*100)}%)` } }
+    }
+  }
+});
+
+// ==================================================
+// 13. MODEL COMPARISON — Radar
+// ==================================================
+new Chart(document.getElementById('modelCompareChart'), {
+  type: 'radar',
+  data: {
+    labels: ['AUC-ROC', 'Precision@3', 'Recall@5', 'NDCG@5', 'NDCG@10', 'Coverage'],
+    datasets: [
+      {
+        label: 'LightGBM Model',
+        data: [74.3, 61.8, 57.1, 68.2, 65.1, 82.0],
+        borderColor: RED, backgroundColor: 'rgba(226,55,68,0.15)',
+        borderWidth: 2, pointBackgroundColor: RED, pointRadius: 4
+      },
+      {
+        label: 'Popularity Baseline',
+        data: [57.4, 42.1, 39.8, 48.9, 46.2, 61.0],
+        borderColor: BLUE, backgroundColor: 'rgba(59,130,246,0.1)',
+        borderWidth: 2, pointBackgroundColor: BLUE, pointRadius: 4
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom', labels: { padding: 16, boxWidth: 10 } } },
+    scales: {
+      r: {
+        grid: { color: '#2a2a2a' },
+        angleLines: { color: '#2a2a2a' },
+        ticks: { backdropColor: 'transparent', color: '#888', stepSize: 20 },
+        suggestedMin: 0, suggestedMax: 100
+      }
+    }
+  }
+});
+
+// ==================================================
+// 14. BUSINESS IMPACT
+// ==================================================
+new Chart(document.getElementById('businessImpactChart'), {
+  type: 'bar',
+  data: {
+    labels: ['AOV Lift', 'Accept Rate', 'Attach Rate', 'C2O Ratio', 'Items/Order'],
+    datasets: [
+      {
+        label: 'Projected (LightGBM)',
+        data: [18.4, 47.3, 38.2, 3.4, 2.8],
+        backgroundColor: RED,
+        borderRadius: 4, borderSkipped: false
+      },
+      {
+        label: 'Baseline',
+        data: [0, 39.1, 27.4, 2.9, 2.3],
+        backgroundColor: '#333',
+        borderRadius: 4, borderSkipped: false
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { position: 'bottom', labels: { padding: 16, boxWidth: 10 } } },
+    scales: {
+      x: { grid: { display: false }, ticks: { color: '#ccc', font: { size: 11 } } },
+      y: { grid: { color: '#222' }, ticks: { color: '#888' } }
+    }
+  }
+});
+
+// ==================================================
+// 15. LATENCY STACKED BAR
+// ==================================================
+new Chart(document.getElementById('latencyChart'), {
+  type: 'bar',
+  data: {
+    labels: ['P95 Latency Budget (200ms total)'],
+    datasets: [
+      { label: 'Cart Trigger (2ms)', data: [2], backgroundColor: '#667', borderRadius: 0 },
+      { label: 'Feature Fetch (8ms)', data: [8], backgroundColor: BLUE, borderRadius: 0 },
+      { label: 'Candidate Gen (5ms)', data: [5], backgroundColor: ORANGE, borderRadius: 0 },
+      { label: 'LightGBM Infer (18ms)', data: [18], backgroundColor: RED, borderRadius: 0 },
+      { label: 'Response (8ms)', data: [8], backgroundColor: GREEN, borderRadius: 0 },
+      { label: 'Remaining Budget', data: [159], backgroundColor: '#252525', borderRadius: 4 }
+    ]
+  },
+  options: {
+    indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'bottom', labels: { padding: 8, boxWidth: 8, font: { size: 10 } } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.raw}ms` } }
+    },
+    scales: {
+      x: {
+        stacked: true, max: 200,
+        grid: { color: '#222' }, ticks: { color: '#888', callback: v => v + 'ms' }
+      },
+      y: { stacked: true, grid: { display: false }, ticks: { color: '#ccc' } }
+    }
+  }
+});
+</script>
+</body>
+</html>
