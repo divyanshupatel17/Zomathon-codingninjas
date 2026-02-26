@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Zomato CSAO Recommendation System - Full Report | Team Pixels</title>
+<title>NextBite — CSAO Recommendation Engine | Team Pixels | Zomathon 2026</title>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 /* ================================================================
@@ -23,8 +23,8 @@
   --orange: #d97706;
   --purple: #7c3aed;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { font-size: 10.5pt; }
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+html { font-size: 10.5pt; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
   color: var(--text);
@@ -50,8 +50,8 @@ body {
    PRINT STYLES
 ================================================================ */
 @media print {
-  html { font-size: 10pt; }
-  body { background: white; }
+  html, body { font-size: 10pt; background: transparent !important; }
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
   .page {
     width: 100%; margin: 0; box-shadow: none; padding: 18mm 17mm 16mm;
     page-break-after: always;
@@ -60,6 +60,29 @@ body {
   .no-print { display: none !important; }
   canvas { max-height: 220px !important; }
   @page { size: A4; margin: 0; }
+  /* Force dark cover backgrounds to print */
+  .cover-page { background: linear-gradient(160deg, #0f0f1a 0%, #1a1a2e 45%, #16213e 100%) !important; color: white !important; }
+  .cover-accent { background: linear-gradient(180deg, rgba(226,55,68,0.35) 0%, rgba(113,27,34,0.15) 100%) !important; }
+  .cover-stripe { background: #E23744 !important; }
+  .cover-avatar { background: linear-gradient(135deg, #E23744, #a0142a) !important; }
+  .cover-team-name-badge { background: rgba(226,55,68,0.25) !important; border-color: rgba(226,55,68,0.5) !important; }
+  .cover-member { background: rgba(255,255,255,0.08) !important; border-color: rgba(255,255,255,0.15) !important; }
+  .cover-hackathon { background: rgba(226,55,68,0.2) !important; border-color: rgba(226,55,68,0.4) !important; }
+  /* Force colored backgrounds on content pages */
+  .kpi-box { background: #f9fafb !important; }
+  .callout { background: #fff5f5 !important; }
+  .callout.blue { background: #eff6ff !important; }
+  .callout.green { background: #f0fdf4 !important; }
+  .callout.orange { background: #fffbeb !important; }
+  thead tr { background: #E23744 !important; }
+  thead th { color: white !important; }
+  tbody tr:nth-child(even) { background: #f9fafb !important; }
+  .chart-box { background: #f9fafb !important; }
+  .feat-bar { background: #E23744 !important; }
+  .pipe-step { background: #f9fafb !important; }
+  .eval-card { background: #f9fafb !important; }
+  .team-card { background: #f9fafb !important; }
+  .cover-divider { background: #E23744 !important; }
 }
 
 /* ================================================================
@@ -375,9 +398,10 @@ canvas { max-height: 180px !important; }
   </div>
 
   <div class="cover-main">
-    <div class="cover-label">Problem Statement 2 &mdash; Cart Recommendation</div>
-    <div class="cover-title">Zomato Cart<br/><span>Super Add-On</span><br/>Rail System</div>
-    <div class="cover-subtitle">An intelligent, real-time recommendation engine that suggests relevant add-on items based on cart composition, behavioral context, and sequential ordering patterns at scale.</div>
+    <div class="cover-label">Problem Statement 2 &mdash; Cart Recommendation &bull; Zomathon 2026</div>
+    <div class="cover-title"><span>NextBite</span></div>
+    <div style="font-size:11pt;color:rgba(255,255,255,0.55);font-weight:500;letter-spacing:0.04em;margin-bottom:3mm">CSAO Rail Recommendation Engine</div>
+    <div class="cover-subtitle">Predicting the next perfect bite &mdash; AI-powered, context-aware add-on recommendations that complete every meal, boost AOV by +18.4%, and serve in under 41ms.</div>
     <div class="cover-divider"></div>
     <div class="cover-meta-grid">
       <div class="cover-meta-item">
@@ -515,7 +539,7 @@ canvas { max-height: 180px !important; }
 
   <div class="page-footer">
     <span><span class="footer-brand">Team Pixels</span> &mdash; Zomathon 2026</span>
-    <span>Zomato CSAO Recommendation System</span>
+    <span>NextBite &mdash; CSAO Recommendation Engine</span>
     <span>Page 2</span>
   </div>
 </div>
@@ -527,7 +551,7 @@ canvas { max-height: 180px !important; }
   <span class="section-tag">Section 1</span>
   <h1 class="part-title">Executive <span>Summary</span></h1>
 
-  <p class="lead">This report presents a complete end-to-end solution for Zomato's Cart Super Add-On (CSAO) Rail Recommendation problem. Our approach combines gradient-boosted learning-to-rank with sequential cart context modeling, deployed in a Redis-backed microservice achieving P95 latency of 41ms &mdash; well within the 200ms SLA.</p>
+  <p class="lead"><strong>NextBite</strong> is Team Pixels' complete end-to-end solution for Zomato's Cart Super Add-On (CSAO) Rail Recommendation problem. Our approach combines gradient-boosted learning-to-rank with sequential cart context modeling, deployed in a Redis-backed microservice achieving P95 latency of 41ms &mdash; well within the 200ms SLA.</p>
 
   <h2>1.1 Problem Overview</h2>
   <p>When customers add items to their cart on Zomato, the CSAO rail suggests complementary add-ons to increase order value. The challenge is making these recommendations contextually intelligent: recognising incomplete meal patterns, adapting to the user's sequential cart additions, and personalising for different user segments &mdash; all within tight latency constraints at millions-of-orders scale.</p>
@@ -603,7 +627,7 @@ canvas { max-height: 180px !important; }
 
   <div class="page-footer">
     <span><span class="footer-brand">Team Pixels</span> &mdash; Divyanshu Patel &bull; Varshith Pilli</span>
-    <span>Zomato CSAO Recommendation System</span>
+    <span>NextBite \u2014 CSAO Recommendation Engine</span>
     <span>Page 3</span>
   </div>
 </div>
@@ -686,7 +710,7 @@ canvas { max-height: 180px !important; }
 
   <div class="page-footer">
     <span><span class="footer-brand">Team Pixels</span> &mdash; Divyanshu Patel &bull; Varshith Pilli</span>
-    <span>Zomato CSAO Recommendation System</span>
+    <span>NextBite \u2014 CSAO Recommendation Engine</span>
     <span>Page 4</span>
   </div>
 </div>
@@ -736,7 +760,7 @@ canvas { max-height: 180px !important; }
 
   <div class="page-footer">
     <span><span class="footer-brand">Team Pixels</span> &mdash; Divyanshu Patel &bull; Varshith Pilli</span>
-    <span>Zomato CSAO Recommendation System</span>
+    <span>NextBite \u2014 CSAO Recommendation Engine</span>
     <span>Page 5</span>
   </div>
 </div>
@@ -791,7 +815,7 @@ canvas { max-height: 180px !important; }
 
   <div class="page-footer">
     <span><span class="footer-brand">Team Pixels</span> &mdash; Divyanshu Patel &bull; Varshith Pilli</span>
-    <span>Zomato CSAO Recommendation System</span>
+    <span>NextBite \u2014 CSAO Recommendation Engine</span>
     <span>Page 6</span>
   </div>
 </div>
@@ -855,7 +879,7 @@ canvas { max-height: 180px !important; }
 
   <div class="page-footer">
     <span><span class="footer-brand">Team Pixels</span> &mdash; Divyanshu Patel &bull; Varshith Pilli</span>
-    <span>Zomato CSAO Recommendation System</span>
+    <span>NextBite \u2014 CSAO Recommendation Engine</span>
     <span>Page 7</span>
   </div>
 </div>
@@ -947,7 +971,7 @@ canvas { max-height: 180px !important; }
 
   <div class="page-footer">
     <span><span class="footer-brand">Team Pixels</span> &mdash; Divyanshu Patel &bull; Varshith Pilli</span>
-    <span>Zomato CSAO Recommendation System</span>
+    <span>NextBite \u2014 CSAO Recommendation Engine</span>
     <span>Page 8</span>
   </div>
 </div>
@@ -1037,7 +1061,7 @@ canvas { max-height: 180px !important; }
 
   <div class="page-footer">
     <span><span class="footer-brand">Team Pixels</span> &mdash; Divyanshu Patel &bull; Varshith Pilli</span>
-    <span>Zomato CSAO Recommendation System</span>
+    <span>NextBite \u2014 CSAO Recommendation Engine</span>
     <span>Page 9</span>
   </div>
 </div>
@@ -1116,7 +1140,7 @@ canvas { max-height: 180px !important; }
 
   <div class="page-footer">
     <span><span class="footer-brand">Team Pixels</span> &mdash; Divyanshu Patel &bull; Varshith Pilli</span>
-    <span>Zomato CSAO Recommendation System</span>
+    <span>NextBite \u2014 CSAO Recommendation Engine</span>
     <span>Page 10</span>
   </div>
 </div>
@@ -1200,7 +1224,7 @@ canvas { max-height: 180px !important; }
 
   <div class="page-footer">
     <span><span class="footer-brand">Team Pixels</span> &mdash; Divyanshu Patel &bull; Varshith Pilli</span>
-    <span>Zomato CSAO Recommendation System</span>
+    <span>NextBite \u2014 CSAO Recommendation Engine</span>
     <span>Page 11</span>
   </div>
 </div>
@@ -1278,7 +1302,7 @@ canvas { max-height: 180px !important; }
 
   <div class="page-footer">
     <span><span class="footer-brand">Team Pixels</span> &mdash; Divyanshu Patel &bull; Varshith Pilli</span>
-    <span>Zomato CSAO Recommendation System</span>
+    <span>NextBite \u2014 CSAO Recommendation Engine</span>
     <span>Page 12</span>
   </div>
 </div>

@@ -1,6 +1,8 @@
-# Zomato CSAO Recommendation System
+# NextBite — CSAO Rail Recommendation Engine
 
-> **Zomathon 2026** &mdash; Problem Statement 2: Cart Super Add-On (CSAO) Rail Recommendation System
+> **Zomathon 2026** &mdash; Team Pixels &bull; Problem Statement 2: Cart Super Add-On (CSAO) Rail Recommendation System
+>
+> *Predicting the next perfect bite — AI-powered, context-aware add-on recommendations that complete every meal.*
 
 [![Deploy to GitHub Pages](https://github.com/divyanshupatel17/Zomathon-codingninjas/actions/workflows/deploy.yml/badge.svg)](https://github.com/divyanshupatel17/Zomathon-codingninjas/actions/workflows/deploy.yml)
 
